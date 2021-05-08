@@ -7,4 +7,25 @@
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CalenderViewCustom" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="colorAccent">@color/selected</item>
+        <item name="colorPrimary">@android:color/darker_gray</item>
+        <item name="android:textColorPrimary">@color/brown</item>
+    </style>
+
+    <style name="CalenderViewDateCustomText" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/brown</item>
+    </style>
+
+    <style name="CalenderViewWeekCustomText" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/brown</item>
+    </style>
 </resources>

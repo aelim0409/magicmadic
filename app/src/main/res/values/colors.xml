@@ -7,4 +7,25 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="memoPaper">#d9ffc2</color>
+    <color name="modifyingPaper">#ccf2ff</color>
+    <color name="deletingPaper">#ffffb6</color>
+
+    <color name="calendar">#edfaff</color>
+    <color name="selected">#a3cff6</color>
+    <color name="brown">#6b3d16</color>
+
+    <color name="colorYellow">#ffffb6</color>
+    <color name="colorRed">#ffdbcf</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorGray">#ebebeb</color>
+    <color name="darkBlue">#dddae6</color>
+
+    <color name="colorDarkGray">#aaaaaa</color>
+    <color name="colorPink">#ffe8f5</color>
 </resources>
