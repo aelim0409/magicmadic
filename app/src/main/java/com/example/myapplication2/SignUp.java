@@ -14,7 +14,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.sign_up);
 
         Button btn_signup2 = findViewById(R.id.button_signup2);
-
+        int aa;
         btn_signup2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
