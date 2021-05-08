@@ -9,8 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2">
-        <activity android:name=".ChooseDateActivity"></activity>
-        <activity android:name=".ModifyingActivity" />
+        <activity android:name=".ModifyingActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity android:name=".ChooseDateActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -21,7 +26,7 @@
         </activity>
         <activity android:name=".login" />
         <activity android:name=".SignUp" />
-        <activity android:name=".MainActivity2" />
+
     </application>
 
 </manifest>

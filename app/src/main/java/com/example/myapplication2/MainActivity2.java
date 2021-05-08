@@ -65,7 +65,7 @@ public class MainActivity2 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         TextView todayText = findViewById(R.id.today_text);
         todayText.setOnClickListener(new View.OnClickListener() {
