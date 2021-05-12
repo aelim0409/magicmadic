@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/complete_list"
+        android:title="보기 방식">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/show_all"
+                    android:title="전체 목록"
+                    android:orderInCategory="1"/>
+                <item
+                    android:id="@+id/show_not_done"
+                    android:title="해야할 일"
+                    android:orderInCategory="2"/>
+                <item
+                    android:id="@+id/show_completed"
+                    android:title="완료한 일"
+                    android:orderInCategory="3"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/move_date"
+        android:title="날짜 변경"/>
+</menu>
+
