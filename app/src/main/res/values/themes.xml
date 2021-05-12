@@ -28,4 +28,11 @@
     <style name="CalenderViewWeekCustomText" parent="TextAppearance.AppCompat.Subhead">
         <item name="android:textColor">@color/brown</item>
     </style>
+    <style name="Theme.MyApplication2.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.MyApplication2.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.MyApplication2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
