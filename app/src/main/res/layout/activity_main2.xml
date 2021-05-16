@@ -2,32 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerOuter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginVertical="7dp"
     android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    android:background="@drawable/shape_round_transparent"
+    android:orientation="vertical"
     android:paddingHorizontal="5dp"
     android:paddingVertical="5dp"
-    android:orientation="vertical"
-    android:background="@drawable/shape_round_transparent"
-    android:id="@+id/containerOuter"
+    android:rotation="0"
+    android:rotationX="0"
     tools:context=".MainActivity2">
+
     <LinearLayout
-        android:layout_marginVertical="5dp"
-        android:layout_marginHorizontal="5dp"
-        android:paddingVertical="10dp"
-        android:layout_alignParentTop="true"
         android:id="@+id/comp1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
         android:background="@drawable/shape_round_yellow"
         android:gravity="center"
-        >
+        android:paddingVertical="10dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            >
+            android:layout_marginHorizontal="10dp">
 
             <TextView
                 android:id="@+id/today_text"
@@ -35,91 +37,96 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#d2e8be"
-                android:paddingHorizontal="9dp"
-                android:paddingBottom="5dp"
-                android:paddingTop="7dp"
-                android:text="TODAY"
                 android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="TODAY"
                 android:textColor="@color/brown"
                 android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
+
         <TextView
-            android:layout_marginTop="2dp"
             android:id="@+id/date_today"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="26dp"
-            android:gravity="left"
-            android:textColor="@color/brown"
+            android:layout_marginTop="2dp"
             android:fontFamily="@font/dx"
-            android:text="날짜"/>
+            android:gravity="left"
+            android:text="날짜"
+            android:textColor="@color/brown"
+            android:textSize="26dp" />
     </LinearLayout>
 
     <CalendarView
-        android:layout_marginVertical="5dp"
-        android:layout_marginHorizontal="5dp"
         android:id="@+id/calendar"
-        android:theme="@style/CalenderViewCustom"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/comp1"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
         android:background="@drawable/shape_round_skyblue"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
         android:paddingTop="17dp"
-        android:paddingBottom="0dp" />
+        android:paddingBottom="0dp"
+        android:theme="@style/CalenderViewCustom"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+
     <RelativeLayout
-        android:layout_alignParentBottom="true"
         android:id="@+id/containerInner"
         android:layout_width="match_parent"
-        android:layout_below="@+id/calendar"
         android:layout_height="1dp"
+        android:layout_below="@+id/calendar"
+        android:layout_alignParentBottom="true"
         android:background="@android:color/transparent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:id="@+id/date_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginHorizontal="8dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/shape_round_pink"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
             <TextView
                 android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:fontFamily="@font/dx"
-                android:gravity="center"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="1dp"
+                android:fontFamily="@font/dx"
+                android:gravity="center"
                 android:text="날짜 가운데 정렬"
                 android:textColor="@color/brown"
-                android:textSize="22dp"/>
+                android:textSize="22dp" />
+
             <ImageButton
                 android:id="@+id/sub_menu_button"
                 android:layout_width="17dp"
                 android:layout_height="34dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:paddingVertical="0dp"
-                android:paddingHorizontal="0dp"
-                android:src="@drawable/menu"
-                android:scaleType="fitXY"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/shape_round_gray"/>
+                android:background="@drawable/shape_round_gray"
+                android:paddingHorizontal="0dp"
+                android:paddingVertical="0dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/menu" />
         </RelativeLayout>
 
         <ScrollView
             android:id="@+id/scroll_container"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/date_layout"
+            android:layout_height="wrap_content"
             android:layout_above="@id/move_layout"
+            android:layout_below="@id/date_layout"
             android:fillViewport="true"
             android:paddingHorizontal="10dp"
             android:paddingTop="10dp"
@@ -130,34 +137,504 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <Button
+                    android:id="@+id/start_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/shape_round_transparent"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:fontFamily="@font/dx"
+                    android:text="생리 시작"
+                    android:textColor="@color/brown"
+                    android:textSize="18dp"
+                    ></Button>
+                <Button
+                    android:id="@+id/end_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:background="@drawable/shape_round_transparent"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:fontFamily="@font/dx"
+                    android:text="생리 종료"
+                    android:textColor="@color/brown"
+                    android:textSize="18dp"
+                    ></Button>
+
+                <RelativeLayout
+                    android:id="@+id/water_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_round_gray"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/water_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/dx"
+                        android:text="   수분 섭취"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+
+                    <ImageButton
+                        android:id="@+id/waterplus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="44dp"
+                        android:src="@android:drawable/ic_menu_add"
+                        android:tint="#000000" />
+                    <ImageButton
+                        android:id="@+id/waterminus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:drawable/presence_busy"
+                        />
+                    <TextView
+                        android:id="@+id/water_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/dx"
+                        android:text="0 cup"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/exercise_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_round_gray"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/exercise_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/dx"
+                        android:text="   운동 시간"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/exercise_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/dx"
+                        android:text="0 h 0 m"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+                    <ImageButton
+                        android:id="@+id/exerciseplus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="44dp"
+                        android:src="@android:drawable/ic_menu_add"
+                        android:tint="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/exercisemnus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:drawable/presence_busy"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/sleep_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/shape_round_gray"
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/sleep_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="1dp"
+                        android:fontFamily="@font/dx"
+                        android:text="   수면 시간"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/sleep_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/dx"
+                        android:text="0 h 0 m"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+                    <ImageButton
+                        android:id="@+id/sleepplus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="44dp"
+                        android:src="@android:drawable/ic_menu_add"
+                        android:tint="#000000" />
+
+                    <ImageButton
+                        android:id="@+id/sleepminus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:adjustViewBounds="true"
+                        android:src="@android:drawable/presence_busy"
+                        />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn1"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn2"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn3"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn4"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn5"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn6"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn7"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom_btn8"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom_btn9"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom_btn10"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom_btn11"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom_btn12"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow"" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/symptom1"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom2"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom3"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom4"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom5"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom6"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom7"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+
+                        <ImageButton
+                            android:id="@+id/symptom8"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom9"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom10"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom11"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                        <ImageButton
+                            android:id="@+id/symptom12"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/shape_round_yellow" />
+                    </LinearLayout>
+                </HorizontalScrollView>
             </LinearLayout>
         </ScrollView>
         <RelativeLayout
             android:id="@+id/move_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingHorizontal="10dp"
-            android:background="@drawable/shape_round_purple"
             android:layout_alignParentBottom="true"
-            android:gravity="center">
+            android:background="@drawable/shape_round_purple"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
             <TextView
                 android:id="@+id/date_to_move_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="※ 이동할 날짜를 선택  "
-                android:fontFamily="@font/dx"
-                android:textSize="20dp"
-                android:textColor="@color/brown"
-                android:layout_toLeftOf="@id/move_button"
-                android:gravity="center"
                 android:layout_marginTop="8dp"
-                />
+                android:layout_toLeftOf="@id/move_button"
+                android:fontFamily="@font/dx"
+                android:gravity="center"
+                android:text="※ 이동할 날짜를 선택  "
+                android:textColor="@color/brown"
+                android:textSize="20dp" />
+
             <Button
                 android:id="@+id/move_button"
                 android:layout_width="77dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:background="@drawable/shape_round_gray"
                 android:fontFamily="@font/dx"
                 android:minWidth="0dp"
@@ -167,8 +644,7 @@
                 android:text="move"
                 android:textAllCaps="false"
                 android:textColor="@color/brown"
-                android:textSize="17dp"
-                android:layout_alignParentRight="true"/>
+                android:textSize="17dp" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
