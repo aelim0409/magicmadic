@@ -216,7 +216,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/dx"
-                        android:text="0 cup"
+                        android:text=" cup"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
                 </RelativeLayout>
@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/dx"
-                        android:text="0 h 0 m"
+                        android:text=" h  m"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
                     <ImageButton
@@ -301,7 +301,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/dx"
-                        android:text="0 h 0 m"
+                        android:text=" h m"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
                     <ImageButton
