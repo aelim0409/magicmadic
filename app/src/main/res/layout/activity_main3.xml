@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/containerOuter"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_marginHorizontal="7dp"
+android:layout_marginVertical="7dp"
+android:background="@drawable/shape_round_transparent"
+android:orientation="vertical"
+android:paddingHorizontal="5dp"
+android:paddingVertical="5dp"
+android:rotation="0"
+android:rotationX="0"
+tools:context=".MainActivity3">
+
+    <LinearLayout
+        android:id="@+id/comp1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/shape_round_yellow"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:id="@+id/today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="리마인더"
+                android:textColor="@color/brown"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comp2"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp1"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="경구 피임약 알림"
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comp3"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp2"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="생리 시작 알림"
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/comp4"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp3"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="병원 검진 알림"
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/comp5"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp4"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="목표 수분 섭취량 달성 알림"
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/comp6"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp5"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="목표 운동량 달성 알림"
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true">
+
+
+        <Button
+            android:id="@+id/fitness_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SelfTest"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/graph_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graph"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="home"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autoText="false"
+            android:freezesText="false"
+            android:text="calendar"
+            android:textSize="11dp"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/remind_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="remind"
+            android:background="@color/white"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

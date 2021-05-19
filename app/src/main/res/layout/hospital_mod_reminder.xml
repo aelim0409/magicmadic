@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/containerOuter"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_marginHorizontal="7dp"
+android:layout_marginVertical="7dp"
+android:background="@drawable/shape_round_transparent"
+android:orientation="vertical"
+android:paddingHorizontal="5dp"
+android:paddingVertical="5dp"
+android:rotation="0"
+android:rotationX="0"
+    tools:context=".HospitalModReminderActivity">
+
+    <LinearLayout
+        android:id="@+id/comp1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/shape_round_yellow"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+            <TextView
+                android:id="@+id/today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="병원 검진일 알림 설정"
+                android:textColor="@color/brown"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/comp2"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_below="@+id/comp1"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="6dp"
+        android:background="@drawable/shape_round_gray"
+        android:gravity="center"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="검진일 : "
+                android:textColor="@color/brown"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="5"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="m"
+                />
+            <EditText
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:text="19"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="d"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comp2"
+        android:layout_marginTop="5dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="* 설정일 3일 전부터 저녁 6시에 알림이 갑니다.">
+        </TextView>
+    </LinearLayout>
+    <Button
+        android:id="@+id/button_move"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPink"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:text="확인"
+        android:textStyle="bold"
+        android:fontFamily="@font/dx"
+        android:textSize="20dp"/>
+</RelativeLayout>
