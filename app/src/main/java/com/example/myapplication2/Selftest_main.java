@@ -25,6 +25,51 @@ public class Selftest_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selftest_main);
 
+        Button btn_home = findViewById(R.id.home_btn);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                startActivity(intent);
+            }
+        });
+
+        Button fitness_btn = findViewById(R.id.fitness_btn);
+        fitness_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                startActivity(intent);
+            }
+        });
+
+        Button graph_btn = findViewById(R.id.graph_btn);
+        graph_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),graph.class);
+//                startActivity(intent);
+            }
+        });
+
+        Button calendar_btn = findViewById(R.id.calendar_btn);
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        Button remind_btn = findViewById(R.id.remind_btn);
+        remind_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                startActivity(intent);
+            }
+        });
+
         list = (ListView)findViewById(R.id.selftestlist);
 
         List<String> data = new ArrayList<>();

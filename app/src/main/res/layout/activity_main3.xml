@@ -253,7 +253,7 @@ tools:context=".MainActivity3">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SelfTest"
+            android:text="SELFTEST"
             android:background="@color/white"/>
 
         <Button
@@ -280,7 +280,6 @@ tools:context=".MainActivity3">
             android:autoText="false"
             android:freezesText="false"
             android:text="calendar"
-            android:textSize="11dp"
             android:background="@color/white"/>
 
         <Button
@@ -291,6 +290,5 @@ tools:context=".MainActivity3">
             android:text="remind"
             android:background="@color/white"/>
     </LinearLayout>
-
 
 </RelativeLayout>

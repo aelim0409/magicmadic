@@ -35,28 +35,35 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
+
         android:layout_height="wrap_content"
+
         android:layout_alignParentBottom="true">
+
+
         <Button
-            android:id="@+id/selftest_btn"
+            android:id="@+id/fitness_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Self-Test" />
+            android:text="SELFTEST"
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/graph_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Graph" />
+            android:text="Graph"
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/home_btn"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="home" />
+            android:text="home"
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/calendar_btn"
@@ -66,14 +73,15 @@
             android:autoText="false"
             android:freezesText="false"
             android:text="calendar"
-            android:textSize="11dp" />
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/remind_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="remind" />
+            android:text="remind"
+            android:background="@color/white"/>
     </LinearLayout>
 
 </RelativeLayout>
