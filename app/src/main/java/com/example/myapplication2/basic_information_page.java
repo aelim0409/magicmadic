@@ -57,7 +57,7 @@ public class basic_information_page extends AppCompatActivity {
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 startActivity(intent);
             }
         });
