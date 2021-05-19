@@ -82,6 +82,7 @@ tools:context=".MainActivity3">
         </LinearLayout>
 
         <Switch
+            android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -120,6 +121,7 @@ tools:context=".MainActivity3">
         </LinearLayout>
 
         <Switch
+            android:id="@+id/switch2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -158,6 +160,7 @@ tools:context=".MainActivity3">
         </LinearLayout>
 
         <Switch
+            android:id="@+id/switch3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -195,6 +198,7 @@ tools:context=".MainActivity3">
         </LinearLayout>
 
         <Switch
+            android:id="@+id/switch4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -232,6 +236,7 @@ tools:context=".MainActivity3">
         </LinearLayout>
 
         <Switch
+            android:id="@+id/switch5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
