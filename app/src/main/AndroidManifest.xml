@@ -38,6 +38,7 @@
         <activity android:name=".SelftestResult" />
         <activity android:name=".pills_mod_reminder" />
         <activity android:name=".MainActivity3" />
+        <activity android:name=".graph" />
     </application>
 
 </manifest>

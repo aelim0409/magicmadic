@@ -39,8 +39,8 @@ public class basic_information_page extends AppCompatActivity {
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                startActivity(intent);
             }
         });
 

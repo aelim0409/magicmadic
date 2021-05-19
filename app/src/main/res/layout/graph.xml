@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_round_pink"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="5dp"
+        android:text="주기그래프"
+        android:fontFamily="@font/dx"
+        android:textColor="@color/brown"
+        android:textSize="30dp"
+
+        />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+
+
+
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginBottom="50dp">
+        <!--android:layout_marginLeft="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"-->
+
+        <view
+            android:id="@+id/line_view1"
+            class="im.dacer.androidcharts.LineView"
+            android:layout_width="wrap_content"
+            android:layout_height="650dp" />
+
+
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true">
+
+
+        <Button
+            android:id="@+id/fitness_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fitness"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/graph_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graph"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="home"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:autoText="false"
+            android:freezesText="false"
+            android:text="calendar"
+            android:textSize="11dp"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/remind_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="remind"
+            android:background="@color/white"/>
+    </LinearLayout>
+
+</RelativeLayout>
