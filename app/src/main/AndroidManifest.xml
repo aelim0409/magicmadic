@@ -9,21 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2">
-        <activity android:name=".basic_information_page"></activity>
-        <activity android:name=".SelftestResult" />
-        <activity android:name=".Selftest5" />
-        <activity android:name=".Selftest4" />
-        <activity android:name=".Selftest3" />
-        <activity android:name=".Selftest2" />
-        <activity android:name=".Selftest1" />
-        <activity android:name=".Selftest0" />
-        <activity android:name=".Selftest_main" />
-        <activity
-            android:name=".ModifyingActivity"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".ChooseDateActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ModifyingActivity"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+
+        <activity android:name=".ChooseDateActivity"
+            android:screenOrientation="portrait">
+        </activity>
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity">
             <intent-filter>
