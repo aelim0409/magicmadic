@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/disease2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자궁근종 자가진단"
+            android:textSize="28dp" />
+
+        <Button
+            android:id="@+id/test2done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="DONE" />
+
+        <Button
+            android:id="@+id/test2back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/test2done"
+            android:layout_alignBaseline="@id/test2done"
+            android:text="BACK" />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_below="@id/disease2"
+        android:fillViewport="true"
+        android:foregroundGravity="center">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/check1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/disease2"
+                android:text="생리를 조금씩 오래한다." />
+
+            <CheckBox
+                android:id="@+id/check2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check1_2"
+                android:text="생리량이 많고 덩어리가 많이 나온다. " />
+
+            <CheckBox
+                android:id="@+id/check3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check2_2"
+                android:text="생리 기간이 아닌데 부정기적인 출혈이 있따." />
+
+            <CheckBox
+                android:id="@+id/check4_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check3_2"
+                android:text="생리 전후 피부 트러블이 심하다." />
+
+            <CheckBox
+                android:id="@+id/check5_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check4_2"
+                android:text="비정상적으로 분비물이 생긴다." />
+
+            <CheckBox
+                android:id="@+id/check6_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check5_2"
+                android:text="손톱, 발톱이 얇아지고 잘 부러진다." />
+
+            <CheckBox
+                android:id="@+id/check7_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check6_2"
+                android:text="생리기간이 아닌데 허리통증, 골반통증을 느낀다." />
+
+            <CheckBox
+                android:id="@+id/check8_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check7_2"
+                android:text="아랫배가 나오고 가스가 찬다." />
+
+            <CheckBox
+                android:id="@+id/check9_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check8_2"
+                android:text="쉽게 숨이 찬다." />
+
+            <CheckBox
+                android:id="@+id/check10_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check9_2"
+                android:text="평소보다 머리카락이 많이 빠진다." />
+
+            <CheckBox
+                android:id="@+id/check11_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check10_2"
+                android:text="어깨 통증이 잦고 몸이 자주 쑤신다." />
+
+            <CheckBox
+                android:id="@+id/check12_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check11_2"
+                android:text="피로를 잘 느끼고 쉽게 짜증이 난다." />
+
+            <CheckBox
+                android:id="@+id/check13_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check12_2"
+                android:text="상교 시 생식기에 통증이 있다." />
+
+            <CheckBox
+                android:id="@+id/check14_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check13_2"
+                android:text="하복부에 딱딱한 혹이 만져진다." />
+
+            <CheckBox
+                android:id="@+id/check15_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/check14_2"
+                android:text="스트레스를 많이 받고 쉽게 우울증을 느낀다." />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/selftest_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Self-Test" />
+
+        <Button
+            android:id="@+id/graph_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graph" />
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="home" />
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="calendar"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/remind_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="remind" />
+    </LinearLayout>
+
+</RelativeLayout>

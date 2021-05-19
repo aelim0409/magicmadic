@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/disease0">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자궁경부암 자가진단"
+            android:textSize="26dp" />
+
+        <Button
+            android:id="@+id/test0done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="DONE" />
+
+        <Button
+            android:id="@+id/test0back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/test0done"
+            android:layout_alignBaseline="@id/test0done"
+            android:text="BACK" />
+
+    </LinearLayout>
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="갑작스럽게 체중이 감소되었다."
+        android:layout_below="@id/disease0"
+        android:id="@+id/check1" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="염증과 수분 저류 현상"
+        android:layout_below="@id/check1"
+        android:id="@+id/check2"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="방광염에 자주 걸린다."
+        android:layout_below="@id/check2"
+        android:id="@+id/check3"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="음부에 사마귀가 생긴다."
+        android:layout_below="@id/check3"
+        android:id="@+id/check4"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비정상적으로 분비물이 생긴다."
+        android:layout_below="@id/check4"
+        android:id="@+id/check5"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성관계 시 통증이 느껴진다."
+        android:layout_below="@id/check5"
+        android:id="@+id/check6"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등 하부에 통증이 느껴진다."
+        android:layout_below="@id/check6"
+        android:id="@+id/check7"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="빈혈증이 생긴다."
+        android:layout_below="@id/check7"
+        android:id="@+id/check8"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/selftest_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Self-Test" />
+
+        <Button
+            android:id="@+id/graph_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graph" />
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="home" />
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:freezesText="false"
+            android:text="calendar"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/remind_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="remind" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/disease1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="갱년기 자가진단"
+            android:textSize="28dp" />
+
+        <Button
+            android:id="@+id/test1done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="DONE" />
+
+        <Button
+            android:id="@+id/test1back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/test1done"
+            android:layout_alignBaseline="@id/test1done"
+            android:text="BACK" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="35세 이상이다"
+        android:layout_below="@id/disease1"
+        android:id="@+id/check1_1" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="갑작스러운 안면 홍조와 지나치게 많이 나오는 땀 때문에 괴롭다."
+        android:layout_below="@id/check1_1"
+        android:id="@+id/check2_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="표현하기 힘든 감정적 변화(불안, 짜증, 슬픔 등) 에 시달리고 있다."
+        android:layout_below="@id/check2_1"
+        android:id="@+id/check3_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="유방이 평소보다 더 부드럽고 민감하다."
+        android:layout_below="@id/check3_1"
+        android:id="@+id/check4_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="질이 건조하고 성교 시 통증이 있다."
+        android:layout_below="@id/check4_1"
+        android:id="@+id/check5_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성욕이 줄어들었다."
+        android:layout_below="@id/check5_1"
+        android:id="@+id/check6_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="얼굴 피부가 변했다. (피부가 건조해지고 없던 털이나 여드름이 생기는 등)"
+        android:layout_below="@id/check6_1"
+        android:id="@+id/check7_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="평소보다 피로를 더 자주 느끼고 수면 장애가 있다."
+        android:layout_below="@id/check7_1"
+        android:id="@+id/check8_1"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생리 주기와 양이 불규칙해졌다.."
+        android:layout_below="@id/check8_1"
+        android:id="@+id/check9_1"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="집중력, 기억력이 떨어졌다."
+        android:layout_below="@id/check9_1"
+        android:id="@+id/check10_1"/>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/selftest_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Self-Test" />
+
+        <Button
+            android:id="@+id/graph_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Graph" />
+
+        <Button
+            android:id="@+id/home_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="home" />
+
+        <Button
+            android:id="@+id/calendar_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:freezesText="false"
+            android:text="calendar"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/remind_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="remind" />
+    </LinearLayout>
+
+</RelativeLayout>
