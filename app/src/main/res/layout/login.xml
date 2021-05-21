@@ -6,15 +6,6 @@
     android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="360dp"
-        android:layout_height="344dp"
-        android:background="@drawable/rounded_custom_button1"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="178dp"
-        android:text="   "
-        tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:layout_width="wrap_content"
