@@ -32,7 +32,6 @@ public class MainActivity3 extends AppCompatActivity {
                 }
             }
         }
-
         class switch3Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
