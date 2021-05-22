@@ -77,12 +77,14 @@ tools:context=".pills_mod_reminder">
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/pills_days"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="21"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,23 +124,27 @@ tools:context=".pills_mod_reminder">
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/pills_hour"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="6"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="h"
                 />
+
             <EditText
+                android:id="@+id/pills_minute"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="00"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,23 +183,27 @@ tools:context=".pills_mod_reminder">
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/pills_startMonth"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="5"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="m"
                 />
+
             <EditText
+                android:id="@+id/pills_startDay"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="19"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
