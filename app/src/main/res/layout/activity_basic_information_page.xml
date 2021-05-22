@@ -63,8 +63,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="201dp"
+            android:layout_width="245dp"
+            android:layout_height="171dp"
             android:layout_marginStart="77dp"
             android:layout_marginLeft="77dp"
             android:layout_marginTop="131dp"
@@ -78,8 +78,8 @@
 
             <TextView
                 android:id="@+id/state_remind"
-                android:layout_width="292dp"
-                android:layout_height="128dp"
+                android:layout_width="288dp"
+                android:layout_height="112dp"
                 android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="135dp"
