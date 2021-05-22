@@ -79,23 +79,27 @@ android:rotationX="0"
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/hospital_month"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="5"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="m"
                 />
+
             <EditText
+                android:id="@+id/hospital_date"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="19"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
