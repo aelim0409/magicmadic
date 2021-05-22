@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class login extends AppCompatActivity {
-    int fail =0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
