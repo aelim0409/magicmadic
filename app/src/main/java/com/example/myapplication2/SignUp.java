@@ -67,7 +67,7 @@ public class SignUp extends AppCompatActivity {
                         finish();
                     }
                     else if(result=="회원가입이 완료되었습니다") {
-                        
+
                         Intent intent2 = new Intent(SignUp.this, login.class);
                         startActivity(intent2);
                         finish();

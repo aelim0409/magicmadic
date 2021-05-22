@@ -2,9 +2,9 @@ package com.example.myapplication2;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +19,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class water_mod_reminder extends AppCompatActivity {
+public class sleep_mod_reminder extends AppCompatActivity {
 
     EditText id_edit;
-    EditText water_goal;
+    EditText sleep_goal;
     Button button_move;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,9 +31,7 @@ public class water_mod_reminder extends AppCompatActivity {
         setContentView(R.layout.water_mod_reminder);
         button_move=findViewById(R.id.button_move);
         id_edit = (EditText) findViewById(R.id.id_Input);
-        water_goal=(EditText) findViewById(R.id.water_text);
-
-
+        sleep_goal=(EditText) findViewById(R.id.water_text);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,10 +47,10 @@ public class water_mod_reminder extends AppCompatActivity {
                 try{
 
                     String id = id_edit.getText().toString();
-                    String water=water_goal.getText().toString();
+                    String water=sleep_goal.getText().toString();
 
                     Log.w("앱에서 보낸 값", id+", "+water);
-                    water_mod_reminder.customTask task = new water_mod_reminder.customTask();
+                    sleep_mod_reminder.customTask task = new sleep_mod_reminder.customTask();
                     String result = task.execute(id,water).get();
                     Log.w("받은값",result);
 
@@ -63,7 +61,7 @@ public class water_mod_reminder extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        water_goal.setText(water);
+                        sleep_goal.setText(water);
                         Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
                         finish();
                     }

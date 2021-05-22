@@ -20,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class login extends AppCompatActivity {
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,57 +32,53 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+
                 //startActivity(intent);
                 login_func();
             }
-            void login_func() {
+            void login_func(){
+                Log.w("login","로그인 하는중");
+                try {
+                    String id = id_edit.getText().toString();
+                    String pw = pw_edit.getText().toString();
+                    Log.w("앱에서 보낸값",id+", "+pw);
 
-                    Log.w("login", "로그인 하는중");
+                    CustomTask task = new CustomTask();
+                    String result = task.execute(id,pw).get();
+                    Log.w("받은값",result);
 
-                    try {
-                        String id = id_edit.getText().toString();
-                        String pw = pw_edit.getText().toString();
-                        Log.w("앱에서 보낸값", id + ", " + pw);
+                    Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
 
-                        CustomTask task = new CustomTask();
-                        String result = task.execute(id, pw).get();
-                        Log.w("받은값", result);
-
-                        if(result=="아이디 혹은 패스워드가 다릅니다"){
-                            Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                        else if(result=="회원이 존재하지 않습니다"){
-                            Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                        else if(result=="필수 입력 사항입니다"){
-                            Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-
-
-                        else {//오류 없을 시
-                            Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    } catch (Exception e) {
+                    if(result=="아이디 혹은 패스워드가 다릅니다"){
+                        Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
-                }
+                    else if(result=="회원이 존재하지 않습니다"){
+                        Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else if(result=="필수 입력 사항입니다"){
+                        Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else{
+                        startActivity(intent);
+                    }
 
+
+                } catch (Exception e) {
+
+                }
+            }
         });
 
     }
-
 
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
         @Override
         // doInBackground의 매개변수 값이 여러개일 경우를 위해 배열로
         protected String doInBackground(String... strings) {
-
             try {
                 String str;
                 URL url = new URL("http://192.168.0.65:8080/android");  // 어떤 서버에 요청할지(localhost 안됨.)
@@ -92,7 +87,6 @@ public class login extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
                 conn.setDoOutput(true);
-
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
@@ -112,8 +106,6 @@ public class login extends AppCompatActivity {
                 } else {    // 통신이 실패한 이유를 찍기위한 로그
                     Log.i("통신 결과", conn.getResponseCode()+"에러");
                 }
-
-
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

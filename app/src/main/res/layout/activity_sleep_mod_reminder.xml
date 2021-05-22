@@ -13,7 +13,7 @@
     android:paddingVertical="5dp"
     android:rotation="0"
     android:rotationX="0"
-    tools:context=".HospitalModReminderActivity">
+    tools:context=".sleep_mod_reminder">
 
     <LinearLayout
         android:id="@+id/comp1"
@@ -41,7 +41,7 @@
                 android:paddingHorizontal="9dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="5dp"
-                android:text="목표 운동량 달성 알림"
+                android:text="목표 수면시간 설정"
                 android:textColor="@color/brown"
                 android:textSize="30dp"
                 android:textStyle="bold" />
@@ -71,30 +71,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-
                 android:fontFamily="@font/dx"
                 android:paddingHorizontal="9dp"
                 android:paddingTop="7dp"
                 android:paddingBottom="5dp"
-                android:text="운동량 : "
+                android:text="수면시간 : "
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
-
             <EditText
-
-                android:id="@+id/exercise_hour"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:text="5"
-                android:textAlignment="center" />
-
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="H" />
-
+                android:text="h"
+                />
 
         </LinearLayout>
 
@@ -119,4 +114,5 @@
         android:textStyle="bold"
         android:fontFamily="@font/dx"
         android:textSize="20dp"/>
+
 </RelativeLayout>
