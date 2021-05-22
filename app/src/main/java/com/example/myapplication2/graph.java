@@ -1,4 +1,5 @@
 package com.example.myapplication2;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -6,8 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+
 import java.util.ArrayList;
+
 import im.dacer.androidcharts.LineView;
+
+
+
+
 
 public class graph extends AppCompatActivity {
    // private SQLiteDatabase db;
@@ -65,6 +72,7 @@ public class graph extends AppCompatActivity {
         lineView.setDrawDotLine(true);
         lineView.setShowPopup(LineView.SHOW_POPUPS_All);
         lineView.setColorArray(new int []{Color.BLACK, Color.YELLOW,Color.BLUE});
+
         lineView.setBottomTextList(day);
         lineView.setDataList(dataLists);
 
