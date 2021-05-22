@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import im.dacer.androidcharts.LineView;
 
 
-
-
-
 public class graph extends AppCompatActivity {
    // private SQLiteDatabase db;
     private LineView lineView;
