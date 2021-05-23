@@ -49,6 +49,26 @@ public class SignUp extends AppCompatActivity {
                     String birthday=birthday_edit.getText().toString();
                     String age = age_edit.getText().toString();
 
+                    if(id_edit.getText().length()==0)
+                    {
+                        id="null";
+                    }
+                    if(name_edit.getText().length()==0)
+                    {
+                        name="null";
+                    }
+                    if(pw_edit.getText().length()==0)
+                    {
+                        pw="null";
+                    }
+                    if(birthday_edit.getText().length()==0)
+                    {
+                        birthday="null";
+                    }
+                    if(age_edit.getText().length()==0)
+                    {
+                        age="null";
+                    }
                     Log.w("앱에서 보낸 값", id+", "+name+", "+pw+", "+birthday+", "+age);
                     customTask task = new customTask();
                     String result = task.execute(id,name,pw,birthday,age).get();

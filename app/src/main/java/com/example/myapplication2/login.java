@@ -41,6 +41,15 @@ public class login extends AppCompatActivity {
                 try {
                     String id = id_edit.getText().toString();
                     String pw = pw_edit.getText().toString();
+
+                    if(id_edit.getText().length()==0)
+                    {
+                        id="null";
+                    }
+                    if(pw_edit.getText().length()==0)
+                    {
+                        pw="null";
+                    }
                     Log.w("앱에서 보낸값",id+", "+pw);
 
                     CustomTask task = new CustomTask();
@@ -64,7 +73,11 @@ public class login extends AppCompatActivity {
                         //finish();
                     }
                     else{
-                        Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                        String [] save = result.split(" ");
+                        String ID= save[0];
+
+                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        intent.putExtra("Id", save[0]);
                         startActivity(intent);
                     }
 
