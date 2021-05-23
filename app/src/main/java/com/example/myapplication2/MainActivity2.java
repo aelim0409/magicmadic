@@ -57,6 +57,9 @@ public class MainActivity2 extends Activity {
     int year, month, day; // 업데이트 시 절대로 변경해선 안 됨!! (사용자들이 이미 쓰고 있는 DB 파일 이름 때문)
     boolean autoClickForDateChange;
 
+    Button []symptoms;
+    Button []mucus;
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -69,6 +72,152 @@ public class MainActivity2 extends Activity {
         setContentView(R.layout.activity_main2);
 
         TextView todayText = findViewById(R.id.today_text);
+
+        symptoms[0]=findViewById(R.id.symptom1);
+        symptoms[1]=findViewById(R.id.symptom2);
+        symptoms[2]=findViewById(R.id.symptom3);
+        symptoms[3]=findViewById(R.id.symptom4);
+        symptoms[4]=findViewById(R.id.symptom5);
+        symptoms[5]=findViewById(R.id.symptom6);
+        symptoms[6]=findViewById(R.id.symptom7);
+        symptoms[7]=findViewById(R.id.symptom8);
+        symptoms[8]=findViewById(R.id.symptom9);
+        symptoms[9]=findViewById(R.id.symptom10);
+        symptoms[10]=findViewById(R.id.symptom11);
+        symptoms[11]=findViewById(R.id.symptom12);
+
+        mucus[0]=findViewById(R.id.mucus1);
+        mucus[1]=findViewById(R.id.mucus2);
+        mucus[2]=findViewById(R.id.mucus3);
+        mucus[3]=findViewById(R.id.mucus4);
+        mucus[4]=findViewById(R.id.mucus5);
+        mucus[5]=findViewById(R.id.mucus6);
+
+        symptoms[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[9].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });symptoms[10].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[11].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms[12].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mucus[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+
+
         todayText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

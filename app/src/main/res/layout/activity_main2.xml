@@ -349,7 +349,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/symptom_btn1"
+                            android:id="@+id/symptom1"
                             android:layout_width="39dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -363,7 +363,7 @@
 
 
                         <Button
-                            android:id="@+id/symptom_btn2"
+                            android:id="@+id/symptom2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -376,7 +376,7 @@
                             android:textSize="7dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn3"
+                            android:id="@+id/symptom3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -389,7 +389,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn4"
+                            android:id="@+id/symptom4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -402,7 +402,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn5"
+                            android:id="@+id/symptom5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -415,7 +415,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn6"
+                            android:id="@+id/symptom6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -428,7 +428,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn7"
+                            android:id="@+id/symptom7"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -441,7 +441,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn8"
+                            android:id="@+id/symptom8"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -454,7 +454,7 @@
                             android:textSize="7dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn9"
+                            android:id="@+id/symptom9"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -467,7 +467,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn10"
+                            android:id="@+id/symptom10"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -480,7 +480,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn11"
+                            android:id="@+id/symptom11"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -493,7 +493,7 @@
                             android:textSize="10dp" />
 
                         <Button
-                            android:id="@+id/symptom_btn12"
+                            android:id="@+id/symptom12"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -518,7 +518,7 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/symptom1"
+                            android:id="@+id/mucus1"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -531,7 +531,7 @@
                             android:textSize="9dp" />
 
                         <Button
-                            android:id="@+id/symptom2"
+                            android:id="@+id/mucus2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -544,7 +544,7 @@
                             android:textSize="9dp" />
 
                         <Button
-                            android:id="@+id/symptom3"
+                            android:id="@+id/mucus3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -557,7 +557,7 @@
                             android:textSize="9dp" />
 
                         <Button
-                            android:id="@+id/symptom4"
+                            android:id="@+id/mucus4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -570,7 +570,7 @@
                             android:textSize="9dp" />
 
                         <Button
-                            android:id="@+id/symptom5"
+                            android:id="@+id/mucus5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
@@ -583,7 +583,7 @@
                             android:textSize="9dp" />
 
                         <Button
-                            android:id="@+id/symptom6"
+                            android:id="@+id/mucus6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
                             android:layout_marginLeft="10dp"
