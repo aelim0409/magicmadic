@@ -1,7 +1,7 @@
 package com.example.myapplication2;
 
 //package com.ex.simpleconvenientmemo;
-
+///ㅇㅇㅇㅇ
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
