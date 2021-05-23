@@ -74,6 +74,7 @@ public class MainActivity2 extends Activity {
 
         TextView todayText = findViewById(R.id.today_text);
 
+
         ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
         TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
