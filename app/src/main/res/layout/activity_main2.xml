@@ -264,6 +264,7 @@
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -310,6 +311,9 @@
                             android:textColor="@color/brown"
                             android:textSize="18dp" />
                     </LinearLayout>
+
+
+
 
                     <ImageButton
                         android:id="@+id/exerciseplus"
@@ -588,7 +592,6 @@
                             android:background="@drawable/shape_round_yellow"
                             android:text="설사"
                             android:textSize="10dp" />
-
                     </LinearLayout>
 
                 </HorizontalScrollView>
