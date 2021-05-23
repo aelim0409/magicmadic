@@ -111,10 +111,10 @@
                 android:layout_width="17dp"
                 android:layout_height="34dp"
                 android:layout_alignParentRight="true"
+                android:background="@drawable/shape_round_pink"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/shape_round_gray"
                 android:paddingHorizontal="0dp"
                 android:paddingVertical="0dp"
                 android:scaleType="fitXY" />
