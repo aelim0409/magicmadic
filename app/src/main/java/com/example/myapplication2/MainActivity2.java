@@ -57,8 +57,26 @@ public class MainActivity2 extends Activity {
     int year, month, day; // 업데이트 시 절대로 변경해선 안 됨!! (사용자들이 이미 쓰고 있는 DB 파일 이름 때문)
     boolean autoClickForDateChange;
 
-    Button []symptoms;
-    Button []mucus;
+    Button symptoms1;
+    Button symptoms2;
+    Button symptoms3;
+    Button symptoms4;
+    Button symptoms5;
+    Button symptoms6;
+    Button symptoms7;
+    Button symptoms8;
+    Button symptoms9;
+    Button symptoms10;
+    Button symptoms11;
+    Button symptoms12;
+
+    Button mucus1;
+    Button mucus2;
+    Button mucus3;
+    Button mucus4;
+    Button mucus5;
+    Button mucus6;
+
 
     @Override
     protected void onResume() {
@@ -73,141 +91,129 @@ public class MainActivity2 extends Activity {
 
         TextView todayText = findViewById(R.id.today_text);
 
-        symptoms[0]=findViewById(R.id.symptom1);
-        symptoms[1]=findViewById(R.id.symptom2);
-        symptoms[2]=findViewById(R.id.symptom3);
-        symptoms[3]=findViewById(R.id.symptom4);
-        symptoms[4]=findViewById(R.id.symptom5);
-        symptoms[5]=findViewById(R.id.symptom6);
-        symptoms[6]=findViewById(R.id.symptom7);
-        symptoms[7]=findViewById(R.id.symptom8);
-        symptoms[8]=findViewById(R.id.symptom9);
-        symptoms[9]=findViewById(R.id.symptom10);
-        symptoms[10]=findViewById(R.id.symptom11);
-        symptoms[11]=findViewById(R.id.symptom12);
+        symptoms1=findViewById(R.id.symptom1);
+        symptoms2=findViewById(R.id.symptom2);
+        symptoms3=findViewById(R.id.symptom3);
+        symptoms4=findViewById(R.id.symptom4);
+        symptoms5=findViewById(R.id.symptom5);
+        symptoms6=findViewById(R.id.symptom6);
+        symptoms7=findViewById(R.id.symptom7);
+        symptoms8=findViewById(R.id.symptom8);
+        symptoms9=findViewById(R.id.symptom9);
+        symptoms10=findViewById(R.id.symptom10);
+        symptoms11=findViewById(R.id.symptom11);
+        symptoms12=findViewById(R.id.symptom12);
 
-        mucus[0]=findViewById(R.id.mucus1);
-        mucus[1]=findViewById(R.id.mucus2);
-        mucus[2]=findViewById(R.id.mucus3);
-        mucus[3]=findViewById(R.id.mucus4);
-        mucus[4]=findViewById(R.id.mucus5);
-        mucus[5]=findViewById(R.id.mucus6);
+        mucus1=findViewById(R.id.mucus1);
+        mucus2=findViewById(R.id.mucus2);
+        mucus3=findViewById(R.id.mucus3);
+        mucus4=findViewById(R.id.mucus4);
+        mucus5=findViewById(R.id.mucus5);
+        mucus6=findViewById(R.id.mucus6);
 
-        symptoms[0].setOnClickListener(new View.OnClickListener() {
+        symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[1].setOnClickListener(new View.OnClickListener() {
+        symptoms2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[2].setOnClickListener(new View.OnClickListener() {
+        symptoms3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[3].setOnClickListener(new View.OnClickListener() {
+        symptoms4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[4].setOnClickListener(new View.OnClickListener() {
+        symptoms5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[5].setOnClickListener(new View.OnClickListener() {
+        symptoms6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[6].setOnClickListener(new View.OnClickListener() {
+        symptoms7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[7].setOnClickListener(new View.OnClickListener() {
+        symptoms8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[8].setOnClickListener(new View.OnClickListener() {
+        symptoms9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });symptoms10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });symptoms[10].setOnClickListener(new View.OnClickListener() {
+        symptoms11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        symptoms[11].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        symptoms[12].setOnClickListener(new View.OnClickListener() {
+        symptoms12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
 
-        mucus[0].setOnClickListener(new View.OnClickListener() {
+        mucus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        mucus[1].setOnClickListener(new View.OnClickListener() {
+        mucus2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        mucus[2].setOnClickListener(new View.OnClickListener() {
+        mucus3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        mucus[3].setOnClickListener(new View.OnClickListener() {
+        mucus4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        mucus[4].setOnClickListener(new View.OnClickListener() {
+        mucus5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        mucus[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        mucus[6].setOnClickListener(new View.OnClickListener() {
+        mucus6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
