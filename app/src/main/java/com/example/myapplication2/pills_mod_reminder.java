@@ -46,7 +46,7 @@ public class pills_mod_reminder extends AppCompatActivity {
                     String birthControlPillsMinute = pills_minute.getText().toString();
                     String birthControlPillsStartMonth = pills_startMonth.getText().toString();
                     String birthControlPillsStartDay = pills_startDay.getText().toString();
-                    String birthControlPillsDays = pills_days.getText().toString();
+                    String birthControlPillsDays = pills_days.getText().toString();//before(기간)
 
                     Log.w("앱에서 보낸값", birthControlPillsHour + ", " + birthControlPillsMinute + ", " + birthControlPillsStartMonth + ", " + birthControlPillsStartDay+", " + birthControlPillsDays);
 
