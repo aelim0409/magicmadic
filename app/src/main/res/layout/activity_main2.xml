@@ -224,9 +224,19 @@
                         android:id="@+id/water_record"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/dx"
+                        android:layout_alignLeft="@+id/water"
+                        android:text="0"
+                        android:textColor="@color/brown"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/water"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/dx"
-                        android:text=" cup"
+                        android:text="    cup"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
                 </RelativeLayout>
@@ -254,15 +264,52 @@
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
 
-                    <TextView
-                        android:id="@+id/exercise_record"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/dx"
-                        android:text=" h  m"
-                        android:textColor="@color/brown"
-                        android:textSize="18dp" />
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/exercise_recordH"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dx"
+                            android:text="0"
+                            android:textColor="@color/brown"
+                            android:layout_alignLeft="@+id/exercise_record"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/exercise_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/dx"
+                            android:text=" h  "
+                            android:textColor="@color/brown"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/exercise_recordM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dx"
+                            android:text="0"
+                            android:textColor="@color/brown"
+                            android:layout_alignLeft="@+id/exercise_record"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/exercise_record2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/dx"
+                            android:text=" m"
+                            android:textColor="@color/brown"
+                            android:textSize="18dp" />
+                    </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/exerciseplus"
@@ -308,15 +355,52 @@
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
 
-                    <TextView
-                        android:id="@+id/sleep_record"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/dx"
-                        android:text=" h m"
-                        android:textColor="@color/brown"
-                        android:textSize="18dp" />
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true">
+
+                        <TextView
+                            android:id="@+id/sleep_recordH"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dx"
+                            android:text="0"
+                            android:textColor="@color/brown"
+                            android:layout_alignLeft="@+id/sleep_record"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/sleep_record"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/dx"
+                            android:text=" h  "
+                            android:textColor="@color/brown"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/sleep_recordM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dx"
+                            android:text="0"
+                            android:textColor="@color/brown"
+                            android:layout_alignLeft="@+id/sleep_record"
+                            android:textSize="18dp" />
+
+                        <TextView
+                            android:id="@+id/sleep_record2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/dx"
+                            android:text=" m"
+                            android:textColor="@color/brown"
+                            android:textSize="18dp" />
+                    </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/sleepplus"
@@ -504,6 +588,7 @@
                             android:background="@drawable/shape_round_yellow"
                             android:text="설사"
                             android:textSize="10dp" />
+
                     </LinearLayout>
 
                 </HorizontalScrollView>

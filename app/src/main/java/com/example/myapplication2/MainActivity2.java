@@ -211,6 +211,127 @@ public class MainActivity2 extends Activity {
             @Override
             public void onClick(View v) {
 
+
+            }
+        });
+
+        ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
+        TextView water, exerciseH, exerciseM, sleepH, sleepM;
+
+
+        waterminus = (ImageButton)findViewById(R.id.waterminus);
+        waterplus = (ImageButton)findViewById(R.id.waterplus);
+        water = (TextView)findViewById(R.id.water_record);
+        waterplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = water.getText().toString();
+                int n = Integer.parseInt(str);
+                n++;
+                str = Integer.toString(n);
+                water.setText(str);
+            }
+        });
+        waterminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = water.getText().toString();
+                int n = Integer.parseInt(str);
+                n--;
+                if(n< 0) n =0;
+                str = Integer.toString(n);
+                water.setText(str);
+            }
+        });
+
+        exerciseplus = (ImageButton)findViewById(R.id.exerciseplus);
+        exerciseminus = (ImageButton)findViewById(R.id.exercisemnus);
+        exerciseH = (TextView)findViewById(R.id.exercise_recordH);
+        exerciseM = (TextView)findViewById(R.id.exercise_recordM);
+
+        exerciseplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = exerciseM.getText().toString();
+                String str1 = exerciseH.getText().toString();
+                int n = Integer.parseInt(str);
+                int n1 = Integer.parseInt(str1);
+                n += 10;
+                if(n >= 60){
+                    n1++;
+                    n = 0;
+                }
+                str = Integer.toString(n);
+                str1 = Integer.toString(n1);
+                exerciseM.setText(str);
+                exerciseH.setText(str1);
+            }
+        });
+
+        exerciseminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = exerciseM.getText().toString();
+                String str1 = exerciseH.getText().toString();
+                int n = Integer.parseInt(str);
+                int n1 = Integer.parseInt(str1);
+                n -= 10;
+                if(n < 0 ) {
+                    n = 50;
+                    if( n1 == 0) n = 0;
+                    else n1--;
+                    if(n1 < 0) n1 = 0;
+                }
+                str = Integer.toString(n);
+                str1 = Integer.toString(n1);
+                exerciseM.setText(str);
+                exerciseH.setText(str1);
+            }
+        });
+
+
+        sleepplus = (ImageButton)findViewById(R.id.sleepplus);
+        sleepminus = (ImageButton)findViewById(R.id.sleepminus);
+        sleepH = (TextView)findViewById(R.id.sleep_recordH);
+        sleepM = (TextView)findViewById(R.id.sleep_recordM);
+
+        sleepplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = sleepM.getText().toString();
+                String str1 = sleepH.getText().toString();
+                int n = Integer.parseInt(str);
+                int n1 = Integer.parseInt(str1);
+                n += 10;
+                if(n >= 60){
+                    n1++;
+                    n = 0;
+                }
+                str = Integer.toString(n);
+                str1 = Integer.toString(n1);
+                sleepM.setText(str);
+                sleepH.setText(str1);
+            }
+        });
+
+        sleepminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = sleepM.getText().toString();
+                String str1 = sleepH.getText().toString();
+                int n = Integer.parseInt(str);
+                int n1 = Integer.parseInt(str1);
+                n -= 10;
+                if(n < 0 ) {
+                    n = 50;
+                    if( n1 == 0) n = 0;
+                    else n1--;
+                    if(n1 < 0) n1 = 0;
+                }
+                str = Integer.toString(n);
+                str1 = Integer.toString(n1);
+                sleepM.setText(str);
+                sleepH.setText(str1);
             }
         });
 
