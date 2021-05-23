@@ -339,11 +339,11 @@
                             android:id="@+id/symptom_btn1"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
 
@@ -351,30 +351,30 @@
                             android:id="@+id/symptom_btn2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
                         <ImageButton
                             android:id="@+id/symptom_btn3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
                         <ImageButton
                             android:id="@+id/symptom_btn4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
@@ -384,84 +384,88 @@
                             android:id="@+id/symptom_btn5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
                         <ImageButton
                             android:id="@+id/symptom_btn6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
                         <ImageButton
                             android:id="@+id/symptom_btn7"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
 
                         <ImageButton
                             android:id="@+id/symptom_btn8"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
+
                         <ImageButton
                             android:id="@+id/symptom_btn9"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
+
                         <ImageButton
                             android:id="@+id/symptom_btn10"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
+
                         <ImageButton
                             android:id="@+id/symptom_btn11"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
+
                         <ImageButton
                             android:id="@+id/symptom_btn12"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
                             android:background="@drawable/shape_round_yellow" />
                     </LinearLayout>
 
