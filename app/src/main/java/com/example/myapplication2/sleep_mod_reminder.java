@@ -38,20 +38,20 @@ public class sleep_mod_reminder extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),login.class);
                 //startActivity(intent);
-                water_mod_func();
+                sleep_mod_func();
             }
 
-            void water_mod_func()
+            void sleep_mod_func()
             {
-                Log.w("signUp","회원가입하는중");
+                Log.w("sleep_mod","수면목표설정중");
                 try{
 
                     String id = id_edit.getText().toString();
-                    String water=sleep_goal.getText().toString();
+                    String sleep=sleep_goal.getText().toString();
 
-                    Log.w("앱에서 보낸 값", id+", "+water);
+                    Log.w("앱에서 보낸 값", id+", "+sleep);
                     sleep_mod_reminder.customTask task = new sleep_mod_reminder.customTask();
-                    String result = task.execute(id,water).get();
+                    String result = task.execute(id,sleep).get();
                     Log.w("받은값",result);
 
                     if(result=="양수를 입력해주세요")
@@ -61,7 +61,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
                         finish();
                     }
                     else{
-                        sleep_goal.setText(water);
+                        sleep_goal.setText(sleep);
                         Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
                         finish();
                     }

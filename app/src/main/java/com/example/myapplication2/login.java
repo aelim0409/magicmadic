@@ -32,7 +32,6 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //startActivity(intent);
                 login_func();
             }
@@ -80,8 +79,6 @@ public class login extends AppCompatActivity {
                         intent.putExtra("Id", save[0]);
                         startActivity(intent);
                     }
-
-
                 } catch (Exception e) {
 
                 }
