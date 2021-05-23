@@ -32,7 +32,6 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //startActivity(intent);
                 login_func();
             }
@@ -67,8 +66,6 @@ public class login extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
                         startActivity(intent);
                     }
-
-
                 } catch (Exception e) {
 
                 }
