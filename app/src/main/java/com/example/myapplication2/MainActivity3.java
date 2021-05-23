@@ -1,14 +1,28 @@
 package com.example.myapplication2;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class MainActivity3 extends AppCompatActivity {
+
+    Button reminder_btn=findViewById(R.id.reminder_btn);
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +37,38 @@ public class MainActivity3 extends AppCompatActivity {
         Switch switch5=findViewById(R.id.switch5);
         Switch switch6=findViewById(R.id.switch6);
 
+        boolean[] booleans = {true,true,true,true,true,true};
+
+
+
         class switch1Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
                     Intent intent = new Intent(getApplicationContext(), pills_mod_reminder.class);
                     startActivity(intent);
+                    booleans[0] = true;
+
+                }
+                else
+                {
+                    booleans[0] = false;
+                }
+            }
+
+        }
+
+        class switch2Listener implements CompoundButton.OnCheckedChangeListener {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+
+                    booleans[1] = true;
+
+                }
+                else
+                {
+                    booleans[1] = false;
                 }
             }
         }
@@ -38,6 +78,11 @@ public class MainActivity3 extends AppCompatActivity {
                 if(isChecked){
                     Intent intent = new Intent(getApplicationContext(), HospitalModReminderActivity.class);
                     startActivity(intent);
+                    booleans[2] = true;
+                }
+                else
+                {
+                    booleans[2] = false;
                 }
             }
         }
@@ -47,7 +92,10 @@ public class MainActivity3 extends AppCompatActivity {
                 if(isChecked){
                     Intent intent = new Intent(getApplicationContext(), water_mod_reminder.class);
                     startActivity(intent);
+                    booleans[3] = true;
                 }
+                else
+                    booleans[3] = false;
             }
         }
         class switch5Listener implements CompoundButton.OnCheckedChangeListener {
@@ -56,7 +104,10 @@ public class MainActivity3 extends AppCompatActivity {
                 if(isChecked){
                     Intent intent = new Intent(getApplicationContext(), exercise_mode_reminder.class);
                     startActivity(intent);
+                    booleans[4] = true;
                 }
+                else
+                    booleans[4] = false;
             }
         }
         class switch6Listener implements CompoundButton.OnCheckedChangeListener {
@@ -65,7 +116,10 @@ public class MainActivity3 extends AppCompatActivity {
                 if(isChecked){
                     Intent intent = new Intent(getApplicationContext(), sleep_mod_reminder.class);
                     startActivity(intent);
+                    booleans[5] = true;
                 }
+                else
+                    booleans[5] = false;
             }
         }
 
@@ -76,6 +130,39 @@ public class MainActivity3 extends AppCompatActivity {
         switch5.setOnCheckedChangeListener(new switch5Listener());
         switch6.setOnCheckedChangeListener(new switch6Listener());
 
+        reminder_btn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(getApplicationContext(), login.class);
+            //startActivity(intent);
+            RemindUp_func();
+        }
+
+        void RemindUp_func() {
+            Log.w("리마인더 설정", "설정 정보 주는중");
+            try {
+                String birthControlPills = String.valueOf(booleans[0]);
+                String physiology = String.valueOf(booleans[1]);
+                String sleepTimeGoal = String.valueOf(booleans[5]);
+                String exerciseTimeGoal = String.valueOf(booleans[3]);
+                String hospital = String.valueOf(booleans[2]);
+                String water = String.valueOf(booleans[3]); // 서버에 없음
+
+                Log.w("앱에서 보낸 값", birthControlPills + ", " + physiology + ", " + sleepTimeGoal + ", " + exerciseTimeGoal + ", " + hospital);//+water
+                MainActivity3.customTask task = new MainActivity3.customTask();
+                String result = task.execute(birthControlPills, physiology, sleepTimeGoal, exerciseTimeGoal, hospital).get();
+                Log.w("받은값", result);
+
+
+            } catch (Exception e) {
+
+            }
+        }
+    });
+
+
+
+
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +170,7 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
                 startActivity(intent);
+
             }
         });
 
@@ -113,5 +201,46 @@ public class MainActivity3 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    class customTask extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setReminder_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "birthControlPills="+strings[0]+"&physiology="+strings[1]+"&sleepTimeGoal="+strings[2]+"&exerciseTimeGoal="+strings[3]+"&hospital="+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
     }
 }

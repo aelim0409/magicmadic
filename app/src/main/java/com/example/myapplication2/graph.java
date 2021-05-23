@@ -8,71 +8,33 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import java.util.ArrayList;
 
-import im.dacer.androidcharts.LineView;
+
+
+
 
 
 public class graph extends AppCompatActivity {
-   // private SQLiteDatabase db;
-    private LineView lineView;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph);
 
-
-        lineView =(LineView)findViewById(R.id.line_view1);
-
-       // List<AirQualityData> data= db.todayAirQualityData();
-
-        //레이블
-        ArrayList<String> day = new ArrayList<String>();
-
-        //3 data sets
-        ArrayList<Integer> dataList_1 = new ArrayList<>();
-        ArrayList<Integer> dataList_2 = new ArrayList<>();
-        ArrayList<Integer> dataList_3 = new ArrayList<>();
-
-        ArrayAdapter<Integer> adapter1 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,dataList_1);
-        ArrayAdapter<Integer> adapter2 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,dataList_2);
-        ArrayAdapter<Integer> adapter3 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,dataList_3);
-
-
-
-        //임의로 값 넣어봄
-        dataList_1.add(3);
-        dataList_1.add(4);
-        dataList_1.add(5);
-
-        dataList_2.add(0);
-        dataList_2.add(2);
-        dataList_2.add(1);
-
-        dataList_3.add(10);
-        dataList_3.add(8);
-        dataList_3.add(2);
-
-        adapter1.notifyDataSetChanged();
-        adapter2.notifyDataSetChanged();
-        adapter3.notifyDataSetChanged();
-
-        ArrayList<ArrayList<Integer>> dataLists= new ArrayList<>();
-        ArrayAdapter<ArrayList<Integer>> adapter4 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,dataLists);
-        dataLists.add(dataList_1);
-        dataLists.add(dataList_2);
-        dataLists.add(dataList_3);
-        adapter4.notifyDataSetChanged();
-
-        //꺾은선 그래프 그리기
-        lineView.setDrawDotLine(true);
-        lineView.setShowPopup(LineView.SHOW_POPUPS_All);
-        lineView.setColorArray(new int []{Color.BLACK, Color.YELLOW,Color.BLUE});
-
-        lineView.setBottomTextList(day);
-        lineView.setDataList(dataLists);
-
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+        graph.addSeries(series);
 
 
         //버튼 연결//

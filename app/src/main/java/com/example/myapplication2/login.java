@@ -47,21 +47,24 @@ public class login extends AppCompatActivity {
                     String result = task.execute(id,pw).get();
                     Log.w("받은값",result);
 
-                    Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
 
-                    if(result=="아이디 혹은 패스워드가 다릅니다"){
-                        Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
-                        finish();
+                    if(result.equals("아이디 혹은 패스워드가 다릅니다")){
+                        Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_LONG).show();
+                       // System.out.println(result=="아이디 혹은 패스워드가 다릅니다");
+
+                        //finish();
                     }
-                    else if(result=="회원이 존재하지 않습니다"){
-                        Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
-                        finish();
+                    else if(result.equals("회원이 존재하지 않습니다")){
+                        Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
+                        //finish();
+                        //System.out.println(result=="회원이 존재하지 않습니다");
                     }
-                    else if(result=="필수 입력 사항입니다"){
-                        Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_SHORT).show();
-                        finish();
+                    else if(result.equals("필수 입력 사항입니다")){
+                        Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_LONG).show();
+                        //finish();
                     }
                     else{
+                        Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
                         startActivity(intent);
                     }
 
@@ -81,7 +84,7 @@ public class login extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.0.65:8080/android");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/signIn_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

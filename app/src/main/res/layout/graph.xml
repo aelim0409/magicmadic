@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tv_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_round_pink"
@@ -20,35 +21,12 @@
 
         />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <com.jjoe64.graphview.GraphView
+        android:layout_below="@+id/tv_main"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:id="@+id/graph" />
 
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-
-
-
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginBottom="50dp">
-        <!--android:layout_marginLeft="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="5dp"-->
-
-        <view
-            android:id="@+id/line_view1"
-            class="im.dacer.androidcharts.LineView"
-            android:layout_width="wrap_content"
-            android:layout_height="650dp" />
-
-
-    </HorizontalScrollView>
 
     <LinearLayout
         android:layout_width="fill_parent"

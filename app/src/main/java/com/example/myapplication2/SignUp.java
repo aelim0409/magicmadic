@@ -54,19 +54,20 @@ public class SignUp extends AppCompatActivity {
                     String result = task.execute(id,name,pw,birthday,age).get();
                     Log.w("받은값",result);
 
-                    if(result=="이미 가입된 아이디입니다")
+                    if(result.equals("이미 가입된 아이디입니다"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"이미 가입된 아이디입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"이미 가입된 아이디입니다", Toast.LENGTH_LONG).show();
                         finish();
                     }
-                    else if(result=="필수 입력 사항입니다")
+                    else if(result.equals("필수 입력 사항입니다"))
                     {
 
-                        Toast.makeText(getApplicationContext(),"필수 입력 사항입니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"필수 입력 사항입니다", Toast.LENGTH_LONG).show();
                         finish();
                     }
-                    else if(result=="회원가입이 완료되었습니다") {
+                    //성공시에
+                    else if(result.equals("회원가입이 완료되었습니다")) {
 
                         Intent intent2 = new Intent(SignUp.this, login.class);
                         startActivity(intent2);
@@ -85,7 +86,7 @@ public class SignUp extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.0.65:8080/android");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/signUp_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -94,7 +95,7 @@ public class SignUp extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&name="+strings[1]+"&pw"+strings[2]+"&birthday"+strings[3]+"&age"+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&name="+strings[1]+"&pw="+strings[2]+"&birthday="+strings[3]+"&age="+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
