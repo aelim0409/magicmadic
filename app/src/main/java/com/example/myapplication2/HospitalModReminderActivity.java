@@ -32,9 +32,7 @@ public class HospitalModReminderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 move_exercise_func();
-
             }
-
             void move_exercise_func() {
 
                 Log.w("remember", "병원정보 저장 하는중");
@@ -60,8 +58,6 @@ public class HospitalModReminderActivity extends AppCompatActivity {
 
                         finish();
                     }
-
-
 
                 } catch (Exception e) {
                 }
