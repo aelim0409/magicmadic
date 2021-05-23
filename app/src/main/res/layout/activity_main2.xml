@@ -123,9 +123,11 @@
         <ScrollView
             android:id="@+id/scroll_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="220dp"
             android:layout_above="@id/move_layout"
             android:layout_below="@id/date_layout"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="50dp"
             android:fillViewport="true"
             android:paddingHorizontal="10dp"
             android:paddingTop="10dp"
@@ -141,36 +143,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <Button
                         android:id="@+id/start_button"
                         android:layout_width="170dp"
                         android:layout_height="36dp"
-                        android:background="@drawable/shape_round_transparent"
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="4dp"
+                        android:background="@drawable/shape_round_transparent"
+                        android:fontFamily="@font/dx"
                         android:orientation="horizontal"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:fontFamily="@font/dx"
                         android:text="생리 시작"
                         android:textColor="@color/brown"
-                        android:textSize="18dp"
-                        ></Button>
+                        android:textSize="18dp"></Button>
+
                     <Button
                         android:id="@+id/end_button"
                         android:layout_width="170dp"
                         android:layout_height="36dp"
-                        android:background="@drawable/shape_round_transparent"
                         android:layout_marginHorizontal="8dp"
                         android:layout_marginTop="4dp"
+                        android:background="@drawable/shape_round_transparent"
+                        android:fontFamily="@font/dx"
                         android:orientation="horizontal"
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
-                        android:fontFamily="@font/dx"
                         android:text="생리 종료"
                         android:textColor="@color/brown"
-                        android:textSize="18dp"
-                        ></Button>
+                        android:textSize="18dp"></Button>
 
                 </LinearLayout>
 
@@ -207,6 +209,7 @@
                         android:layout_marginRight="44dp"
                         android:src="@android:drawable/ic_menu_add"
                         android:tint="#000000" />
+
                     <ImageButton
                         android:id="@+id/waterminus"
                         android:layout_width="40dp"
@@ -215,8 +218,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy"
-                        />
+                        android:src="@android:drawable/presence_busy" />
+
                     <TextView
                         android:id="@+id/water_record"
                         android:layout_width="wrap_content"
@@ -227,6 +230,7 @@
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:id="@+id/exercise_layout"
                     android:layout_width="match_parent"
@@ -249,6 +253,7 @@
                         android:text="   운동 시간"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
+
                     <TextView
                         android:id="@+id/exercise_record"
                         android:layout_width="wrap_content"
@@ -258,6 +263,7 @@
                         android:text=" h  m"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
+
                     <ImageButton
                         android:id="@+id/exerciseplus"
                         android:layout_width="40dp"
@@ -276,8 +282,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy"
-                        />
+                        android:src="@android:drawable/presence_busy" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -302,6 +307,7 @@
                         android:text="   수면 시간"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
+
                     <TextView
                         android:id="@+id/sleep_record"
                         android:layout_width="wrap_content"
@@ -311,6 +317,7 @@
                         android:text=" h m"
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
+
                     <ImageButton
                         android:id="@+id/sleepplus"
                         android:layout_width="40dp"
@@ -329,8 +336,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy"
-                        />
+                        android:src="@android:drawable/presence_busy" />
                 </RelativeLayout>
 
                 <HorizontalScrollView
@@ -351,149 +357,153 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="생리통"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
 
                         <Button
                             android:id="@+id/symptom_btn2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="유방의압통"
-                            android:textSize="7dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="7dp" />
 
                         <Button
                             android:id="@+id/symptom_btn3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="두통"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
                         <Button
                             android:id="@+id/symptom_btn4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="여드름"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
                         <Button
                             android:id="@+id/symptom_btn5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="요통"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
                         <Button
                             android:id="@+id/symptom_btn6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="구역질"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
                         <Button
                             android:id="@+id/symptom_btn7"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="피로감"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
 
                         <Button
                             android:id="@+id/symptom_btn8"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="복부팽만감"
-                            android:textSize="7dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="7dp" />
+
                         <Button
                             android:id="@+id/symptom_btn9"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="식욕"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
+
                         <Button
                             android:id="@+id/symptom_btn10"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="불면증"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
+
                         <Button
                             android:id="@+id/symptom_btn11"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="변비"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
+
                         <Button
                             android:id="@+id/symptom_btn12"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="설사"
-                            android:textSize="10dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="10dp" />
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -511,79 +521,79 @@
                             android:id="@+id/symptom1"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="얼룩덜룩"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/symptom2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="끈적끈적"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/symptom3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="크림같음"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/symptom4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="계란흰자"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/symptom5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="묽음"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                         <Button
                             android:id="@+id/symptom6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
-                            android:adjustViewBounds="true"
-                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
+                            android:adjustViewBounds="true"
+                            android:background="@drawable/shape_round_yellow"
                             android:text="비정상"
-                            android:textSize="9dp"
-                            android:background="@drawable/shape_round_yellow" />
+                            android:textSize="9dp" />
 
                     </LinearLayout>
                 </HorizontalScrollView>
