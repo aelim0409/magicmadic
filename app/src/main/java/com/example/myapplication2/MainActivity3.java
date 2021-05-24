@@ -23,21 +23,21 @@ public class MainActivity3 extends AppCompatActivity {
     public String getInformation(String ID) {
         Log.w("리마인더 온오프 설정", "설정 정보 주는중");
 
+        String result="null";
 
         try {
             String id = ID;
 
             Log.w("(초기)앱에서 보낸 값", id );//+water
             MainActivity3.getTask task = new MainActivity3.getTask();
-            String result = task.execute(id).get();
+            result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
-            return result;
+            //return result;
 
         } catch (Exception e) {
 
-        }
-        return ID;
+        }return result;
     }
 
     @Override

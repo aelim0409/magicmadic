@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class basic_information_page extends AppCompatActivity {
 
@@ -19,6 +20,8 @@ public class basic_information_page extends AppCompatActivity {
         //id 가져옴 (func에 넣어줘야함 이 위치 아님)
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
+        TextView name= findViewById(R.id.PersonName);
+        name.setText(ID);
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {

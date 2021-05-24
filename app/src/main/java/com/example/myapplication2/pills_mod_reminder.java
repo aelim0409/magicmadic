@@ -21,6 +21,24 @@ import java.util.Locale;
 
 public class pills_mod_reminder extends AppCompatActivity {
 
+    public String getInformation(String ID) {
+        Log.w("피임약 초기 설정", "설정 정보 주는중");
+        String result="null";
+        try {
+            String id = ID;
+
+            Log.w("(초기)앱에서 보낸 값", id );//+water
+            pills_mod_reminder.getTask task = new pills_mod_reminder.getTask();
+            result = task.execute(id).get();
+            Log.w("(초기)받은값", result);
+
+            return result;
+
+        } catch (Exception e) {
+
+        }
+        return result;
+    }
 
 
     @Override
@@ -37,6 +55,22 @@ public class pills_mod_reminder extends AppCompatActivity {
         EditText pills_startMonth1 = (EditText) findViewById(R.id.pills_startMonth);
         EditText pills_startDay1 = (EditText) findViewById(R.id.pills_startDay);
         EditText pills_days1 = (EditText) findViewById(R.id.pills_days);//없음
+
+        String info=getInformation(ID);
+        String [] init_info= info.split(" ");
+        String [] get_pills_time=init_info[0].split(":");
+        String [] get_pills_date= init_info[1].split("-");
+        String get_pills_hour=get_pills_time[0];
+        String get_pills_minute=get_pills_time[1];
+        String get_pills_month=get_pills_date[1];
+        String get_pills_day=get_pills_date[2];
+
+        pills_hour1.setText(get_pills_hour);
+        pills_minute1.setText(get_pills_minute);
+        pills_startMonth1.setText(get_pills_month);
+        pills_startDay1.setText(get_pills_day);
+        pills_days1.setText(init_info[2]);
+
 
         button_move = findViewById(R.id.button_move);
         button_move.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +179,50 @@ public class pills_mod_reminder extends AppCompatActivity {
             return receiveMsg;
         }
     }
+    class getTask extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
 
 }
 
