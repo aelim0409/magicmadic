@@ -26,6 +26,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,40 +40,9 @@ import java.util.Locale;
 public class MainActivity2 extends Activity implements OnDateSelectedListener {
     TextView date_today;
     TextView main_date_view;
-    ScrollView scroll_container;
-    //LinearLayout main_content_view;
-    String fileName; // (업데이트 시 절대로 변경해선 안 됨!!)
-    RelativeLayout.LayoutParams params;
-    LinearLayout.LayoutParams zeroParams;
-    GestureDetector detector;
     MaterialCalendarView cal_view;
-    long pointingDate;
-    int state;
-    SharedPreferences fileGetter;
-    String state_str;
-    int totalNum;
-    int year, month, day; // 업데이트 시 절대로 변경해선 안 됨!! (사용자들이 이미 쓰고 있는 DB 파일 이름 때문)
-    boolean autoClickForDateChange;
-
-    Button symptoms1;
-    Button symptoms2;
-    Button symptoms3;
-    Button symptoms4;
-    Button symptoms5;
-    Button symptoms6;
-    Button symptoms7;
-    Button symptoms8;
-    Button symptoms9;
-    Button symptoms10;
-    Button symptoms11;
-    Button symptoms12;
-
-    Button mucus1;
-    Button mucus2;
-    Button mucus3;
-    Button mucus4;
-    Button mucus5;
-    Button mucus6;
+    Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
+    Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -404,18 +374,64 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         cal_view.setSelectedDate(CalendarDay.today());
 
 
-        int n=30; //시작일자 서버로 받아오기 or 시작 버튼 눌리면 넘겨서 날짜 받기
-        int month1=5; //시작버튼을 누른 달 받아오기
-        int duration=5; // 예측 기간 서버로 받아오기 & default 5
-        Calendar c = Calendar.getInstance();
-        int lastDay = c.getActualMaximum(5);    //선택된 달의 마지막 일자
-        for(int i=0;i<duration;i++){
-            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month1,n++))));
-            if(n==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                n=1;
-                month1++;
+//        int n=30; //시작일자 서버로 받아오기 or 시작 버튼 눌리면 넘겨서 날짜 받기
+//        int month1=5; //시작버튼을 누른 달 받아오기
+//        int duration=5; // 예측 기간 서버로 받아오기 & default 5
+//        Calendar c = Calendar.getInstance();
+//        int lastDay = c.getActualMaximum(5);    //선택된 달의 마지막 일자
+//        for(int i=0;i<duration;i++){
+//            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month1,n++))));
+//            if(n==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+//                n=1;
+//                month1++;
+//            }
+//        }
+
+
+        Button start_button = (Button)findViewById(R.id.start_button);
+        Button end_button = (Button)findViewById(R.id.end_button);
+
+        start_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String date =  main_date_view.getText().toString();
+                try {
+                    Date current = SelectedDate(date);
+                    int day = CalendarDay.from(current).getDay();
+                    int month = CalendarDay.from(current).getMonth();
+                    int year = CalendarDay.from(current).getYear();
+                    CalendarDay.from(current).getDay();
+                    Calendar cc = Calendar.getInstance();
+                    int lastDay = cc.getActualMaximum(month);
+                    for(int i=0;i<5;i++){
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month,day++))));
+                        if(day==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day=1;
+                            month++;
+                        }
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        });
+
+        end_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
+    }
+
+    public Date SelectedDate(String str) throws ParseException {
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
+        Date to = transFormat.parse(str);
+        return to;
     }
 
     @Override
