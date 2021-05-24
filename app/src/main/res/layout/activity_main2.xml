@@ -59,7 +59,7 @@
             android:textSize="20dp" />
     </LinearLayout>
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
         android:layout_width="375dp"
         android:layout_height="336dp"
@@ -67,11 +67,8 @@
         android:layout_marginHorizontal="5dp"
         android:layout_marginVertical="5dp"
         android:background="@drawable/shape_round_skyblue"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
         android:paddingTop="17dp"
-        android:paddingBottom="0dp"
-        android:theme="@style/CalenderViewCustom"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+        android:paddingBottom="0dp" />
 
     <RelativeLayout
         android:id="@+id/containerInner"

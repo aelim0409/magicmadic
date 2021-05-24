@@ -1,38 +1,25 @@
 package com.example.myapplication2;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
-import android.os.Bundle;
 import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,7 +35,7 @@ public class MainActivity2 extends Activity {
     RelativeLayout.LayoutParams params;
     LinearLayout.LayoutParams zeroParams;
     GestureDetector detector;
-    CalendarView cal_view;
+    MaterialCalendarView cal_view;
     long pointingDate;
     int state;
     SharedPreferences fileGetter;
@@ -76,13 +63,6 @@ public class MainActivity2 extends Activity {
     Button mucus4;
     Button mucus5;
     Button mucus6;
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadDB();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -295,6 +275,50 @@ public class MainActivity2 extends Activity {
             }
         });
 
+        Button btn_home = findViewById(R.id.home_btn);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                startActivity(intent);
+            }
+        });
+
+        Button fitness_btn = findViewById(R.id.fitness_btn);
+        fitness_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                startActivity(intent);
+            }
+        });
+
+        Button graph_btn = findViewById(R.id.graph_btn);
+        graph_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),graph.class);
+//                startActivity(intent);
+            }
+        });
+
+        Button calendar_btn = findViewById(R.id.calendar_btn);
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        Button remind_btn = findViewById(R.id.remind_btn);
+        remind_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                startActivity(intent);
+            }
+        });
 
         sleepplus = (ImageButton)findViewById(R.id.sleepplus);
         sleepminus = (ImageButton)findViewById(R.id.sleepminus);
@@ -341,10 +365,6 @@ public class MainActivity2 extends Activity {
             }
         });
 
-
-
-
-
         todayText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -352,54 +372,6 @@ public class MainActivity2 extends Activity {
                 int y = cal.get(Calendar.YEAR);
                 int m = cal.get(Calendar.MONTH);
                 int d = cal.get(Calendar.DAY_OF_MONTH);
-                markDate(y,m,d);
-
-                Button btn_home = findViewById(R.id.home_btn);
-                btn_home.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button fitness_btn = findViewById(R.id.fitness_btn);
-                fitness_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button graph_btn = findViewById(R.id.graph_btn);
-                graph_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
-                    }
-                });
-
-                Button calendar_btn = findViewById(R.id.calendar_btn);
-                calendar_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button remind_btn = findViewById(R.id.remind_btn);
-                remind_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
-                        startActivity(intent);
-                    }
-                });
-
-
             }
         });
 
@@ -408,156 +380,29 @@ public class MainActivity2 extends Activity {
 
         main_date_view = findViewById(R.id.date_text);
 
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        state = fileGetter.getInt("state",0);
-        state_str = getStateString(state);
-
-        String tempDate = new SimpleDateFormat("yyyy/M/d", Locale.getDefault()).format(new Date());
-        String[] parseDate = tempDate.split("/");
-        year = Integer.parseInt(parseDate[0]);
-        month = Integer.parseInt(parseDate[1]);
-        day = Integer.parseInt(parseDate[2]);
-
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-
-        ImageButton menuButton = findViewById(R.id.sub_menu_button);
-        menuButton.setOnClickListener(new MenuListener());
-
-        scroll_container = findViewById(R.id.scroll_container);
-
-
         cal_view = findViewById(R.id.calendar);
-        pointingDate = cal_view.getDate();
+        cal_view.addDecorators(new MySelectorDecorator(this));
 
-        fileName =year+"."+(month+1)+"."+day;// 오늘 날짜로 화면 초기화 (업데이트 시 절대로 변경해선 안 됨!!)
-        loadDB();
+    }
+    class MySelectorDecorator implements DayViewDecorator  {
+        private final Drawable drawable;
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            cal_view.setSelectedWeekBackgroundColor(getResources().getColor(R.color.brown));
+        MySelectorDecorator(Drawable drawable) {
+            this.drawable = drawable;
         }
-        cal_view.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView calendarView, int y, int m, int d) {
-                markDate(y,m,d);
-            }
-        });
-    }
 
-    private void markDate(int y, int m, int d){
-        year = y; month = m+1; day = d;
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-        fileName = year + "." + (month+1) + "." + day; // (업데이트 시 절대로 변경해선 안 됨!!)
-        loadDB();
-
-        Calendar currentPointing = Calendar.getInstance();
-        currentPointing.set(y,m,d);
-        pointingDate = currentPointing.getTimeInMillis();
-        cal_view.setDate(pointingDate);
-    }
-
-    private String getStateString(int state){
-        switch (state){
-            case 0:
-                return "전체 목록";
-            case 1:
-                return "해야할 일";
-            case 2:
-                return "완료한 일";
-            default:
-                return null;
+        public MySelectorDecorator(Activity context){
+            drawable = context.getResources().getDrawable(R.drawable.my_selector);
         }
-    }
-
-    private void loadDB(){
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        state = fileGetter.getInt("state",0);
-        state_str = getStateString(state);
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-
-        fileGetter = getSharedPreferences(fileName, 0); // 클릭한 날짜에 해당되는 File의 DB 객체 생성
-        final LayoutInflater layout_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE); // inflater 생성
-
-    }
-
-
-
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode==1){
-            int y = data.getIntExtra("y",0);
-            int m = data.getIntExtra("m",0)-1;
-            int d = data.getIntExtra("d",0);
-            markDate(y,m,d);
-        }
-    }
-
-    class GestureListener implements View.OnTouchListener {
-        private GestureDetector gestureDetector = new GestureDetector(MainActivity2.this, new GestureDetector.SimpleOnGestureListener() {
-            @Override
-            public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
-                // 상하 제스처는 무시
-                if(Math.abs(event1.getY()-event2.getY())>200){
-                    return true;
-                }
-
-                long date = pointingDate; // long 타입
-                Calendar rightNow = Calendar.getInstance(); // long 타입
-                rightNow.setTimeInMillis(date);
-                if(event1.getX()-event2.getX()<-1){//오른쪽
-                    rightNow.add(Calendar.DATE, -1); // yesterday
-                }
-                else if(event1.getX()-event2.getX()>1){//왼쪽
-                    rightNow.add(Calendar.DATE, 1); // tomorrow
-                }
-                pointingDate = rightNow.getTimeInMillis();
-                cal_view.setDate(pointingDate);
-
-                int y = rightNow.get(Calendar.YEAR);
-                int m = rightNow.get(Calendar.MONTH);
-                int d = rightNow.get(Calendar.DAY_OF_MONTH);
-                year = y; month = m+1; day = d;
-
-                main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-                fileName = year + "." + (month+1) + "." + day; // (업데이트 시 절대로 변경해선 안 됨!!)
-                loadDB();
-                return true;
-            }
-        });
 
         @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            gestureDetector.onTouchEvent(event);
+        public boolean shouldDecorate(CalendarDay day) {
             return true;
         }
-    }
 
-    private class MenuListener implements View.OnClickListener{
         @Override
-        public void onClick(View view) {
-            PopupMenu menu = new PopupMenu(getBaseContext(), view);
-            getMenuInflater().inflate(R.menu.sub_menu, menu.getMenu());
-            menu.setOnMenuItemClickListener(new MenuItemListener());
-            menu.getMenu().getItem(0).getSubMenu().getItem(state).setChecked(true);
-            menu.show();
+        public void decorate(DayViewFacade view) {
+            view.setSelectionDrawable(drawable);
         }
-    }
-
-    private class MenuItemListener implements PopupMenu.OnMenuItemClickListener{
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            saveState();
-            state_str = getStateString(state);
-            main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-            loadDB();
-
-            menuItem.setChecked(!menuItem.isChecked());
-            return true;
-        }
-    }
-
-    private void saveState(){
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        SharedPreferences.Editor editor = fileGetter.edit();
-        editor.putInt("state", state).commit();
     }
 }
