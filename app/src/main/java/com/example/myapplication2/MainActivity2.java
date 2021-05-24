@@ -1,6 +1,8 @@
 package com.example.myapplication2;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 
@@ -22,12 +24,16 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity2 extends Activity implements OnDateSelectedListener {
@@ -385,8 +391,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         main_date_view = findViewById(R.id.date_text);
         main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
-        cal_view.addDecorators(new MySelectorDecorator(this));
+
         cal_view.setOnDateChangedListener(this);
+
+        cal_view.setSelectedDate(CalendarDay.today());
+        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.today())));
+
     }
 
     @Override
@@ -413,6 +423,25 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         @Override
         public void decorate(DayViewFacade view) {
             view.setSelectionDrawable(drawable);
+        }
+    }
+
+    class EventDecorator implements DayViewDecorator{
+        private final int color;
+        private final HashSet<CalendarDay> dates;
+        public EventDecorator(int color, Collection<CalendarDay> dates){
+            this.color = color;
+            this.dates = new HashSet<>(dates);
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new DotSpan(5,color));
         }
     }
 }
