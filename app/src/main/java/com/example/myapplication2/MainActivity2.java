@@ -25,7 +25,9 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
 
 public class MainActivity2 extends Activity implements OnDateSelectedListener {
@@ -385,9 +387,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
         cal_view.addDecorators(new MySelectorDecorator(this));
         cal_view.setOnDateChangedListener(this);
-
-
-
     }
 
     @Override
