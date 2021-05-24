@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.view.GestureDetector;
 import android.view.View;
 import android.widget.Button;
@@ -20,13 +21,14 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity2 extends Activity {
+public class MainActivity2 extends Activity implements OnDateSelectedListener {
     TextView date_today;
     TextView main_date_view;
     ScrollView scroll_container;
@@ -379,11 +381,20 @@ public class MainActivity2 extends Activity {
         date_today.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
-
-        cal_view = findViewById(R.id.calendar);
+        main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
         cal_view.addDecorators(new MySelectorDecorator(this));
+        cal_view.setOnDateChangedListener(this);
+
+
 
     }
+
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
+    }
+
     class MySelectorDecorator implements DayViewDecorator  {
         private final Drawable drawable;
 
