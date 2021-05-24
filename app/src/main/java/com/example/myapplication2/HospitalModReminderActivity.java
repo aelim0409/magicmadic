@@ -17,6 +17,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class HospitalModReminderActivity extends AppCompatActivity {
 
@@ -46,10 +48,17 @@ public class HospitalModReminderActivity extends AppCompatActivity {
                     String hospitalMonth = hospital_month.getText().toString();
                     String hospitalDate = hospital_date.getText().toString();
 
-                    Log.w("앱에서 보낸값", id+", "+ hospitalMonth+", "+hospitalDate);
+                    SimpleDateFormat yearFormat=new SimpleDateFormat("yyyy", Locale.getDefault());
+                    String hospital_date= yearFormat+"-"+hospitalMonth+"-"+hospitalDate;
+
+                    if(hospitalMonth.length()==0 && hospitalDate.length()==0)
+                    {
+                        hospital_date="null";
+                    }
+                    Log.w("앱에서 보낸값", id+", "+ hospitalMonth);
 
                     HospitalModReminderActivity.CustomTask task = new HospitalModReminderActivity.CustomTask();
-                    String result = task.execute(id,hospitalMonth,hospitalDate).get();
+                    String result = task.execute(id,hospital_date).get();
                     Log.w("받은값", result);
 
                     if(result.equals("양수를 입력해주세요"))
@@ -94,7 +103,7 @@ public class HospitalModReminderActivity extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&hospitalMonth=" + strings[1] + "&hospitalDate=" + strings[2]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&hospital_date=" + strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

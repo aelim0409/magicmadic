@@ -20,6 +20,26 @@ import java.net.URL;
 
 public class MainActivity3 extends AppCompatActivity {
 
+    public String getInformation(String ID) {
+        Log.w("리마인더 온오프 설정", "설정 정보 주는중");
+
+
+        try {
+            String id = ID;
+
+            Log.w("(초기)앱에서 보낸 값", id );//+water
+            MainActivity3.getTask task = new MainActivity3.getTask();
+            String result = task.execute(id).get();
+            Log.w("(초기)받은값", result);
+
+            return result;
+
+        } catch (Exception e) {
+
+        }
+        return ID;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,7 +62,24 @@ public class MainActivity3 extends AppCompatActivity {
         Switch exercise_switch=findViewById(R.id.switch5);
         Switch sleep_switch=findViewById(R.id.switch6);
 
-        String[] booleans = {"0","0","0","0","0","0"};
+        String init_info = getInformation(ID);
+        String []information=init_info.split(" ");
+
+       // String[] booleans = {"0","0","0","0","0","0"};
+        String [] booleans=information;
+
+        Boolean [] checked={true,true,true,true,true,true};
+
+        for(int i=0;i<booleans.length;i++)
+        {
+            checked[i]=Boolean.parseBoolean(booleans[i]);
+        }
+        pills_switch.setChecked(checked[0]);
+        physilogy_switch.setChecked(checked[1]);
+        hospital_switch.setChecked(checked[2]);
+        water_switch.setChecked(checked[3]);
+        exercise_switch.setChecked(checked[4]);
+        sleep_switch.setChecked(checked[5]);
 
 
         water.setOnClickListener(new View.OnClickListener() {
@@ -86,15 +123,16 @@ public class MainActivity3 extends AppCompatActivity {
 
 
         class switch1Listener implements CompoundButton.OnCheckedChangeListener {
+
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    booleans[0] = "0";
 
+                if(isChecked) {
+                    booleans[0] = "true";
                 }
                 else
                 {
-                    booleans[0] = "1";
+                    booleans[0] = "false";
                 }
             }
 
@@ -104,13 +142,11 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-
-                    booleans[1] = "0";
-
+                    booleans[1] = "true";
                 }
                 else
                 {
-                    booleans[1] = "1";
+                    booleans[1] = "false";
                 }
             }
         }
@@ -119,11 +155,11 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
 
-                    booleans[2] = "0";
+                    booleans[2] = "true";
                 }
                 else
                 {
-                    booleans[2] = "1";
+                    booleans[2] = "false";
                 }
             }
         }
@@ -132,10 +168,10 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
 
-                    booleans[3] = "0";
+                    booleans[3] = "true";
                 }
                 else
-                    booleans[3] = "1";
+                    booleans[3] = "false";
             }
         }
         class switch5Listener implements CompoundButton.OnCheckedChangeListener {
@@ -143,10 +179,10 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
 
-                    booleans[4] = "0";
+                    booleans[4] = "true";
                 }
                 else
-                    booleans[4] = "1";
+                    booleans[4] = "false";
             }
         }
         class switch6Listener implements CompoundButton.OnCheckedChangeListener {
@@ -154,10 +190,10 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
 
-                    booleans[5] = "0";
+                    booleans[5] = "true";
                 }
                 else
-                    booleans[5] = "1";
+                    booleans[5] = "false";
             }
         }
 
@@ -216,6 +252,7 @@ public class MainActivity3 extends AppCompatActivity {
             }
         }
     });
+
 
 
         Button btn_home = findViewById(R.id.home_btn);
@@ -305,4 +342,49 @@ public class MainActivity3 extends AppCompatActivity {
             return receiveMsg;
         }
     }
+
+    class getTask extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
 }

@@ -116,12 +116,7 @@ android:rotationX="0"
         android:layout_below="@+id/comp2"
         android:layout_marginTop="5dp"
         >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="* 설정일 3일 전부터 저녁 6시에 알림이 갑니다.">
-        </TextView>
+
     </LinearLayout>
     <Button
         android:id="@+id/button_move"
@@ -134,4 +129,25 @@ android:rotationX="0"
         android:textStyle="bold"
         android:fontFamily="@font/dx"
         android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginRight="-3dp"
+        android:layout_marginBottom="442dp"
+        android:gravity="center"
+        android:text="* 설정일 3일 전부터 저녁 6시에 알림이 갑니다."></TextView>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="193dp"
+        android:text="ex) 05m 19d" />
 </RelativeLayout>

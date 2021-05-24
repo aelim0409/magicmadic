@@ -16,6 +16,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class pills_mod_reminder extends AppCompatActivity {
 
@@ -30,11 +32,11 @@ public class pills_mod_reminder extends AppCompatActivity {
         String ID = Intent.getStringExtra("Id");
 
         Button button_move;
-        EditText pills_hour = (EditText) findViewById(R.id.pills_hour);
-        EditText pills_minute = (EditText) findViewById(R.id.pills_minute);
-        EditText pills_startMonth = (EditText) findViewById(R.id.pills_startMonth);
-        EditText pills_startDay = (EditText) findViewById(R.id.pills_startDay);
-        EditText pills_days = (EditText) findViewById(R.id.pills_days);//없음
+        EditText pills_hour1 = (EditText) findViewById(R.id.pills_hour);
+        EditText pills_minute1 = (EditText) findViewById(R.id.pills_minute);
+        EditText pills_startMonth1 = (EditText) findViewById(R.id.pills_startMonth);
+        EditText pills_startDay1 = (EditText) findViewById(R.id.pills_startDay);
+        EditText pills_days1 = (EditText) findViewById(R.id.pills_days);//없음
 
         button_move = findViewById(R.id.button_move);
         button_move.setOnClickListener(new View.OnClickListener() {
@@ -45,20 +47,35 @@ public class pills_mod_reminder extends AppCompatActivity {
 
             void move_exercise_func() {
 
+
+
                 Log.w("remember", "피임약 정보 저장 하는중");
                 try {
-                    String id= ID;
-                    String birthControlPillsHour = pills_hour.getText().toString();
-                    String birthControlPillsMinute = pills_minute.getText().toString();
-                    String birthControlPillsStartMonth = pills_startMonth.getText().toString();
-                    String birthControlPillsStartDay = pills_startDay.getText().toString();
-                    String birthControlPillsDays = pills_days.getText().toString();//before(기간)
 
-                    Log.w("앱에서 보낸값", id+", "+birthControlPillsHour + ", " + birthControlPillsMinute + ", " + birthControlPillsStartMonth + ", " + birthControlPillsStartDay+", " + birthControlPillsDays);
+                    SimpleDateFormat yearFormat=new SimpleDateFormat("yyyy", Locale.getDefault());
+                    String id= ID;
+                    String pills_hour = pills_hour1.getText().toString();
+                    String pills_minute = pills_minute1.getText().toString();
+                    String pills_time=pills_hour+":"+pills_minute+":"+"00";
+                    String pills_startMonth = pills_startMonth1.getText().toString();
+                    String pills_startDay = pills_startDay1.getText().toString();
+                    String pills_date=yearFormat+"-"+pills_startMonth+"-"+pills_startDay;
+                    String pills_days = pills_days1.getText().toString();//before(기간)
+
+                    if(pills_hour.length()==0 && pills_minute.length()==0)
+                    {
+                        pills_time="null";
+                    }
+                    if(pills_startDay.length()==0 && pills_startMonth.length()==0)
+                    {
+                        pills_date="null";
+                    }
+
+                    Log.w("앱에서 보낸값", id+", "+pills_time + ", " + pills_date + ", " + pills_days );
 
 
                     pills_mod_reminder.CustomTask task = new pills_mod_reminder.CustomTask();
-                    String result = task.execute(id,birthControlPillsHour, birthControlPillsMinute, birthControlPillsStartMonth, birthControlPillsStartDay, birthControlPillsDays).get();
+                    String result = task.execute(id,pills_time, pills_date, pills_days).get();
                     Log.w("받은값", result);
 
 
@@ -98,8 +115,8 @@ public class pills_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&birthControlPillsHour=" + strings[1]+"birthControlPillsMinute=" + strings[2]+"birthControlPillsStartMonth="
-                        + strings[3]+"birthControlPillsStartDay=" + strings[4]+"birthControlPillsDays=" + strings[5]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&pills_time=" + strings[1]+"pills_date=" + strings[2]+"pills_days="
+                        + strings[3]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
