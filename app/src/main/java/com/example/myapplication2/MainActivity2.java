@@ -101,6 +101,14 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         mucus5=findViewById(R.id.mucus5);
         mucus6=findViewById(R.id.mucus6);
 
+        //save_button=findViewById(R.id.save_button);
+
+        //save_button.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+//
+         //   }
+       // });
         symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,7 +214,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         mucus6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
             }
         });
@@ -395,8 +402,20 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         cal_view.setOnDateChangedListener(this);
 
         cal_view.setSelectedDate(CalendarDay.today());
-        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.today())));
 
+
+        int n=30; //시작일자 서버로 받아오기 or 시작 버튼 눌리면 넘겨서 날짜 받기
+        int month1=5; //시작버튼을 누른 달 받아오기
+        int duration=5; // 예측 기간 서버로 받아오기 & default 5
+        Calendar c = Calendar.getInstance();
+        int lastDay = c.getActualMaximum(5);    //선택된 달의 마지막 일자
+        for(int i=0;i<duration;i++){
+            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month1,n++))));
+            if(n==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                n=1;
+                month1++;
+            }
+        }
     }
 
     @Override
@@ -444,4 +463,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             view.addSpan(new DotSpan(5,color));
         }
     }
+
+
 }

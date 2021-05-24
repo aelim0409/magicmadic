@@ -90,11 +90,19 @@
             android:paddingTop="8dp"
             android:paddingBottom="5dp">
 
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="49dp"
+                android:layout_height="21dp"
+                android:background="@drawable/shape_round_skyblue"
+                android:layout_marginLeft="5dp"
+                android:text="저장"/>
+
             <TextView
                 android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/dx"
