@@ -18,18 +18,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class pills_mod_reminder extends AppCompatActivity {
-    private Button button_move;
-    EditText pills_hour = (EditText) findViewById(R.id.pills_hour);
-    EditText pills_minute = (EditText) findViewById(R.id.pills_minute);
-    EditText pills_startMonth = (EditText) findViewById(R.id.pills_startMonth);
-    EditText pills_startDay = (EditText) findViewById(R.id.pills_startDay);
-    EditText pills_days = (EditText) findViewById(R.id.pills_days);//없음
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pills_mod_reminder);
+
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
+
+        Button button_move;
+        EditText pills_hour = (EditText) findViewById(R.id.pills_hour);
+        EditText pills_minute = (EditText) findViewById(R.id.pills_minute);
+        EditText pills_startMonth = (EditText) findViewById(R.id.pills_startMonth);
+        EditText pills_startDay = (EditText) findViewById(R.id.pills_startDay);
+        EditText pills_days = (EditText) findViewById(R.id.pills_days);//없음
 
         button_move = findViewById(R.id.button_move);
         button_move.setOnClickListener(new View.OnClickListener() {
@@ -42,21 +47,23 @@ public class pills_mod_reminder extends AppCompatActivity {
 
                 Log.w("remember", "피임약 정보 저장 하는중");
                 try {
+                    String id= ID;
                     String birthControlPillsHour = pills_hour.getText().toString();
                     String birthControlPillsMinute = pills_minute.getText().toString();
                     String birthControlPillsStartMonth = pills_startMonth.getText().toString();
                     String birthControlPillsStartDay = pills_startDay.getText().toString();
                     String birthControlPillsDays = pills_days.getText().toString();//before(기간)
 
-                    Log.w("앱에서 보낸값", birthControlPillsHour + ", " + birthControlPillsMinute + ", " + birthControlPillsStartMonth + ", " + birthControlPillsStartDay+", " + birthControlPillsDays);
+                    Log.w("앱에서 보낸값", id+", "+birthControlPillsHour + ", " + birthControlPillsMinute + ", " + birthControlPillsStartMonth + ", " + birthControlPillsStartDay+", " + birthControlPillsDays);
 
 
                     pills_mod_reminder.CustomTask task = new pills_mod_reminder.CustomTask();
-                    String result = task.execute(birthControlPillsHour, birthControlPillsMinute, birthControlPillsStartMonth, birthControlPillsStartDay, birthControlPillsDays).get();
+                    String result = task.execute(id,birthControlPillsHour, birthControlPillsMinute, birthControlPillsStartMonth, birthControlPillsStartDay, birthControlPillsDays).get();
                     Log.w("받은값", result);
 
 
                     Intent intent = new Intent(pills_mod_reminder.this, MainActivity3.class);
+                    intent.putExtra("Id",ID);
                     startActivity(intent);
 
                     finish();
@@ -91,7 +98,8 @@ public class pills_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "birthControlPillsHour=" + strings[0]+"birthControlPillsMinute=" + strings[1]+"birthControlPillsStartMonth=" + strings[2]+"birthControlPillsStartDay=" + strings[3]+"birthControlPillsDays=" + strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&birthControlPillsHour=" + strings[1]+"birthControlPillsMinute=" + strings[2]+"birthControlPillsStartMonth="
+                        + strings[3]+"birthControlPillsStartDay=" + strings[4]+"birthControlPillsDays=" + strings[5]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

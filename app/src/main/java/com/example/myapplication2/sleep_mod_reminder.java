@@ -21,22 +21,23 @@ import java.net.URL;
 
 public class sleep_mod_reminder extends AppCompatActivity {
 
-    EditText id_edit;
-    EditText sleep_goal;
-    Button button_move;
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.water_mod_reminder);
-        button_move=findViewById(R.id.button_move);
-        id_edit = (EditText) findViewById(R.id.id_Input);
-        sleep_goal=(EditText) findViewById(R.id.water_text);
+        setContentView(R.layout.activity_sleep_mod_reminder);
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
+
+        Button button_move=findViewById(R.id.button_move);
+
+        EditText sleep_hour=(EditText) findViewById(R.id.sleep_hour);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),login.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 //startActivity(intent);
                 sleep_mod_func();
             }
@@ -46,23 +47,25 @@ public class sleep_mod_reminder extends AppCompatActivity {
                 Log.w("sleep_mod","수면목표설정중");
                 try{
 
-                    String id = id_edit.getText().toString();
-                    String sleep=sleep_goal.getText().toString();
+                    String id = ID;
+                    String sleep_goal=sleep_hour.getText().toString();
 
-                    Log.w("앱에서 보낸 값", id+", "+sleep);
+                    Log.w("앱에서 보낸 값", id+", "+sleep_goal);
                     sleep_mod_reminder.customTask task = new sleep_mod_reminder.customTask();
-                    String result = task.execute(id,sleep).get();
+                    String result = task.execute(id,sleep_goal).get();
                     Log.w("받은값",result);
 
-                    if(result=="양수를 입력해주세요")
+                    if(result.equals("양수를 입력해주세요"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else{
-                        sleep_goal.setText(sleep);
-                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
+                        //sleep_goal.setText(sleep);
+                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        intent.putExtra("Id",ID);
                         finish();
                     }
 
@@ -88,7 +91,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&name="+strings[1]+"&pw"+strings[2]+"&birthday"+strings[3]+"&age"+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&sleep_goal="+strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

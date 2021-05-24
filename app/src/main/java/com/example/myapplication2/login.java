@@ -52,6 +52,7 @@ public class login extends AppCompatActivity {
                     Log.w("앱에서 보낸값",id+", "+pw);
 
                     CustomTask task = new CustomTask();
+                    //서버에서 받ㅇ느 값
                     String result = task.execute(id,pw).get();
                     Log.w("받은값",result);
 
@@ -72,10 +73,11 @@ public class login extends AppCompatActivity {
                         //finish();
                     }
                     else{
+                        //result=aelim aelim 2000-04-04 aelim 22
                         String [] save = result.split(" ");
                         String ID= save[0];
 
-                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
                         intent.putExtra("Id", save[0]);
                         startActivity(intent);
                     }

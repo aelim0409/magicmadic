@@ -16,12 +16,16 @@ public class basic_information_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_information_page);
 
+        //id 가져옴 (func에 넣어줘야함 이 위치 아님)
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -31,6 +35,7 @@ public class basic_information_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -40,6 +45,7 @@ public class basic_information_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),graph.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -49,6 +55,7 @@ public class basic_information_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -58,6 +65,7 @@ public class basic_information_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });

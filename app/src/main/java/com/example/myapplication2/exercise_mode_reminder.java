@@ -19,42 +19,48 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class exercise_mode_reminder extends AppCompatActivity {
-    private Button button_move;
-    EditText exercise_hour = (EditText) findViewById(R.id.exercise_hour);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise_mode_reminder);
 
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
+
+        Button button_move;
+        EditText exercise_time = (EditText) findViewById(R.id.exercise_hour);
+
         button_move = findViewById(R.id.button_move);
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 move_exercise_func();
-
             }
 
             void move_exercise_func() {
 
                 Log.w("remember", "운동 정보 저장 하는중");
                 try {
-                    String exerciseTimeGoal = exercise_hour.getText().toString();
+                    String exercise_hour = exercise_time.getText().toString();
+                    String id= ID;
 
-                    Log.w("앱에서 보낸값", exerciseTimeGoal);
+                    Log.w("앱에서 보낸값", id+ ", "+exercise_hour);
 
                     exercise_mode_reminder.CustomTask task = new exercise_mode_reminder.CustomTask();
-                    String result = task.execute(exerciseTimeGoal).get();
+                    String result = task.execute(id,exercise_hour).get();
                     Log.w("받은값", result);
 
-                    if(result=="양수를 입력해주세요")
+                    if(result.equals("양수를 입력해주세요"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else {
                         Intent intent = new Intent(exercise_mode_reminder.this, MainActivity3.class);
+                        intent.putExtra("Id",ID);
                         startActivity(intent);
 
                         finish();
@@ -88,7 +94,7 @@ public class exercise_mode_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "exerciseTimeGoal=" + strings[0]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&exercise_hour=" + strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

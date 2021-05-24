@@ -19,11 +19,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class HospitalModReminderActivity extends AppCompatActivity {
-    private Button button_move;
-    EditText hospital_month = (EditText) findViewById(R.id.hospital_month);
-    EditText hospital_date = (EditText) findViewById(R.id.hospital_date);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
+
+        Button button_move;
+        EditText hospital_month = (EditText) findViewById(R.id.hospital_month);
+        EditText hospital_date = (EditText) findViewById(R.id.hospital_date);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_mod_reminder);
 
@@ -31,29 +36,31 @@ public class HospitalModReminderActivity extends AppCompatActivity {
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                move_exercise_func();
+                func();
             }
-            void move_exercise_func() {
+            void func() {
 
                 Log.w("remember", "병원정보 저장 하는중");
                 try {
+                    String id = ID;
                     String hospitalMonth = hospital_month.getText().toString();
                     String hospitalDate = hospital_date.getText().toString();
 
-                    Log.w("앱에서 보낸값", hospitalMonth+", "+hospitalDate);
+                    Log.w("앱에서 보낸값", id+", "+ hospitalMonth+", "+hospitalDate);
 
                     HospitalModReminderActivity.CustomTask task = new HospitalModReminderActivity.CustomTask();
-                    String result = task.execute(hospitalMonth,hospitalDate).get();
+                    String result = task.execute(id,hospitalMonth,hospitalDate).get();
                     Log.w("받은값", result);
 
-                    if(result=="양수를 입력해주세요")
+                    if(result.equals("양수를 입력해주세요"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else {
                         Intent intent = new Intent(HospitalModReminderActivity.this, MainActivity3.class);
+                        intent.putExtra("Id",ID);
                         startActivity(intent);
 
                         finish();
@@ -87,7 +94,7 @@ public class HospitalModReminderActivity extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "hospitalMonth=" + strings[0] + "&hospitalDate=" + strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&hospitalMonth=" + strings[1] + "&hospitalDate=" + strings[2]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 

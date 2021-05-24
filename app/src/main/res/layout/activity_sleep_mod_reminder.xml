@@ -79,12 +79,14 @@
                 android:textColor="@color/brown"
                 android:textSize="25dp"
                 android:textStyle="bold" />
+
             <EditText
+                android:id="@+id/sleep_hour"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:text="5"
-                android:textAlignment="center"
-                android:gravity="center_horizontal" />
+                android:textAlignment="center" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
