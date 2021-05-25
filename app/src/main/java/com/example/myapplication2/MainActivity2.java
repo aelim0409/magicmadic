@@ -390,17 +390,18 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         Button start_button = (Button)findViewById(R.id.start_button);
         Button end_button = (Button)findViewById(R.id.end_button);
-
+        final Date[] start = new Date[1];
+        final Date[] end = new Date[1];
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date =  main_date_view.getText().toString();
                 try {
-                    Date current = SelectedDate(date);
-                    int day = CalendarDay.from(current).getDay();
-                    int month = CalendarDay.from(current).getMonth();
-                    int year = CalendarDay.from(current).getYear();
-                    CalendarDay.from(current).getDay();
+                    start[0] = SelectedDate(date);
+                    int day = CalendarDay.from(start[0]).getDay();
+                    int month = CalendarDay.from(start[0]).getMonth();
+                    int year = CalendarDay.from(start[0]).getYear();
+                    CalendarDay.from(start[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int lastDay = cc.getActualMaximum(month);
                     for(int i=0;i<5;i++){
@@ -410,7 +411,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                             month++;
                         }
                     }
-
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -420,12 +420,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-
-
-
     }
 
     public Date SelectedDate(String str) throws ParseException {
