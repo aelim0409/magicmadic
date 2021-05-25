@@ -67,15 +67,16 @@ public class MainActivity3 extends AppCompatActivity {
         String []information=init_info.split(" ");
 
        // String[] booleans = {"0","0","0","0","0","0"};
-        String [] booleans=information;
+        String [] booleanss=information;
+        String [] booleans={"false","false","false","false","false","false"};
 
         Boolean [] checked={true,true,true,true,true,true};
 
         for(int i=0;i<6;i++)
         {
-            if(booleans[i].equals("null"))
-                booleans[i]="false";
-            checked[i]=Boolean.parseBoolean(booleans[i]);
+            if(booleanss[i+1].equals("null"))
+                booleanss[i+1]="false";
+            checked[i]=Boolean.parseBoolean(booleanss[i+1]);
         }
 
         pills_switch.setChecked(checked[0]);
@@ -136,12 +137,16 @@ public class MainActivity3 extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               // isChecked=checked[0];
+
                 if(isChecked) {
-                    booleans[0] = "true";
+
+                        booleans[0]="true";
                 }
                 else
                 {
-                    booleans[0] = "false";
+
+                        booleans[0]="false";
                 }
             }
         }
@@ -149,6 +154,11 @@ public class MainActivity3 extends AppCompatActivity {
         class switch2Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //isChecked=checked[1];
+
+
+
+
                 if(isChecked) {
                     booleans[1] = "true";
                 }
@@ -161,6 +171,11 @@ public class MainActivity3 extends AppCompatActivity {
         class switch3Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               // isChecked=checked[2];
+
+
+
+
                 if(isChecked){
 
                     booleans[2] = "true";
@@ -174,6 +189,8 @@ public class MainActivity3 extends AppCompatActivity {
         class switch4Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //isChecked=checked[3];
+
                 if(isChecked){
 
                     booleans[3] = "true";
@@ -185,6 +202,10 @@ public class MainActivity3 extends AppCompatActivity {
         class switch5Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               // isChecked=checked[4];
+
+
+
                 if(isChecked){
 
                     booleans[4] = "true";
@@ -196,6 +217,11 @@ public class MainActivity3 extends AppCompatActivity {
         class switch6Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //System.out.print(isChecked);
+                //isChecked=checked[5];
+
+
+
                 if(isChecked){
 
                     booleans[5] = "true";
@@ -204,6 +230,18 @@ public class MainActivity3 extends AppCompatActivity {
                     booleans[5] = "false";
             }
         }
+
+        for(int i=0;i<6;i++) {
+            if ((booleans[i].equals( "false") )&& (checked[i] == true))
+                booleans[i] = "true";
+            else if ((booleans[i] .equals("true")) && (checked[i] == false))
+                booleans[i] = "true";
+            else if ((booleans[i].equals( "false")) && (checked[i] == false))
+                booleans[i] = "false";
+            else if ((booleans[i].equals( "true")) && (checked[i] == true))
+                booleans[i] = "false";
+        }
+
 
         pills_switch.setOnCheckedChangeListener(new switch1Listener());
         physilogy_switch.setOnCheckedChangeListener(new switch2Listener());
@@ -249,9 +287,9 @@ public class MainActivity3 extends AppCompatActivity {
 
                 // 서버에 없음
 
-                Log.w("앱에서 보낸 값", id + ", "+birthControlPills + ", " +physiology +", "+ sleepTimeGoal + ", " + exerciseTimeGoal + ", " + hospital+", "+water);//+water
+                Log.w("앱에서 보낸 값", id + ", "+birthControlPills + ", " +physiology +", "+ hospital+", "+ water+ ", " + exerciseTimeGoal +", " + sleepTimeGoal );//+water
                 MainActivity3.customTask task = new MainActivity3.customTask();
-                String result = task.execute(id,birthControlPills, physiology, sleepTimeGoal, exerciseTimeGoal, hospital,water).get();
+                String result = task.execute(id,birthControlPills, physiology, hospital, water,exerciseTimeGoal ,sleepTimeGoal).get();
                 Log.w("받은값", result);
 
 
@@ -321,8 +359,8 @@ public class MainActivity3 extends AppCompatActivity {
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id="+strings[0]+"&birthControlPills="+strings[1]+
-                        "&physiology="+strings[2]+"&sleepTimeGoal="+strings[3]+"&exerciseTimeGoal="+strings[4]
-                        +"&hospital="+strings[5]+"&water="+strings[6];
+                        "&physiology="+strings[2]+"&hospital="+strings[3]+"&water="+strings[4]+"&exerciseTimeGoal="+strings[5]+
+                       "&sleepTimeGoal="+strings[6];
                  // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
