@@ -100,7 +100,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="247dp"
+            android:layout_height="201dp"
             android:fillViewport="true"
             android:paddingHorizontal="10dp"
             android:paddingTop="10dp"
@@ -116,6 +116,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
 
                         android:id="@+id/textview1"
@@ -127,8 +128,8 @@
 
                         android:listSelector="@android:color/transparent"
                         android:text=" 생리 예정일"
-                        android:textSize="30dp"
-                        android:textColor="@color/brown" />
+                        android:textColor="@color/brown"
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/day1"
@@ -150,6 +151,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
 
                         android:id="@+id/textview2"
@@ -161,8 +163,8 @@
 
                         android:listSelector="@android:color/transparent"
                         android:text=" 배란 예정일"
-                        android:textSize="30dp"
-                        android:textColor="@color/brown" />
+                        android:textColor="@color/brown"
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/day2"
@@ -184,6 +186,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
 
                         android:id="@+id/textview3"
@@ -195,8 +198,8 @@
 
                         android:listSelector="@android:color/transparent"
                         android:text=" 마지막 생리일"
-                        android:textSize="30dp"
-                        android:textColor="@color/brown" />
+                        android:textColor="@color/brown"
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/day3"
@@ -219,6 +222,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
 
                         android:id="@+id/textview4"
@@ -230,8 +234,8 @@
 
                         android:listSelector="@android:color/transparent"
                         android:text=" 가임기 시작"
-                        android:textSize="30dp"
-                        android:textColor="@color/brown" />
+                        android:textColor="@color/brown"
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/day4"
@@ -253,6 +257,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
+
                     <TextView
 
                         android:id="@+id/textview5"
@@ -264,8 +269,8 @@
 
                         android:listSelector="@android:color/transparent"
                         android:text=" 평균 생리주기"
-                        android:textSize="30dp"
-                        android:textColor="@color/brown" />
+                        android:textColor="@color/brown"
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/day5"
