@@ -22,6 +22,7 @@ import java.net.URL;
 public class sleep_mod_reminder extends AppCompatActivity {
 
     public String getInformation(String ID) {
+
         Log.w("수면 초기 설정", "설정 정보 주는중");
         String result="null";
         try {
@@ -32,7 +33,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
-            return result;
+            //return result;
 
         } catch (Exception e) {
 
@@ -45,20 +46,22 @@ public class sleep_mod_reminder extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep_mod_reminder);
-        Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
+
+        Intent Intent2 = getIntent();
+        String ID = Intent2.getStringExtra("Id");
 
         Button button_move=findViewById(R.id.button_move);
 
         EditText sleep_hour=(EditText) findViewById(R.id.sleep_hour);
 
         String info=getInformation(ID);
-        sleep_hour.setText(info);
+        String [] init_info = info.split(" ");
+        sleep_hour.setText(init_info[1]);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+               // Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 //startActivity(intent);
                 sleep_mod_func();
             }
@@ -87,6 +90,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                         intent.putExtra("Id",ID);
+                        startActivity(intent);
                         finish();
                     }
 
@@ -103,7 +107,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setReminder_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserSleep_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -145,7 +149,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserSleep_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

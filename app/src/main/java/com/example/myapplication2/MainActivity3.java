@@ -47,6 +47,7 @@ public class MainActivity3 extends AppCompatActivity {
         String ID = Intent.getStringExtra("Id");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
         Button water = findViewById(R.id.water_setting_btn);
         Button pills= findViewById(R.id.pills_setting_btn);
         Button sleep = findViewById(R.id.sleep_setting_btn);
@@ -70,10 +71,13 @@ public class MainActivity3 extends AppCompatActivity {
 
         Boolean [] checked={true,true,true,true,true,true};
 
-        for(int i=0;i<booleans.length;i++)
+        for(int i=0;i<6;i++)
         {
+            if(booleans[i].equals("null"))
+                booleans[i]="false";
             checked[i]=Boolean.parseBoolean(booleans[i]);
         }
+
         pills_switch.setChecked(checked[0]);
         physilogy_switch.setChecked(checked[1]);
         hospital_switch.setChecked(checked[2]);
@@ -85,48 +89,53 @@ public class MainActivity3 extends AppCompatActivity {
         water.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), water_mod_reminder.class);
-                startActivity(intent1);
+                Intent intent_1 = new Intent(getApplicationContext(), water_mod_reminder.class);
+                intent_1.putExtra("Id", ID);
+                startActivity(intent_1);
             }
         });
+
         pills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), pills_mod_reminder.class);
-                startActivity(intent2);
+                Intent intent_2 = new Intent(getApplicationContext(), pills_mod_reminder.class);
+                intent_2.putExtra("Id", ID);
+                startActivity(intent_2);
             }
         });
+
         hospital.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(getApplicationContext(), HospitalModReminderActivity.class);
-                startActivity(intent3);
+                Intent intent_3 = new Intent(getApplicationContext(), HospitalModReminderActivity.class);
+                intent_3.putExtra("Id", ID);
+                startActivity(intent_3);
             }
         });
 
         sleep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(getApplicationContext(), sleep_mod_reminder.class);
-                startActivity(intent4);
+                Intent intent_4 = new Intent(getApplicationContext(), sleep_mod_reminder.class);
+                intent_4.putExtra("Id", ID);
+                startActivity(intent_4);
             }
         });
 
         exercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent5 = new Intent(getApplicationContext(), exercise_mode_reminder.class);
-                startActivity(intent5);
+                Intent intent_5 = new Intent(getApplicationContext(), exercise_mode_reminder.class);
+                intent_5.putExtra("Id", ID);
+                startActivity(intent_5);
             }
         });
         //생리 버튼 좀 생각정리 필요
-
 
         class switch1Listener implements CompoundButton.OnCheckedChangeListener {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if(isChecked) {
                     booleans[0] = "true";
                 }
@@ -135,7 +144,6 @@ public class MainActivity3 extends AppCompatActivity {
                     booleans[0] = "false";
                 }
             }
-
         }
 
         class switch2Listener implements CompoundButton.OnCheckedChangeListener {

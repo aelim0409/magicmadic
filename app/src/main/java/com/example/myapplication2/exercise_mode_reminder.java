@@ -30,7 +30,6 @@ public class exercise_mode_reminder extends AppCompatActivity {
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
-            return result;
 
         } catch (Exception e) {
 
@@ -55,7 +54,7 @@ public class exercise_mode_reminder extends AppCompatActivity {
         String [] init_info = info.split(" ");
 
 
-        exercise_time.setText(init_info[0]);
+        exercise_time.setText(init_info[1]);
 
 
         button_move = findViewById(R.id.button_move);
@@ -110,7 +109,7 @@ public class exercise_mode_reminder extends AppCompatActivity {
 
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setReminder_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserExercise_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -138,8 +137,6 @@ public class exercise_mode_reminder extends AppCompatActivity {
                 }
 
 
-
-
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -155,7 +152,7 @@ public class exercise_mode_reminder extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserExercise_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

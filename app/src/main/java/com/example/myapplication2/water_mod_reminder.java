@@ -32,8 +32,6 @@ public class water_mod_reminder extends AppCompatActivity {
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
-            return result;
-
         } catch (Exception e) {
 
         }
@@ -60,7 +58,7 @@ public class water_mod_reminder extends AppCompatActivity {
         String info=getInformation(ID);
         String [] init_info = info.split(" ");
 
-        water_text.setText(init_info[0]);
+        water_text.setText(init_info[1]);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,9 +75,10 @@ public class water_mod_reminder extends AppCompatActivity {
                     String id = ID;
                     String water_goal=water_text.getText().toString();
 
-                    Log.w("앱에서 보낸 값", id+", "+water_goal);
+                    String water_time="18:00:00";
+                    Log.w("앱에서 보낸 값", id+", "+water_goal+", "+water_time);
                     water_mod_reminder.customTask task = new water_mod_reminder.customTask();
-                    String result = task.execute(id,water_goal).get();
+                    String result = task.execute(id,water_goal,water_time).get();
                     Log.w("받은값",result);
 
                     if(result.equals("양수를 입력해주세요"))
@@ -110,7 +109,7 @@ public class water_mod_reminder extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setGoal_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserWaterIntake_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -119,7 +118,7 @@ public class water_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&water_goal="+strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&water_goal="+strings[1]+"&water_time="+strings[2]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
@@ -152,7 +151,7 @@ public class water_mod_reminder extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserWaterIntake_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

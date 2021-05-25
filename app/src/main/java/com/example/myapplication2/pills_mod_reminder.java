@@ -3,11 +3,13 @@ package com.example.myapplication2;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class pills_mod_reminder extends AppCompatActivity {
@@ -32,22 +35,19 @@ public class pills_mod_reminder extends AppCompatActivity {
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
-            return result;
-
         } catch (Exception e) {
 
         }
         return result;
     }
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pills_mod_reminder);
 
-        Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
+        Intent Intent_get = getIntent();
+        String ID = Intent_get.getStringExtra("Id");
 
         Button button_move;
         EditText pills_hour1 = (EditText) findViewById(R.id.pills_hour);
@@ -58,18 +58,23 @@ public class pills_mod_reminder extends AppCompatActivity {
 
         String info=getInformation(ID);
         String [] init_info= info.split(" ");
-        String [] get_pills_time=init_info[0].split(":");
-        String [] get_pills_date= init_info[1].split("-");
+
+
+        String [] get_pills_time=init_info[1].split(":");
+        String [] get_pills_date= init_info[2].split("-");
         String get_pills_hour=get_pills_time[0];
         String get_pills_minute=get_pills_time[1];
         String get_pills_month=get_pills_date[1];
         String get_pills_day=get_pills_date[2];
 
+
+
+
         pills_hour1.setText(get_pills_hour);
         pills_minute1.setText(get_pills_minute);
         pills_startMonth1.setText(get_pills_month);
         pills_startDay1.setText(get_pills_day);
-        pills_days1.setText(init_info[2]);
+        pills_days1.setText(init_info[3]);
 
 
         button_move = findViewById(R.id.button_move);
@@ -81,20 +86,20 @@ public class pills_mod_reminder extends AppCompatActivity {
 
             void move_exercise_func() {
 
-
-
                 Log.w("remember", "피임약 정보 저장 하는중");
                 try {
 
                     SimpleDateFormat yearFormat=new SimpleDateFormat("yyyy", Locale.getDefault());
+                    Date date= new Date();
+                    String Year= yearFormat.format(date);
                     String id= ID;
                     String pills_hour = pills_hour1.getText().toString();
                     String pills_minute = pills_minute1.getText().toString();
                     String pills_time=pills_hour+":"+pills_minute+":"+"00";
                     String pills_startMonth = pills_startMonth1.getText().toString();
                     String pills_startDay = pills_startDay1.getText().toString();
-                    String pills_date=yearFormat+"-"+pills_startMonth+"-"+pills_startDay;
-                    String pills_days = pills_days1.getText().toString();//before(기간)
+                    String pills_date=Year+"-"+pills_startMonth+"-"+pills_startDay;
+                    String days = pills_days1.getText().toString();//before(기간)
 
                     if(pills_hour.length()==0 && pills_minute.length()==0)
                     {
@@ -105,19 +110,26 @@ public class pills_mod_reminder extends AppCompatActivity {
                         pills_date="null";
                     }
 
-                    Log.w("앱에서 보낸값", id+", "+pills_time + ", " + pills_date + ", " + pills_days );
+                    Log.w("앱에서 보낸값", id+", "+pills_time + ", " + pills_date + ", " + days );
 
 
                     pills_mod_reminder.CustomTask task = new pills_mod_reminder.CustomTask();
-                    String result = task.execute(id,pills_time, pills_date, pills_days).get();
+                    String result = task.execute(id,pills_time, pills_date, days).get();
                     Log.w("받은값", result);
 
+                    if(result.equals("양수를 입력해주세요"))
+                    {
+                        //토스트 메시지 출력
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
 
-                    Intent intent = new Intent(pills_mod_reminder.this, MainActivity3.class);
-                    intent.putExtra("Id",ID);
-                    startActivity(intent);
-
-                    finish();
+                    else {
+                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        intent.putExtra("Id", ID);
+                        startActivity(intent);
+                        finish();
+                    }
 
 
                 } catch (Exception e) {
@@ -126,8 +138,6 @@ public class pills_mod_reminder extends AppCompatActivity {
 
         });
     }
-
-
 
 
     class CustomTask extends AsyncTask<String, Void, String> {
@@ -139,7 +149,7 @@ public class pills_mod_reminder extends AppCompatActivity {
 
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setReminder_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserBirthControlPills_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -149,7 +159,7 @@ public class pills_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&pills_time=" + strings[1]+"pills_date=" + strings[2]+"pills_days="
+                sendMsg = "id="+strings[0]+"&pills_time=" + strings[1]+"&pills_date=" + strings[2]+"&days="
                         + strings[3]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
@@ -185,7 +195,7 @@ public class pills_mod_reminder extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserReminderList_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserBirthControlPills_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");

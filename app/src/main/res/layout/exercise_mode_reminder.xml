@@ -126,6 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="192dp"
-        android:text="ex) 2.5, 5" />
+        android:layout_marginTop="235dp"
+        android:text="ex) 2.5, 5"
+        android:textSize="20sp" />
 </RelativeLayout>

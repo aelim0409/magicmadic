@@ -160,7 +160,7 @@ tools:context=".pills_mod_reminder">
         android:layout_below="@+id/comp3"
         android:layout_centerInParent="true"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="62dp"
+        android:layout_marginTop="98dp"
         android:layout_marginRight="6dp"
         android:background="@drawable/shape_round_gray"
         android:gravity="center"
@@ -242,6 +242,6 @@ tools:context=".pills_mod_reminder">
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="128dp"
         android:text="ex) 05m 19d" />
 </RelativeLayout>
