@@ -37,13 +37,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
+import static java.sql.DriverManager.println;
+
 public class MainActivity2 extends Activity implements OnDateSelectedListener {
     TextView date_today;
     TextView main_date_view;
     MaterialCalendarView cal_view;
     Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
     Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
-    Button start_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         TextView todayText = findViewById(R.id.today_text);
 
-        start_button=findViewById(R.id.start_button);
         symptoms1=findViewById(R.id.symptom1);
         symptoms2=findViewById(R.id.symptom2);
         symptoms3=findViewById(R.id.symptom3);
@@ -75,14 +75,14 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
 
 
-        //save_button=findViewById(R.id.save_button);
+        Button save_button=findViewById(R.id.save_button);
 
-        //save_button.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-//
-         //   }
-       // });
+        save_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,7 +244,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 exerciseH.setText(str1);
             }
         });
-
         exerciseminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -274,7 +273,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 startActivity(intent);
             }
         });
-
         Button fitness_btn = findViewById(R.id.fitness_btn);
         fitness_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,7 +281,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 startActivity(intent);
             }
         });
-
         Button graph_btn = findViewById(R.id.graph_btn);
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,7 +289,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 startActivity(intent);
             }
         });
-
         Button calendar_btn = findViewById(R.id.calendar_btn);
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -301,7 +297,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 startActivity(intent);
             }
         });
-
         Button remind_btn = findViewById(R.id.remind_btn);
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,7 +329,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 sleepH.setText(str1);
             }
         });
-
         sleepminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -374,7 +368,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
-
         cal_view.setSelectedDate(CalendarDay.today());
 
 
@@ -392,6 +385,36 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 //        }
 
 
+
+//        class RemoveDecorator implements DayViewDecorator {
+//            private final HashSet<CalendarDay> dates;
+
+//            private MaterialCalendarView widget;
+//            private RemoveDecorator decoratorReference;
+//            private List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
+
+//            private void removeEvent(CalendarDay day) {
+//                calendarDays.remove(day);
+//                widget.removeDecorator(decoratorReference);
+//                widget.invalidateDecorators();
+//            }
+//            public RemoveDecorator(Collection<CalendarDay> dates) {
+//                this.dates = new HashSet<>(dates);/
+//                           }
+
+//            @Override
+//            public boolean shouldDecorate(CalendarDay day) {
+//                return dates.contains(day);
+//                // also tried with just
+                // return false;
+//            }
+
+//            @Override
+//            public void decorate(DayViewFacade view) {
+//                // TODO: what to do?
+//            }
+//        }
+
         Button start_button = (Button)findViewById(R.id.start_button);
         Button end_button = (Button)findViewById(R.id.end_button);
         final Date[] start = new Date[1];
@@ -405,10 +428,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     int day = CalendarDay.from(start[0]).getDay();
                     int month = CalendarDay.from(start[0]).getMonth();
                     int year = CalendarDay.from(start[0]).getYear();
+                    int period=5;
                     CalendarDay.from(start[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int lastDay = cc.getActualMaximum(month);
-                    for(int i=0;i<5;i++){
+                    for(int i=0;i<period;i++){
                         cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month,day++))));
                         if(day==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                             day=1;
@@ -424,7 +448,26 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String date =  main_date_view.getText().toString();
+                try {
+                    start[0] = SelectedDate(date);
+                    int day = CalendarDay.from(start[0]).getDay();
+                    int month = CalendarDay.from(start[0]).getMonth();
+                    int year = CalendarDay.from(start[0]).getYear();
+                    CalendarDay.from(start[0]).getDay();
+                    Calendar cc = Calendar.getInstance();
+                    int lastDay = cc.getActualMaximum(month);
+                    for(int i=0;i<5;i++){
+                        cal_view.addDecorators(new EventDecorator(Color.parseColor("#EDFAFF"), Collections.singleton(CalendarDay.from(2021,month,day))));
+                        day+=1;
+                        if(day==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day=1;
+                            month++;
+                        }
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
