@@ -1,71 +1,48 @@
 package com.example.myapplication2;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
-import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.GestureDetector;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 
-public class MainActivity2 extends Activity {
+public class MainActivity2 extends Activity implements OnDateSelectedListener {
     TextView date_today;
     TextView main_date_view;
-    ScrollView scroll_container;
-    //LinearLayout main_content_view;
-    String fileName; // (업데이트 시 절대로 변경해선 안 됨!!)
-    RelativeLayout.LayoutParams params;
-    LinearLayout.LayoutParams zeroParams;
-    GestureDetector detector;
-    CalendarView cal_view;
-    long pointingDate;
-    int state;
-    SharedPreferences fileGetter;
-    String state_str;
-    int totalNum;
-    int year, month, day; // 업데이트 시 절대로 변경해선 안 됨!! (사용자들이 이미 쓰고 있는 DB 파일 이름 때문)
-    boolean autoClickForDateChange;
-
-    Button []symptoms;
-    Button []mucus;
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadDB();
-    }
+    MaterialCalendarView cal_view;
+    Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
+    Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +51,142 @@ public class MainActivity2 extends Activity {
 
         TextView todayText = findViewById(R.id.today_text);
 
+        symptoms1=findViewById(R.id.symptom1);
+        symptoms2=findViewById(R.id.symptom2);
+        symptoms3=findViewById(R.id.symptom3);
+        symptoms4=findViewById(R.id.symptom4);
+        symptoms5=findViewById(R.id.symptom5);
+        symptoms6=findViewById(R.id.symptom6);
+        symptoms7=findViewById(R.id.symptom7);
+        symptoms8=findViewById(R.id.symptom8);
+        symptoms9=findViewById(R.id.symptom9);
+        symptoms10=findViewById(R.id.symptom10);
+        symptoms11=findViewById(R.id.symptom11);
+        symptoms12=findViewById(R.id.symptom12);
+
+        mucus1=findViewById(R.id.mucus1);
+        mucus2=findViewById(R.id.mucus2);
+        mucus3=findViewById(R.id.mucus3);
+        mucus4=findViewById(R.id.mucus4);
+        mucus5=findViewById(R.id.mucus5);
+        mucus6=findViewById(R.id.mucus6);
+
+        //save_button=findViewById(R.id.save_button);
+
+        //save_button.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+//
+         //   }
+       // });
+        symptoms1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });symptoms10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        symptoms12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mucus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mucus6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
         TextView water, exerciseH, exerciseM, sleepH, sleepM;
@@ -149,6 +262,50 @@ public class MainActivity2 extends Activity {
             }
         });
 
+        Button btn_home = findViewById(R.id.home_btn);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                startActivity(intent);
+            }
+        });
+
+        Button fitness_btn = findViewById(R.id.fitness_btn);
+        fitness_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                startActivity(intent);
+            }
+        });
+
+        Button graph_btn = findViewById(R.id.graph_btn);
+        graph_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(),graph.class);
+//                startActivity(intent);
+            }
+        });
+
+        Button calendar_btn = findViewById(R.id.calendar_btn);
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+        Button remind_btn = findViewById(R.id.remind_btn);
+        remind_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                startActivity(intent);
+            }
+        });
 
         sleepplus = (ImageButton)findViewById(R.id.sleepplus);
         sleepminus = (ImageButton)findViewById(R.id.sleepminus);
@@ -195,10 +352,6 @@ public class MainActivity2 extends Activity {
             }
         });
 
-
-
-
-
         todayText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,54 +359,6 @@ public class MainActivity2 extends Activity {
                 int y = cal.get(Calendar.YEAR);
                 int m = cal.get(Calendar.MONTH);
                 int d = cal.get(Calendar.DAY_OF_MONTH);
-                markDate(y,m,d);
-
-                Button btn_home = findViewById(R.id.home_btn);
-                btn_home.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button fitness_btn = findViewById(R.id.fitness_btn);
-                fitness_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button graph_btn = findViewById(R.id.graph_btn);
-                graph_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
-                    }
-                });
-
-                Button calendar_btn = findViewById(R.id.calendar_btn);
-                calendar_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
-                        startActivity(intent);
-                    }
-                });
-
-                Button remind_btn = findViewById(R.id.remind_btn);
-                remind_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
-                        startActivity(intent);
-                    }
-                });
-
-
             }
         });
 
@@ -261,166 +366,115 @@ public class MainActivity2 extends Activity {
         date_today.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
+        main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        state = fileGetter.getInt("state",0);
-        state_str = getStateString(state);
+        cal_view.setOnDateChangedListener(this);
 
-        String tempDate = new SimpleDateFormat("yyyy/M/d", Locale.getDefault()).format(new Date());
-        String[] parseDate = tempDate.split("/");
-        year = Integer.parseInt(parseDate[0]);
-        month = Integer.parseInt(parseDate[1]);
-        day = Integer.parseInt(parseDate[2]);
-
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-
-        ImageButton menuButton = findViewById(R.id.sub_menu_button);
-        //menuButton.setOnClickListener(new MenuListener());
+        cal_view.setSelectedDate(CalendarDay.today());
 
 
+//        int n=30; //시작일자 서버로 받아오기 or 시작 버튼 눌리면 넘겨서 날짜 받기
+//        int month1=5; //시작버튼을 누른 달 받아오기
+//        int duration=5; // 예측 기간 서버로 받아오기 & default 5
+//        Calendar c = Calendar.getInstance();
+//        int lastDay = c.getActualMaximum(5);    //선택된 달의 마지막 일자
+//        for(int i=0;i<duration;i++){
+//            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month1,n++))));
+//            if(n==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+//                n=1;
+//                month1++;
+//            }
+//        }
 
 
-
-        scroll_container = findViewById(R.id.scroll_container);
-
-
-        cal_view = findViewById(R.id.calendar);
-        pointingDate = cal_view.getDate();
-
-        fileName =year+"."+(month+1)+"."+day;// 오늘 날짜로 화면 초기화 (업데이트 시 절대로 변경해선 안 됨!!)
-        loadDB();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            cal_view.setSelectedWeekBackgroundColor(getResources().getColor(R.color.brown));
-        }
-        cal_view.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        Button start_button = (Button)findViewById(R.id.start_button);
+        Button end_button = (Button)findViewById(R.id.end_button);
+        final Date[] start = new Date[1];
+        final Date[] end = new Date[1];
+        start_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelectedDayChange(CalendarView calendarView, int y, int m, int d) {
-                markDate(y,m,d);
+            public void onClick(View v) {
+                String date =  main_date_view.getText().toString();
+                try {
+                    start[0] = SelectedDate(date);
+                    int day = CalendarDay.from(start[0]).getDay();
+                    int month = CalendarDay.from(start[0]).getMonth();
+                    int year = CalendarDay.from(start[0]).getYear();
+                    CalendarDay.from(start[0]).getDay();
+                    Calendar cc = Calendar.getInstance();
+                    int lastDay = cc.getActualMaximum(month);
+                    for(int i=0;i<5;i++){
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month,day++))));
+                        if(day==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day=1;
+                            month++;
+                        }
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
-
-
-
-
-    }
-
-    private void markDate(int y, int m, int d){
-        year = y; month = m+1; day = d;
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-        fileName = year + "." + (month+1) + "." + day; // (업데이트 시 절대로 변경해선 안 됨!!)
-        loadDB();
-
-        Calendar currentPointing = Calendar.getInstance();
-        currentPointing.set(y,m,d);
-        pointingDate = currentPointing.getTimeInMillis();
-        cal_view.setDate(pointingDate);
-    }
-
-    private String getStateString(int state){
-        switch (state){
-            case 0:
-                return "전체 목록";
-            case 1:
-                return "해야할 일";
-            case 2:
-                return "완료한 일";
-            default:
-                return null;
-        }
-    }
-
-    private void loadDB(){
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        state = fileGetter.getInt("state",0);
-        state_str = getStateString(state);
-        main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-
-        fileGetter = getSharedPreferences(fileName, 0); // 클릭한 날짜에 해당되는 File의 DB 객체 생성
-        final LayoutInflater layout_inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE); // inflater 생성
-
-    }
-
-
-
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode==1){
-            int y = data.getIntExtra("y",0);
-            int m = data.getIntExtra("m",0)-1;
-            int d = data.getIntExtra("d",0);
-            markDate(y,m,d);
-        }
-    }
-
-    class GestureListener implements View.OnTouchListener {
-        private GestureDetector gestureDetector = new GestureDetector(MainActivity2.this, new GestureDetector.SimpleOnGestureListener() {
+        end_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
-                // 상하 제스처는 무시
-                if(Math.abs(event1.getY()-event2.getY())>200){
-                    return true;
-                }
-
-                long date = pointingDate; // long 타입
-                Calendar rightNow = Calendar.getInstance(); // long 타입
-                rightNow.setTimeInMillis(date);
-                if(event1.getX()-event2.getX()<-1){//오른쪽
-                    rightNow.add(Calendar.DATE, -1); // yesterday
-                }
-                else if(event1.getX()-event2.getX()>1){//왼쪽
-                    rightNow.add(Calendar.DATE, 1); // tomorrow
-                }
-                pointingDate = rightNow.getTimeInMillis();
-                cal_view.setDate(pointingDate);
-
-                int y = rightNow.get(Calendar.YEAR);
-                int m = rightNow.get(Calendar.MONTH);
-                int d = rightNow.get(Calendar.DAY_OF_MONTH);
-                year = y; month = m+1; day = d;
-
-                main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-                fileName = year + "." + (month+1) + "." + day; // (업데이트 시 절대로 변경해선 안 됨!!)
-                loadDB();
-                return true;
+            public void onClick(View v) {
             }
         });
+    }
+
+    public Date SelectedDate(String str) throws ParseException {
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
+        Date to = transFormat.parse(str);
+        return to;
+    }
+
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
+    }
+
+    class MySelectorDecorator implements DayViewDecorator  {
+        private final Drawable drawable;
+
+        MySelectorDecorator(Drawable drawable) {
+            this.drawable = drawable;
+        }
+
+        public MySelectorDecorator(Activity context){
+            drawable = context.getResources().getDrawable(R.drawable.my_selector);
+        }
 
         @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            gestureDetector.onTouchEvent(event);
+        public boolean shouldDecorate(CalendarDay day) {
             return true;
         }
-    }
 
-    private class MenuListener implements View.OnClickListener{
         @Override
-        public void onClick(View view) {
-            PopupMenu menu = new PopupMenu(getBaseContext(), view);
-            getMenuInflater().inflate(R.menu.sub_menu, menu.getMenu());
-            menu.setOnMenuItemClickListener(new MenuItemListener());
-            menu.getMenu().getItem(0).getSubMenu().getItem(state).setChecked(true);
-            menu.show();
+        public void decorate(DayViewFacade view) {
+            view.setSelectionDrawable(drawable);
         }
     }
 
-    private class MenuItemListener implements PopupMenu.OnMenuItemClickListener{
-        @Override
-        public boolean onMenuItemClick(MenuItem menuItem) {
-            saveState();
-            state_str = getStateString(state);
-            main_date_view.setText(state_str+" ("+year+"/"+month+"/"+day+")");
-            loadDB();
+    class EventDecorator implements DayViewDecorator{
+        private final int color;
+        private final HashSet<CalendarDay> dates;
+        public EventDecorator(int color, Collection<CalendarDay> dates){
+            this.color = color;
+            this.dates = new HashSet<>(dates);
+        }
 
-            menuItem.setChecked(!menuItem.isChecked());
-            return true;
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new DotSpan(5,color));
         }
     }
 
-    private void saveState(){
-        fileGetter = getSharedPreferences("StateStorage", 0);
-        SharedPreferences.Editor editor = fileGetter.edit();
-        editor.putInt("state", state).commit();
-    }
+
 }

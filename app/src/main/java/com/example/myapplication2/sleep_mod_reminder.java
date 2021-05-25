@@ -21,22 +21,47 @@ import java.net.URL;
 
 public class sleep_mod_reminder extends AppCompatActivity {
 
-    EditText id_edit;
-    EditText sleep_goal;
-    Button button_move;
+    public String getInformation(String ID) {
+
+        Log.w("수면 초기 설정", "설정 정보 주는중");
+        String result="null";
+        try {
+            String id = ID;
+
+            Log.w("(초기)앱에서 보낸 값", id );//+water
+            sleep_mod_reminder.getTask task = new sleep_mod_reminder.getTask();
+            result = task.execute(id).get();
+            Log.w("(초기)받은값", result);
+
+            //return result;
+
+        } catch (Exception e) {
+
+        }
+        return result;
+    }
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.water_mod_reminder);
-        button_move=findViewById(R.id.button_move);
-        id_edit = (EditText) findViewById(R.id.id_Input);
-        sleep_goal=(EditText) findViewById(R.id.water_text);
+        setContentView(R.layout.activity_sleep_mod_reminder);
+
+        Intent Intent2 = getIntent();
+        String ID = Intent2.getStringExtra("Id");
+
+        Button button_move=findViewById(R.id.button_move);
+
+        EditText sleep_hour=(EditText) findViewById(R.id.sleep_hour);
+
+        String info=getInformation(ID);
+        String [] init_info = info.split(" ");
+        sleep_hour.setText(init_info[1]);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),login.class);
+               // Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 //startActivity(intent);
                 sleep_mod_func();
             }
@@ -46,23 +71,26 @@ public class sleep_mod_reminder extends AppCompatActivity {
                 Log.w("sleep_mod","수면목표설정중");
                 try{
 
-                    String id = id_edit.getText().toString();
-                    String sleep=sleep_goal.getText().toString();
+                    String id = ID;
+                    String sleep_goal=sleep_hour.getText().toString();
 
-                    Log.w("앱에서 보낸 값", id+", "+sleep);
+                    Log.w("앱에서 보낸 값", id+", "+sleep_goal);
                     sleep_mod_reminder.customTask task = new sleep_mod_reminder.customTask();
-                    String result = task.execute(id,sleep).get();
+                    String result = task.execute(id,sleep_goal).get();
                     Log.w("받은값",result);
 
-                    if(result=="양수를 입력해주세요")
+                    if(result.equals("양수를 입력해주세요"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else{
-                        sleep_goal.setText(sleep);
-                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
+                        //sleep_goal.setText(sleep);
+                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        intent.putExtra("Id",ID);
+                        startActivity(intent);
                         finish();
                     }
 
@@ -79,7 +107,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setReminder_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserSleep_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -88,7 +116,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&name="+strings[1]+"&pw"+strings[2]+"&birthday"+strings[3]+"&age"+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&sleep_goal="+strings[1]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
@@ -115,4 +143,48 @@ public class sleep_mod_reminder extends AppCompatActivity {
             return receiveMsg;
         }
     }
+    class getTask extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserSleep_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
 }

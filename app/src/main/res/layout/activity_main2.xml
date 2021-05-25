@@ -59,7 +59,7 @@
             android:textSize="20dp" />
     </LinearLayout>
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendar"
         android:layout_width="375dp"
         android:layout_height="336dp"
@@ -67,11 +67,8 @@
         android:layout_marginHorizontal="5dp"
         android:layout_marginVertical="5dp"
         android:background="@drawable/shape_round_skyblue"
-        android:dateTextAppearance="@style/CalenderViewDateCustomText"
         android:paddingTop="17dp"
-        android:paddingBottom="0dp"
-        android:theme="@style/CalenderViewCustom"
-        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+        android:paddingBottom="0dp" />
 
     <RelativeLayout
         android:id="@+id/containerInner"
@@ -93,11 +90,19 @@
             android:paddingTop="8dp"
             android:paddingBottom="5dp">
 
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="49dp"
+                android:layout_height="21dp"
+                android:background="@drawable/shape_round_skyblue"
+                android:layout_marginLeft="5dp"
+                android:text="저장"/>
+
             <TextView
                 android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/dx"
@@ -105,27 +110,12 @@
                 android:text="날짜 가운데 정렬"
                 android:textColor="@color/brown"
                 android:textSize="16dp" />
-
-            <ImageButton
-                android:id="@+id/sub_menu_button"
-                android:layout_width="12dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/shape_round_pink"
-                android:paddingHorizontal="0dp"
-                android:paddingVertical="0dp"
-                android:scaleType="fitXY" />
-
         </RelativeLayout>
 
         <ScrollView
             android:id="@+id/scroll_container"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:layout_above="@id/move_layout"
             android:layout_below="@id/date_layout"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="50dp"
@@ -265,7 +255,6 @@
                         android:textColor="@color/brown"
                         android:textSize="18dp" />
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -312,9 +301,6 @@
                             android:textColor="@color/brown"
                             android:textSize="18dp" />
                     </LinearLayout>
-
-
-
 
                     <ImageButton
                         android:id="@+id/exerciseplus"
@@ -593,6 +579,7 @@
                             android:background="@drawable/shape_round_yellow"
                             android:text="설사"
                             android:textSize="10dp" />
+
                     </LinearLayout>
 
                 </HorizontalScrollView>
@@ -688,45 +675,7 @@
                 </HorizontalScrollView>
             </LinearLayout>
         </ScrollView>
-        <RelativeLayout
-            android:id="@+id/move_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/shape_round_purple"
-            android:gravity="center"
-            android:paddingHorizontal="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp">
 
-            <TextView
-                android:id="@+id/date_to_move_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_toLeftOf="@id/move_button"
-                android:fontFamily="@font/dx"
-                android:gravity="center"
-                android:text=" "
-                android:textColor="@color/brown"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/move_button"
-                android:layout_width="77dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/shape_round_gray"
-                android:fontFamily="@font/dx"
-                android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="10dp"
-                android:text="move"
-                android:textAllCaps="false"
-                android:textColor="@color/brown"
-                android:textSize="17dp" />
-        </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout

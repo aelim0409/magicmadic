@@ -21,25 +21,49 @@ import java.net.URL;
 
 public class water_mod_reminder extends AppCompatActivity {
 
-    EditText id_edit;
-    EditText water_goal;
-    Button button_move;
+    public String getInformation(String ID) {
+        Log.w("수분섭취 초기 설정", "설정 정보 주는중");
+        String result="null";
+        try {
+            String id = ID;
+
+            Log.w("(초기)앱에서 보낸 값", id );//+water
+            water_mod_reminder.getTask task = new water_mod_reminder.getTask();
+            result = task.execute(id).get();
+            Log.w("(초기)받은값", result);
+
+        } catch (Exception e) {
+
+        }
+        return result;
+    }
+
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.water_mod_reminder);
+
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
+
+
+        Button button_move;
+
         button_move=findViewById(R.id.button_move);
-        id_edit = (EditText) findViewById(R.id.id_Input);
-        water_goal=(EditText) findViewById(R.id.water_text);
+
+        EditText water_text=(EditText) findViewById(R.id.water_text);
 
 
+        String info=getInformation(ID);
+        String [] init_info = info.split(" ");
+
+        water_text.setText(init_info[1]);
 
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),login.class);
-                //startActivity(intent);
+
                 water_mod_func();
             }
 
@@ -48,23 +72,27 @@ public class water_mod_reminder extends AppCompatActivity {
                 Log.w("water_mod","물목표설정중");
                 try{
 
-                    String id = id_edit.getText().toString();
-                    String water=water_goal.getText().toString();
+                    String id = ID;
+                    String water_goal=water_text.getText().toString();
 
-                    Log.w("앱에서 보낸 값", id+", "+water);
+                    String water_time="18:00:00";
+                    Log.w("앱에서 보낸 값", id+", "+water_goal+", "+water_time);
                     water_mod_reminder.customTask task = new water_mod_reminder.customTask();
-                    String result = task.execute(id,water).get();
+                    String result = task.execute(id,water_goal,water_time).get();
                     Log.w("받은값",result);
 
-                    if(result=="양수를 입력해주세요")
+                    if(result.equals("양수를 입력해주세요"))
                     {
                         //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     else{
-                        water_goal.setText(water);
-                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_SHORT).show();
+                        //water_text.setText(water_goal);
+                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        intent.putExtra("Id",ID);
+                        startActivity(intent);
                         finish();
                     }
 
@@ -81,7 +109,7 @@ public class water_mod_reminder extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setGoal_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserWaterIntake_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -90,7 +118,7 @@ public class water_mod_reminder extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&name="+strings[1]+"&pw"+strings[2]+"&birthday"+strings[3]+"&age"+strings[4]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                sendMsg = "id="+strings[0]+"&water_goal="+strings[1]+"&water_time="+strings[2]; // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
@@ -117,4 +145,48 @@ public class water_mod_reminder extends AppCompatActivity {
             return receiveMsg;
         }
     }
+    class getTask extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserWaterIntake_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
 }

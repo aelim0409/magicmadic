@@ -158,8 +158,9 @@ tools:context=".pills_mod_reminder">
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_below="@+id/comp3"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="6dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="98dp"
         android:layout_marginRight="6dp"
         android:background="@drawable/shape_round_gray"
         android:gravity="center"
@@ -191,11 +192,11 @@ tools:context=".pills_mod_reminder">
                 android:gravity="center_horizontal"
                 android:text="5"
                 android:textAlignment="center" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="m"
-                />
+                android:text="m" />
 
             <EditText
                 android:id="@+id/pills_startDay"
@@ -204,11 +205,11 @@ tools:context=".pills_mod_reminder">
                 android:gravity="center_horizontal"
                 android:text="19"
                 android:textAlignment="center" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="d"
-                />
+                android:text="d" />
         </LinearLayout>
 
 
@@ -225,4 +226,22 @@ tools:context=".pills_mod_reminder">
         android:textStyle="bold"
         android:fontFamily="@font/dx"
         android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="263dp"
+        android:text="ex) 06h 30m" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="128dp"
+        android:text="ex) 05m 19d" />
 </RelativeLayout>
