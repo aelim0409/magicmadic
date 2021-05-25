@@ -43,6 +43,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     MaterialCalendarView cal_view;
     Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
     Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+    Button start_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         TextView todayText = findViewById(R.id.today_text);
 
+        start_button=findViewById(R.id.start_button);
         symptoms1=findViewById(R.id.symptom1);
         symptoms2=findViewById(R.id.symptom2);
         symptoms3=findViewById(R.id.symptom3);
@@ -70,6 +72,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         mucus4=findViewById(R.id.mucus4);
         mucus5=findViewById(R.id.mucus5);
         mucus6=findViewById(R.id.mucus6);
+
+
 
         //save_button=findViewById(R.id.save_button);
 
@@ -284,8 +288,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                startActivity(intent);
             }
         });
 
