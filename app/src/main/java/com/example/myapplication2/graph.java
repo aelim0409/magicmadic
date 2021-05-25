@@ -51,7 +51,7 @@ public class graph extends AppCompatActivity {
         fitness_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
                 startActivity(intent);
             }
         });
@@ -65,22 +65,20 @@ public class graph extends AppCompatActivity {
             }
         });
 
-
         Button calendar_btn = findViewById(R.id.calendar_btn);
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
                 startActivity(intent);
             }
         });
-
 
         Button remind_btn = findViewById(R.id.remind_btn);
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 startActivity(intent);
             }
         });

@@ -25,6 +25,7 @@ public class Selftest_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selftest_main);
 
+
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +48,8 @@ public class Selftest_main extends AppCompatActivity {
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                startActivity(intent);
             }
         });
 

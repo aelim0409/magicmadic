@@ -262,7 +262,7 @@
 
                         android:id="@+id/textview5"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="49dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"
@@ -309,7 +309,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fitness"
+            android:text="SelfTest"
             android:background="@color/white"/>
 
         <Button

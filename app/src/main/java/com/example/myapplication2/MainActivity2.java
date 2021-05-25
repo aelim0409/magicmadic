@@ -424,6 +424,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
     }

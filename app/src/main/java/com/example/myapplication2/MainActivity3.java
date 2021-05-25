@@ -268,9 +268,7 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                intent.putExtra("Id", ID);
                 startActivity(intent);
-
             }
         });
 
@@ -278,19 +276,25 @@ public class MainActivity3 extends AppCompatActivity {
         fitness_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                intent.putExtra("Id", ID);
+                Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
                 startActivity(intent);
             }
         });
 
+        Button graph_btn = findViewById(R.id.graph_btn);
+        graph_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                startActivity(intent);
+            }
+        });
 
         Button calendar_btn = findViewById(R.id.calendar_btn);
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                intent.putExtra("Id", ID);
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
                 startActivity(intent);
             }
         });
@@ -299,8 +303,7 @@ public class MainActivity3 extends AppCompatActivity {
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                intent.putExtra("Id", ID);
+                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
                 startActivity(intent);
             }
         });
