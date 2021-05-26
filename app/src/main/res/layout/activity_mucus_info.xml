@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MucusInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/mucus1"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="얼룩덜룩"
+            android:textSize="9dp" />
+
+        <CheckBox
+            android:id="@+id/mucus2"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="끈적끈적"
+            android:textSize="9dp" />
+
+        <CheckBox
+            android:id="@+id/mucus3"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="크림같음"
+            android:textSize="9dp" />
+
+        <CheckBox
+            android:id="@+id/mucus4"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="계란흰자"
+            android:textSize="9dp" />
+
+        <CheckBox
+            android:id="@+id/mucus5"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="묽음"
+            android:textSize="9dp" />
+
+        <CheckBox
+            android:id="@+id/mucus6"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/my_selector"
+            android:text="비정상"
+            android:textSize="9dp" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
