@@ -94,9 +94,13 @@
                 android:id="@+id/save_button"
                 android:layout_width="49dp"
                 android:layout_height="21dp"
-                android:background="@drawable/shape_round_skyblue"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginLeft="5dp"
-                android:text="저장"/>
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="7dp"
+                android:background="@drawable/shape_round_skyblue"
+                android:text="저장" />
 
             <TextView
                 android:id="@+id/date_text"
