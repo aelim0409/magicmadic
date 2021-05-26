@@ -429,14 +429,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     int month = CalendarDay.from(start[0]).getMonth();
                     int year = CalendarDay.from(start[0]).getYear();
                     int period=5;
-                    CalendarDay.from(start[0]).getDay();
-                    Calendar cc = Calendar.getInstance();
 
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
                     int lastDay = mdays[month];
 
-                    System.out.println(lastDay);
-                    for(int i=0;i<period;i++){
+                    for(int i=0;i<1;i++){
                         cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
                         day++;
                         if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
@@ -450,28 +447,33 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             }
         });
 
-
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date =  main_date_view.getText().toString();
                 try {
+
+                    int day = CalendarDay.from(start[0]).getDay();
+                    int month = CalendarDay.from(start[0]).getMonth();
+                    int year = CalendarDay.from(start[0]).getYear();
+
                     end[0] = SelectedDate(date);
-                    int day = CalendarDay.from(end[0]).getDay();
-                    int month = CalendarDay.from(end[0]).getMonth();
-                    int year = CalendarDay.from(end[0]).getYear();
+                    int end_day = CalendarDay.from(end[0]).getDay();
+                    int end_month = CalendarDay.from(end[0]).getMonth();
+                    int end_year = CalendarDay.from(end[0]).getYear();
                     CalendarDay.from(end[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
                     int lastDay = mdays[month];
-                    for(int i=0;i<5;i++){
-                        cal_view.addDecorators(new EventDecorator(Color.parseColor("#EDFAFF"), Collections.singleton(CalendarDay.from(year,month,day))));
+                    for(int i=0;!(end_day == day && end_year == year && end_month == month);i++){
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
                         day+=1;
                         if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                             day=1;
                             month++;
                         }
                     }
+                    cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
