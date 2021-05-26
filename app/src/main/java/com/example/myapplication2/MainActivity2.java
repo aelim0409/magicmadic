@@ -39,7 +39,6 @@ import java.util.Locale;
 
 public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
-
     TextView date_today;
     TextView main_date_view;
     MaterialCalendarView cal_view;
@@ -55,8 +54,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             String id = ID;
 
             Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
+
 
             String cramps=a[0];
             String breastTenderness=a[1];
@@ -77,7 +77,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             fatigue, abdominalBloating, desires,
             insomnia, constipation, diarrhea
              */
-            Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+none+", "
+            Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+none+", "
             +cramps+", "+breastTenderness+", "+headache+", "+acne+", "+lumbago+", "
                     +", "+nausea+", "+fatigue+", "+abdominalBloating+", "+
                     desires+", "+insomnia+", "+constipation+", "+diarrhea);//+water
@@ -86,7 +86,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     headache, acne, lumbago, nausea,
                     fatigue, abdominalBloating, desires,
                     insomnia, constipation, diarrhea).get();
-            Log.w("(초기)받은값", result);
+            Log.w("(저장시)받은값", result);
 
             //return result;
 
@@ -98,13 +98,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     public void give_mucus(String ID,String none,String []b)
     {
 
-        Log.w("symptom 후기 설정", "설정 정보 주는중");
+        Log.w("mucus 후기 설정", "설정 정보 주는중");
 
         try {
             String id = ID;
 
             Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
 
             String mottled=b[0];
@@ -119,13 +119,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             id, date, none, mottled, sticky,
             creamy, likeEggWhite, watery, abnormal
             */
-            Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+none+", "
+            Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+none+", "
                     +mottled+", "+sticky+", "+creamy+", "+likeEggWhite+", "+watery+", "
                     +", "+abnormal);//+water
             MainActivity2.setMucus task = new MainActivity2.setMucus();
             String result = task.execute(id,today_date,none, mottled, sticky,
                     creamy, likeEggWhite, watery, abnormal).get();
-            Log.w("(초기)받은값", result);
+            Log.w("(저장시)받은값", result);
 
             //return result;
 
@@ -144,7 +144,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             String id = ID;
 
             Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
 
             Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
@@ -168,7 +168,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             String id = ID;
 
             Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
 
             Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
@@ -184,7 +184,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     }
 
     public String get_mucus_info(String ID) {
-        Log.w("mucus 설정", "설정 정보 주는중");
+        Log.w("mucus 초기 설정", "설정 정보 주는중");
 
         String result="null";
 
@@ -192,7 +192,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             String id = ID;
 
             Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
 
             Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
@@ -219,15 +219,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         String ID = Intent.getStringExtra("Id");
         String [] init_info = getInformation(ID).split(" ");
 
-        String sleep_time= init_info[1];
-        String exercise_time = init_info[2];
-        String water_intake= init_info[3];
+        String sleep_time= init_info[0];
+        String exercise_time = init_info[1];
+        String water_intake= init_info[2];
         //getinforamation 한 시작과 끝 날짜
-        String start_day= init_info[4];
-        String end_day=init_info[5];
+        String start_day= init_info[3];
+        String end_day=init_info[4];
 
-        String symptom_init=init_info[6];
-        String mucus_init=init_info[7];
+        String symptom_init=init_info[5];
+        String mucus_init=init_info[6];
 
         String mucus_none= "false";
         String symptom_none="false";
@@ -250,11 +250,14 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         sleepH = (TextView)findViewById(R.id.sleep_recordH);
         sleepM = (TextView)findViewById(R.id.sleep_recordM);
 
+        System.out.print(exercise_time.split(":")[0]);
         water.setText(water_intake);
         exerciseH.setText(exercise_time.split(":")[0]);
+
         exerciseM.setText(exercise_time.split(":")[1]);
         sleepH.setText(sleep_time.split(":")[0]);
         sleepM.setText(sleep_time.split(":")[1]);
+
         if(symptom_init.equals("true"))
         {
             String [] symptom_init_info = get_symptom_info(ID).split(" ");
@@ -302,7 +305,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         if(mucus_init.equals("true"))
         {
             String [] mucus_init_info = get_mucus_info(ID).split(" ");
-            for(int i=0;i<12;i++)
+            for(int i=0;i<6;i++)
             {
                 mucus_symptoms[i]=mucus_init_info[i+1];
             }
@@ -521,13 +524,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         String constipation=symptom_Check[10];
         String diarrhea=symptom_Check[11];
 
-        String [] mucus_Check={"false","false","false","false","false","false"};
-
+        //String [] mucus_Check={"false","false","false","false","false","false"};
+        String []mucus_Check=new String[6];
         mucus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (((CheckBox)v).isChecked()) {
                     mucus_Check[0]="true";
+                    System.out.println("................");
+
                 } else {
                     mucus_Check[0]="false";
                 }
@@ -586,6 +591,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         });
 
 
+        /*
         for(int i=0;i<6;i++)
         {
             if ((mucus_Check[i].equals( "false") )&& (mucus_symptoms[i].equals("true")))
@@ -597,12 +603,17 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             else if ((mucus_Check[i].equals( "true")) && (mucus_symptoms[i].equals("true")))
                 mucus_Check[i] = "false";
         }
+*/
 
-
-        for(int i =0;i<6;i++)
+        for(int i=0;i<6;i++)
         {
-            if(mucus_Check[i].equals("true"))
+            System.out.println("?????????");
+            if(mucus_Check[i]=="true")
+            {
                 mucus_none="true";
+                System.out.println("!!!!!!!!!!!");
+                break;
+            }
         }
 
         String mucus_none2= mucus_none;
@@ -781,10 +792,10 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         });
 
         date_today = findViewById(R.id.date_today);
-        date_today.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        date_today.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
-        main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        main_date_view.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
@@ -851,15 +862,18 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
                 try {
                     String id = ID;
-                    String sleepTime=sleepH+":"+sleepM+":"+"00";
-                    String exerciseTime=exerciseH+":"+exerciseM+":"+"00";
+                    String sleepTime=sleepH.getText().toString()+":"+sleepM.getText().toString()+":"+"00";
+                    String exerciseTime=exerciseH.getText().toString()+":"+exerciseM.getText().toString()+":"+"00";
                     String waterIntake = water.getText().toString();
+
                     String startDay=start_day_input;
+                    System.out.println("함수속= " +start_day_input);
                     String endDay=end_day_input;
                     String symptom=symptom_none2;
                     String mucus=mucus_none2;
                     String [] symptom_Check2= new String[12];
                     String [] mucus_Check2=new String [6];
+
 
                     for(int i=0;i<12;i++)
                     {
@@ -887,11 +901,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
                     String today_date = sdf.format(date);
 
-                    Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
+                    Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
                     MainActivity2.customTask task = new MainActivity2.customTask();
                     String result = task.execute(id,today_date,sleepTime,exerciseTime,waterIntake,startDay,endDay,symptom,mucus).get();
-                    Log.w("(초기)받은값", result);
+                    Log.w("(저장시)받은값", result);
 
                     //return result;
 
@@ -912,7 +926,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 String date =  main_date_view.getText().toString();
                 try {
                     start[0] = SelectedDate(date);
-                    start_day_input= start[0].toString();
+                    start_day_input=setSelectedDate;
+                  //  System.out.print("start[0]= "+start[0]);
+                   // start_day_input= start[0].toString();
                     int day = CalendarDay.from(start[0]).getDay();
                     int month = CalendarDay.from(start[0]).getMonth();
                     int year = CalendarDay.from(start[0]).getYear();
@@ -923,7 +939,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
                     int lastDay = mdays[month];
 
-                    System.out.println(lastDay);
+                    System.out.println(start[0]);
                     for(int i=0;i<period;i++){
                         cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
                         day++;
@@ -939,6 +955,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         });
 
+            start_day_input="null";
+        System.out.println("if 문 후=" +start_day_input);
 
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -946,6 +964,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 String date =  main_date_view.getText().toString();
                 try {
                     end[0] = SelectedDate(date);
+                    end_day_input=setSelectedDate;
                     int day = CalendarDay.from(end[0]).getDay();
                     int month = CalendarDay.from(end[0]).getMonth();
                     int year = CalendarDay.from(end[0]).getYear();
@@ -967,26 +986,27 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             }
         });
 
-        end_day_input= end[0].toString();
-
+        end_day_input="null";
 
     }
 
 
     public Date SelectedDate(String str) throws ParseException {
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
+        //문제 시발!
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date to = transFormat.parse(str);
+        System.out.println("to= "+to);
         return to;
     }
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
+        main_date_view.setText(date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay() );
         selectedYear=date.getYear();
         selectedMonth=date.getMonth()+1;
         selectedDay=date.getDay();
         setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
-        System.out.println(setSelectedDate);
+        System.out.println("setSelectedDate= "+setSelectedDate);
     }
 
     class MySelectorDecorator implements DayViewDecorator  {
@@ -1040,7 +1060,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1091,7 +1111,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1180,7 +1200,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1279,7 +1299,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setMucus_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendMucus_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
