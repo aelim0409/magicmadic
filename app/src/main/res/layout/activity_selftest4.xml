@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerOuter"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    android:background="@drawable/shape_round_transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp"
+    android:rotation="0"
+    android:rotationX="0">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,13 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="폐경기 자가진단"
-            android:textSize="18dp" />
+            android:textSize="18dp"
+            android:layout_marginLeft="80dp"/>
 
         <Button
             android:id="@+id/test4done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:text="DONE" />
 
         <Button
