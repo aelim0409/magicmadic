@@ -428,7 +428,7 @@
                         android:orientation="horizontal">
 
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom1"
                             android:layout_width="36dp"
                             android:layout_height="34dp"
@@ -437,11 +437,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="생리통"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -450,11 +450,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="유방의압통"
                             android:textSize="7dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -463,11 +463,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="두통"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -476,11 +476,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="여드름"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -489,11 +489,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="요통"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -502,11 +502,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="구역질"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom7"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -515,11 +515,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="피로감"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom8"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -528,11 +528,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="복부팽만감"
                             android:textSize="7dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom9"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -541,11 +541,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="식욕"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom10"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -554,11 +554,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="불면증"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom11"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -567,11 +567,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="변비"
                             android:textSize="10dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/symptom12"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -580,7 +580,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="설사"
                             android:textSize="10dp" />
 
@@ -597,7 +597,7 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus1"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -606,11 +606,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="얼룩덜룩"
                             android:textSize="9dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus2"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -619,11 +619,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="끈적끈적"
                             android:textSize="9dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus3"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -632,11 +632,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="크림같음"
                             android:textSize="9dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus4"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -645,11 +645,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="계란흰자"
                             android:textSize="9dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus5"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -658,11 +658,11 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="묽음"
                             android:textSize="9dp" />
 
-                        <Button
+                        <CheckBox
                             android:id="@+id/mucus6"
                             android:layout_width="34dp"
                             android:layout_height="34dp"
@@ -671,7 +671,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginBottom="10dp"
                             android:adjustViewBounds="true"
-                            android:background="@drawable/shape_round_yellow"
+                            android:background="@drawable/my_selector"
                             android:text="비정상"
                             android:textSize="9dp" />
 
