@@ -45,6 +45,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     MaterialCalendarView cal_view;
     Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
     Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+    int selectedYear, selectedMonth, selectedDay;
+    String setSelectedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         mucus4=findViewById(R.id.mucus4);
         mucus5=findViewById(R.id.mucus5);
         mucus6=findViewById(R.id.mucus6);
-
 
 
         Button save_button=findViewById(R.id.save_button);
@@ -488,6 +489,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
+        selectedYear=date.getYear();
+        selectedMonth=date.getMonth()+1;
+        selectedDay=date.getDay();
+        setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
+        System.out.println(setSelectedDate);
     }
 
     class MySelectorDecorator implements DayViewDecorator  {
