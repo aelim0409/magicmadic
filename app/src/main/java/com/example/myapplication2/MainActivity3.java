@@ -66,7 +66,7 @@ public class MainActivity3 extends AppCompatActivity {
         String init_info = getInformation(ID);
         String []information=init_info.split(" ");
 
-       // String[] booleans = {"0","0","0","0","0","0"};
+        // String[] booleans = {"0","0","0","0","0","0"};
         String [] booleanss=information;
         String [] booleans={"false","false","false","false","false","false"};
 
@@ -137,16 +137,16 @@ public class MainActivity3 extends AppCompatActivity {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               // isChecked=checked[0];
+                // isChecked=checked[0];
 
                 if(isChecked) {
 
-                        booleans[0]="true";
+                    booleans[0]="true";
                 }
                 else
                 {
 
-                        booleans[0]="false";
+                    booleans[0]="false";
                 }
             }
         }
@@ -171,7 +171,7 @@ public class MainActivity3 extends AppCompatActivity {
         class switch3Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               // isChecked=checked[2];
+                // isChecked=checked[2];
 
 
 
@@ -202,7 +202,7 @@ public class MainActivity3 extends AppCompatActivity {
         class switch5Listener implements CompoundButton.OnCheckedChangeListener {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               // isChecked=checked[4];
+                // isChecked=checked[4];
 
 
 
@@ -251,53 +251,53 @@ public class MainActivity3 extends AppCompatActivity {
         sleep_switch.setOnCheckedChangeListener(new switch6Listener());
 
         reminder_btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
-            //startActivity(intent);
-            RemindUp_func();
-        }
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                //startActivity(intent);
+                RemindUp_func();
+            }
 
-        void RemindUp_func() {
-            Log.w("리마인더 온오프 설정", "설정 정보 주는중");
+            void RemindUp_func() {
+                Log.w("리마인더 온오프 설정", "설정 정보 주는중");
 
-            //앞에 페이지에서 정보 가져오기
+                //앞에 페이지에서 정보 가져오기
 
 
-            try {
-                String id = ID;
+                try {
+                    String id = ID;
 //                String birthControlPills = String.valueOf(booleans[0]);
 //                String physiology = String.valueOf(booleans[1]);
 //                String sleepTimeGoal = String.valueOf(booleans[5]);
 //                String exerciseTimeGoal = String.valueOf(booleans[3]);
 //                String hospital = String.valueOf(booleans[2]);
 
-               // String birthControlPills = booleans[0];
-                String birthControlPills = booleans[0];
-                String physiology = booleans[1];
-                String sleepTimeGoal = booleans[5];
-                String water = booleans[3];
-                String exerciseTimeGoal = booleans[4];
-                String hospital = booleans[2];
-                //null 초기화 부분
-                String beforeBirthControlPills="0";
-                String birthControlPillsTime ="08:00:00";
-                String beforePhysiology="0";
-                String hospitalDate ="0";
+                    // String birthControlPills = booleans[0];
+                    String birthControlPills = booleans[0];
+                    String physiology = booleans[1];
+                    String sleepTimeGoal = booleans[5];
+                    String water = booleans[3];
+                    String exerciseTimeGoal = booleans[4];
+                    String hospital = booleans[2];
+                    //null 초기화 부분
+                    String beforeBirthControlPills="0";
+                    String birthControlPillsTime ="08:00:00";
+                    String beforePhysiology="0";
+                    String hospitalDate ="0";
 
-                // 서버에 없음
+                    // 서버에 없음
 
-                Log.w("앱에서 보낸 값", id + ", "+birthControlPills + ", " +physiology +", "+ hospital+", "+ water+ ", " + exerciseTimeGoal +", " + sleepTimeGoal );//+water
-                MainActivity3.customTask task = new MainActivity3.customTask();
-                String result = task.execute(id,birthControlPills, physiology, hospital, water,exerciseTimeGoal ,sleepTimeGoal).get();
-                Log.w("받은값", result);
+                    Log.w("앱에서 보낸 값", id + ", "+birthControlPills + ", " +physiology +", "+ hospital+", "+ water+ ", " + exerciseTimeGoal +", " + sleepTimeGoal );//+water
+                    MainActivity3.customTask task = new MainActivity3.customTask();
+                    String result = task.execute(id,birthControlPills, physiology, hospital, water,exerciseTimeGoal ,sleepTimeGoal).get();
+                    Log.w("받은값", result);
 
 
-            } catch (Exception e) {
+                } catch (Exception e) {
 
+                }
             }
-        }
-    });
+        });
 
 
 
@@ -369,8 +369,8 @@ public class MainActivity3 extends AppCompatActivity {
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id="+strings[0]+"&birthControlPills="+strings[1]+
                         "&physiology="+strings[2]+"&hospital="+strings[3]+"&water="+strings[4]+"&exerciseTimeGoal="+strings[5]+
-                       "&sleepTimeGoal="+strings[6];
-                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                        "&sleepTimeGoal="+strings[6];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
 
