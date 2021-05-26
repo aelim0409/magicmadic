@@ -927,7 +927,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 try {
                     start[0] = SelectedDate(date);
                     start_day_input=setSelectedDate;
-                    end_day_input="null";
                   //  System.out.print("start[0]= "+start[0]);
                    // start_day_input= start[0].toString();
                     int day = CalendarDay.from(start[0]).getDay();
@@ -957,8 +956,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         });
 
             start_day_input="null";
-            end_day_input="null";
-        //System.out.println("if 문 후=" +start_day_input);
+        System.out.println("if 문 후=" +start_day_input);
 
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -967,7 +965,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 try {
                     end[0] = SelectedDate(date);
                     end_day_input=setSelectedDate;
-                    start_day_input="null";
                     int day = CalendarDay.from(end[0]).getDay();
                     int month = CalendarDay.from(end[0]).getMonth();
                     int year = CalendarDay.from(end[0]).getYear();
@@ -989,10 +986,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             }
         });
 
-
-
         end_day_input="null";
-
 
     }
 
