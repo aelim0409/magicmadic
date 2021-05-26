@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -42,8 +43,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     TextView date_today;
     TextView main_date_view;
     MaterialCalendarView cal_view;
-    Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
-    Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+    CheckBox symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
+    CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
     int selectedYear, selectedMonth, selectedDay;
     String setSelectedDate;
 
@@ -217,11 +218,14 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
         String [] init_info = getInformation(ID).split(" ");
+
         String sleep_time= init_info[1];
         String exercise_time = init_info[2];
         String water_intake= init_info[3];
+        //getinforamation 한 시작과 끝 날짜
         String start_day= init_info[4];
         String end_day=init_info[5];
+
         String symptom_init=init_info[6];
         String mucus_init=init_info[7];
 
@@ -246,6 +250,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         sleepH = (TextView)findViewById(R.id.sleep_recordH);
         sleepM = (TextView)findViewById(R.id.sleep_recordM);
 
+        water.setText(water_intake);
+        exerciseH.setText(exercise_time.split(":")[0]);
+        exerciseM.setText(exercise_time.split(":")[1]);
+        sleepH.setText(sleep_time.split(":")[0]);
+        sleepM.setText(sleep_time.split(":")[1]);
         if(symptom_init.equals("true"))
         {
             String [] symptom_init_info = get_symptom_info(ID).split(" ");
@@ -255,6 +264,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             {
                 init_symptoms[i]=symptom_init_info[i+1];
             }
+
             /*
             cramps=symptom_init_info[1];
             breastTenderness=symptom_init_info[2];
@@ -306,100 +316,171 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         TextView todayText = findViewById(R.id.today_text);
 
-        symptoms1=findViewById(R.id.symptom1);
-        symptoms2=findViewById(R.id.symptom2);
-        symptoms3=findViewById(R.id.symptom3);
-        symptoms4=findViewById(R.id.symptom4);
-        symptoms5=findViewById(R.id.symptom5);
-        symptoms6=findViewById(R.id.symptom6);
-        symptoms7=findViewById(R.id.symptom7);
-        symptoms8=findViewById(R.id.symptom8);
-        symptoms9=findViewById(R.id.symptom9);
-        symptoms10=findViewById(R.id.symptom10);
-        symptoms11=findViewById(R.id.symptom11);
-        symptoms12=findViewById(R.id.symptom12);
+        symptoms1=(CheckBox)findViewById(R.id.symptom1);
+        symptoms2=(CheckBox)findViewById(R.id.symptom2);
+        symptoms3=(CheckBox)findViewById(R.id.symptom3);
+        symptoms4=(CheckBox)findViewById(R.id.symptom4);
+        symptoms5=(CheckBox)findViewById(R.id.symptom5);
+        symptoms6=(CheckBox)findViewById(R.id.symptom6);
+        symptoms7=(CheckBox)findViewById(R.id.symptom7);
+        symptoms8=(CheckBox)findViewById(R.id.symptom8);
+        symptoms9=(CheckBox)findViewById(R.id.symptom9);
+        symptoms10=(CheckBox)findViewById(R.id.symptom10);
+        symptoms11=(CheckBox)findViewById(R.id.symptom11);
+        symptoms12=(CheckBox)findViewById(R.id.symptom12);
 
-        mucus1=findViewById(R.id.mucus1);
-        mucus2=findViewById(R.id.mucus2);
-        mucus3=findViewById(R.id.mucus3);
-        mucus4=findViewById(R.id.mucus4);
-        mucus5=findViewById(R.id.mucus5);
-        mucus6=findViewById(R.id.mucus6);
+        mucus1=(CheckBox)findViewById(R.id.mucus1);
+        mucus2=(CheckBox)findViewById(R.id.mucus2);
+        mucus3=(CheckBox)findViewById(R.id.mucus3);
+        mucus4=(CheckBox)findViewById(R.id.mucus4);
+        mucus5=(CheckBox)findViewById(R.id.mucus5);
+        mucus6=(CheckBox)findViewById(R.id.mucus6);
+
+        symptoms1.setButtonDrawable(R.drawable.my_selector);
+        symptoms2.setButtonDrawable(R.drawable.my_selector);
+        symptoms3.setButtonDrawable(R.drawable.my_selector);
+        symptoms4.setButtonDrawable(R.drawable.my_selector);
+        symptoms6.setButtonDrawable(R.drawable.my_selector);
+        symptoms5.setButtonDrawable(R.drawable.my_selector);
+        symptoms7.setButtonDrawable(R.drawable.my_selector);
+        symptoms8.setButtonDrawable(R.drawable.my_selector);
+        symptoms9.setButtonDrawable(R.drawable.my_selector);
+        symptoms10.setButtonDrawable(R.drawable.my_selector);
+        symptoms11.setButtonDrawable(R.drawable.my_selector);
+        symptoms12.setButtonDrawable(R.drawable.my_selector);
+
+        mucus1.setButtonDrawable(R.drawable.my_selector);
+        mucus2.setButtonDrawable(R.drawable.my_selector);
+        mucus3.setButtonDrawable(R.drawable.my_selector);
+        mucus4.setButtonDrawable(R.drawable.my_selector);
+        mucus5.setButtonDrawable(R.drawable.my_selector);
+        mucus6.setButtonDrawable(R.drawable.my_selector);
+
+
+        symptoms1.setChecked(Boolean.parseBoolean(init_symptoms[0]));
 
 
         String [] symptom_Check={"false","false","false","false","false","false","false","false","false","false","false","false"};
         symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[0]="true";
+                } else {
+                    symptom_Check[0]="false";
+                }
 
 
-                symptom_Check[0]="true";
             }
         });
         symptoms2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[1]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[1]="true";
+                } else {
+                    symptom_Check[1]="false";
+                }
             }
         });
         symptoms3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[2]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[2]="true";
+                } else {
+                    symptom_Check[2]="false";
+                }
             }
         });
         symptoms4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[3]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[3]="true";
+                } else {
+                    symptom_Check[3]="false";
+                }
             }
         });
         symptoms5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[4]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[4]="true";
+                } else {
+                    symptom_Check[4]="false";
+                }
             }
         });
         symptoms6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[5]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[5]="true";
+                } else {
+                    symptom_Check[5]="false";
+                }
             }
         });
         symptoms7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[6]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[6]="true";
+                } else {
+                    symptom_Check[6]="false";
+                }
             }
         });
         symptoms8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[7]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[7]="true";
+                } else {
+                    symptom_Check[7]="false";
+                }
 
             }
         });
         symptoms9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[8]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[8]="true";
+                } else {
+                    symptom_Check[8]="false";
+                }
             }
         });symptoms10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[9]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[9]="true";
+                } else {
+                    symptom_Check[9]="false";
+                }
             }
         });
         symptoms11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[10]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[10]="true";
+                } else {
+                    symptom_Check[10]="false";
+                }
             }
         });
         symptoms12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                symptom_Check[11]="true";
+                if (((CheckBox)v).isChecked()) {
+                    symptom_Check[11]="true";
+                } else {
+                    symptom_Check[11]="false";
+                }
             }
         });
 
@@ -445,37 +526,62 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         mucus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[0]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[0]="true";
+                } else {
+                    mucus_Check[0]="false";
+                }
+
             }
         });
         mucus2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[1]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[1]="true";
+                } else {
+                    mucus_Check[1]="false";
+                }
             }
         });
         mucus3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[2]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[2]="true";
+                } else {
+                    mucus_Check[2]="false";
+                }
             }
         });
         mucus4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[3]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[3]="true";
+                } else {
+                    mucus_Check[3]="false";
+                }
             }
         });
         mucus5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[4]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[4]="true";
+                } else {
+                    mucus_Check[4]="false";
+                }
             }
         });
         mucus6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mucus_Check[5]="true";
+                if (((CheckBox)v).isChecked()) {
+                    mucus_Check[5]="true";
+                } else {
+                    mucus_Check[5]="false";
+                }
             }
         });
 
