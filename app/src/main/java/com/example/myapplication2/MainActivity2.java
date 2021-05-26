@@ -50,7 +50,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
     public void give_symptom(String ID,String none, String []a)
     {
         Log.w("symptom 후기 설정", "설정 정보 주는중");
-
         try {
             String id = ID;
 
@@ -209,6 +208,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
     String start_day_input="null";
     String end_day_input="null";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -934,7 +934,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -985,7 +985,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
