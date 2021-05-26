@@ -265,7 +265,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String ID = Intent.getStringExtra("Id");
         ID_selected=ID;
         String [] init_info = getInformation(ID).split(" ");
-        String [] selected_info = getSelectedInformation(ID,setSelectedDate).split(" ");
+
 
         String sleep_time= init_info[1];
         String exercise_time = init_info[2];
@@ -275,13 +275,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String symptom_init=init_info[6];
         String mucus_init=init_info[7];
 
-        String selected_sleep_time= selected_info[1];
-        String selected_exercise_time = selected_info[2];
-        String selected_water_intake= selected_info[3];
-        String selected_start_day= selected_info[4];
-        String selected_end_day=selected_info[5];
-        String selected_symptom_init=selected_info[6];
-        String selected_mucus_init=selected_info[7];
+
 
         String mucus_none= "false";
         String symptom_none="false";
@@ -879,7 +873,28 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
 
         giveSelectedInformation(ID_selected, setSelectedDate);
-        getSelectedInformation(ID_selected,setSelectedDate);
+
+        String [] selected_info = getSelectedInformation(ID_selected,setSelectedDate).split(" ");
+        String selected_symptom=selected_info[6];
+        String selected_mucus=selected_info[7];
+
+        TextView water, exerciseH, exerciseM, sleepH, sleepM;
+
+        String Exercise[]=selected_info[2].split(":");
+        String Sleep[]=selected_info[1].split(":");
+        water = (TextView)findViewById(R.id.water_record);
+        exerciseH = (TextView)findViewById(R.id.exercise_recordH);
+        exerciseM = (TextView)findViewById(R.id.exercise_recordM);
+        sleepH = (TextView)findViewById(R.id.sleep_recordH);
+        sleepM = (TextView)findViewById(R.id.sleep_recordM);
+
+        water.setText(selected_info[4]);
+        exerciseH.setText(Exercise[0]);
+        exerciseM.setText(Exercise[1]);
+        sleepH.setText(Sleep[0]);
+        sleepM.setText(Sleep[1]);
+
+
 
     }
 
