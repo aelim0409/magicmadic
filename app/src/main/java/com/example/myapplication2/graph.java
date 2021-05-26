@@ -15,10 +15,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.util.ArrayList;
 
 
-
-
-
-
 public class graph extends AppCompatActivity {
 
     @Override
