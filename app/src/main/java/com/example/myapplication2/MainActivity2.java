@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,6 +18,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import java.io.BufferedReader;
@@ -37,15 +37,16 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 
-public class MainActivity2 extends Activity implements OnDateSelectedListener {
+public class MainActivity2 extends Activity implements OnDateSelectedListener, OnMonthChangedListener {
 
     TextView date_today;
     TextView main_date_view;
     MaterialCalendarView cal_view;
-    CheckBox symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
-    CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+    Button symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
+    Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
     int selectedYear, selectedMonth, selectedDay;
     String setSelectedDate;
+    String ID_selected;
 
     public void give_symptom(String ID,String none, String []a)
     {
@@ -78,7 +79,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             insomnia, constipation, diarrhea
              */
             Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+none+", "
-            +cramps+", "+breastTenderness+", "+headache+", "+acne+", "+lumbago+", "
+                    +cramps+", "+breastTenderness+", "+headache+", "+acne+", "+lumbago+", "
                     +", "+nausea+", "+fatigue+", "+abdominalBloating+", "+
                     desires+", "+insomnia+", "+constipation+", "+diarrhea);//+water
             MainActivity2.setSymptom task = new MainActivity2.setSymptom();
@@ -135,6 +136,49 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
     }
 
+    public String giveSelectedInformation(String ID, String setSelectedDate){
+        Log.w("선택된 날짜 정보", "설정 정보 주는중");
+
+        String result="null";
+
+        try {
+            String id = ID;
+
+            //Date date = new Date();
+            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
+            MainActivity2.setDate task = new MainActivity2.setDate();
+            result = task.execute(id,setSelectedDate).get();
+            Log.w("(초기)받은값", result);
+
+            //return result;
+
+        } catch (Exception e) {
+
+        }return result;
+    }
+    public String getSelectedInformation(String ID, String setSelectedDate){
+        Log.w("선택한 날짜 정보 받기", "설정 정보 받는중");
+
+        String result="null";
+
+        try {
+            String id = ID;
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
+            MainActivity2.getDate task = new MainActivity2.getDate();
+            result = task.execute(id,setSelectedDate).get();
+            Log.w("(초기)받은값", result);
+
+            //return result;
+
+        } catch (Exception e) {
+
+        }return result;
+    }
     public String getInformation(String ID) {
         Log.w("캘린더 초기 설정", "설정 정보 주는중");
 
@@ -216,8 +260,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         setContentView(R.layout.activity_main2);
 
         Intent Intent = getIntent();
+
         String ID = Intent.getStringExtra("Id");
+        ID_selected=ID;
         String [] init_info = getInformation(ID).split(" ");
+
 
         String sleep_time= init_info[0];
         String exercise_time = init_info[1];
@@ -228,6 +275,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         String symptom_init=init_info[5];
         String mucus_init=init_info[6];
+
+
 
         String mucus_none= "false";
         String symptom_none="false";
@@ -267,7 +316,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             {
                 init_symptoms[i]=symptom_init_info[i+1];
             }
-
             /*
             cramps=symptom_init_info[1];
             breastTenderness=symptom_init_info[2];
@@ -278,11 +326,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
              fatigue = symptom_init_info[7];
              abdominalBloating =symptom_init_info[8];
               desires = symptom_init_info[9];
-
              insomnia =symptom_init_info[10];
              constipation= symptom_init_info[11];
              diarrhea = symptom_init_info[12];
-
              //초기화해줄 값
             String symptom_1=symptom_init_info[1];
             String symptom_2=symptom_init_info[2];
@@ -293,19 +339,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             String symptom_7 = symptom_init_info[7];
             String symptom_8 =symptom_init_info[8];
             String symptom_9 = symptom_init_info[9];
-
             String symptom_10 =symptom_init_info[10];
             String symptom_11= symptom_init_info[11];
             String symptom_12 = symptom_init_info[12];
-
              */
-
         }
-
         if(mucus_init.equals("true"))
         {
             String [] mucus_init_info = get_mucus_info(ID).split(" ");
-            for(int i=0;i<6;i++)
+            for(int i=0;i<12;i++)
             {
                 mucus_symptoms[i]=mucus_init_info[i+1];
             }
@@ -319,171 +361,99 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
         TextView todayText = findViewById(R.id.today_text);
 
-        symptoms1=(CheckBox)findViewById(R.id.symptom1);
-        symptoms2=(CheckBox)findViewById(R.id.symptom2);
-        symptoms3=(CheckBox)findViewById(R.id.symptom3);
-        symptoms4=(CheckBox)findViewById(R.id.symptom4);
-        symptoms5=(CheckBox)findViewById(R.id.symptom5);
-        symptoms6=(CheckBox)findViewById(R.id.symptom6);
-        symptoms7=(CheckBox)findViewById(R.id.symptom7);
-        symptoms8=(CheckBox)findViewById(R.id.symptom8);
-        symptoms9=(CheckBox)findViewById(R.id.symptom9);
-        symptoms10=(CheckBox)findViewById(R.id.symptom10);
-        symptoms11=(CheckBox)findViewById(R.id.symptom11);
-        symptoms12=(CheckBox)findViewById(R.id.symptom12);
+        symptoms1=findViewById(R.id.symptom1);
+        symptoms2=findViewById(R.id.symptom2);
+        symptoms3=findViewById(R.id.symptom3);
+        symptoms4=findViewById(R.id.symptom4);
+        symptoms5=findViewById(R.id.symptom5);
+        symptoms6=findViewById(R.id.symptom6);
+        symptoms7=findViewById(R.id.symptom7);
+        symptoms8=findViewById(R.id.symptom8);
+        symptoms9=findViewById(R.id.symptom9);
+        symptoms10=findViewById(R.id.symptom10);
+        symptoms11=findViewById(R.id.symptom11);
+        symptoms12=findViewById(R.id.symptom12);
 
-        mucus1=(CheckBox)findViewById(R.id.mucus1);
-        mucus2=(CheckBox)findViewById(R.id.mucus2);
-        mucus3=(CheckBox)findViewById(R.id.mucus3);
-        mucus4=(CheckBox)findViewById(R.id.mucus4);
-        mucus5=(CheckBox)findViewById(R.id.mucus5);
-        mucus6=(CheckBox)findViewById(R.id.mucus6);
-
-        symptoms1.setButtonDrawable(R.drawable.my_selector);
-        symptoms2.setButtonDrawable(R.drawable.my_selector);
-        symptoms3.setButtonDrawable(R.drawable.my_selector);
-        symptoms4.setButtonDrawable(R.drawable.my_selector);
-        symptoms6.setButtonDrawable(R.drawable.my_selector);
-        symptoms5.setButtonDrawable(R.drawable.my_selector);
-        symptoms7.setButtonDrawable(R.drawable.my_selector);
-        symptoms8.setButtonDrawable(R.drawable.my_selector);
-        symptoms9.setButtonDrawable(R.drawable.my_selector);
-        symptoms10.setButtonDrawable(R.drawable.my_selector);
-        symptoms11.setButtonDrawable(R.drawable.my_selector);
-        symptoms12.setButtonDrawable(R.drawable.my_selector);
-
-        mucus1.setButtonDrawable(R.drawable.my_selector);
-        mucus2.setButtonDrawable(R.drawable.my_selector);
-        mucus3.setButtonDrawable(R.drawable.my_selector);
-        mucus4.setButtonDrawable(R.drawable.my_selector);
-        mucus5.setButtonDrawable(R.drawable.my_selector);
-        mucus6.setButtonDrawable(R.drawable.my_selector);
-
-
-        symptoms1.setChecked(Boolean.parseBoolean(init_symptoms[0]));
+        mucus1=findViewById(R.id.mucus1);
+        mucus2=findViewById(R.id.mucus2);
+        mucus3=findViewById(R.id.mucus3);
+        mucus4=findViewById(R.id.mucus4);
+        mucus5=findViewById(R.id.mucus5);
+        mucus6=findViewById(R.id.mucus6);
 
 
         String [] symptom_Check={"false","false","false","false","false","false","false","false","false","false","false","false"};
         symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[0]="true";
-                } else {
-                    symptom_Check[0]="false";
-                }
-
-
+                symptom_Check[0]="true";
             }
         });
         symptoms2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[1]="true";
-                } else {
-                    symptom_Check[1]="false";
-                }
+                symptom_Check[1]="true";
             }
         });
         symptoms3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[2]="true";
-                } else {
-                    symptom_Check[2]="false";
-                }
+                symptom_Check[2]="true";
             }
         });
         symptoms4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[3]="true";
-                } else {
-                    symptom_Check[3]="false";
-                }
+                symptom_Check[3]="true";
             }
         });
         symptoms5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[4]="true";
-                } else {
-                    symptom_Check[4]="false";
-                }
+                symptom_Check[4]="true";
             }
         });
         symptoms6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[5]="true";
-                } else {
-                    symptom_Check[5]="false";
-                }
+                symptom_Check[5]="true";
             }
         });
         symptoms7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[6]="true";
-                } else {
-                    symptom_Check[6]="false";
-                }
+                symptom_Check[6]="true";
             }
         });
         symptoms8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[7]="true";
-                } else {
-                    symptom_Check[7]="false";
-                }
+                symptom_Check[7]="true";
 
             }
         });
         symptoms9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[8]="true";
-                } else {
-                    symptom_Check[8]="false";
-                }
+                symptom_Check[8]="true";
             }
-        });symptoms10.setOnClickListener(new View.OnClickListener() {
+        });
+        symptoms10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[9]="true";
-                } else {
-                    symptom_Check[9]="false";
-                }
+                symptom_Check[9]="true";
             }
         });
         symptoms11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[10]="true";
-                } else {
-                    symptom_Check[10]="false";
-                }
+                symptom_Check[10]="true";
             }
         });
         symptoms12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    symptom_Check[11]="true";
-                } else {
-                    symptom_Check[11]="false";
-                }
+                symptom_Check[11]="true";
             }
         });
 
@@ -524,74 +494,46 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         String constipation=symptom_Check[10];
         String diarrhea=symptom_Check[11];
 
-        //String [] mucus_Check={"false","false","false","false","false","false"};
-        String []mucus_Check=new String[6];
+        String [] mucus_Check={"false","false","false","false","false","false"};
+
         mucus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[0]="true";
-                    System.out.println("................");
-
-                } else {
-                    mucus_Check[0]="false";
-                }
-
+                mucus_Check[0]="true";
             }
         });
         mucus2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[1]="true";
-                } else {
-                    mucus_Check[1]="false";
-                }
+                mucus_Check[1]="true";
             }
         });
         mucus3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[2]="true";
-                } else {
-                    mucus_Check[2]="false";
-                }
+                mucus_Check[2]="true";
             }
         });
         mucus4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[3]="true";
-                } else {
-                    mucus_Check[3]="false";
-                }
+                mucus_Check[3]="true";
             }
         });
         mucus5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[4]="true";
-                } else {
-                    mucus_Check[4]="false";
-                }
+                mucus_Check[4]="true";
             }
         });
         mucus6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[5]="true";
-                } else {
-                    mucus_Check[5]="false";
-                }
+                mucus_Check[5]="true";
             }
         });
 
 
-        /*
         for(int i=0;i<6;i++)
         {
             if ((mucus_Check[i].equals( "false") )&& (mucus_symptoms[i].equals("true")))
@@ -603,20 +545,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             else if ((mucus_Check[i].equals( "true")) && (mucus_symptoms[i].equals("true")))
                 mucus_Check[i] = "false";
         }
-*/
 
-        for(int i=0;i<6;i++)
+        for(int i =0;i<6;i++)
         {
-            System.out.println("?????????");
-            if(mucus_Check[i]=="true")
-            {
+            if(mucus_Check[i].equals("true"))
                 mucus_none="true";
-                System.out.println("!!!!!!!!!!!");
-                break;
-            }
         }
 
         String mucus_none2= mucus_none;
+
 
         String mottled=mucus_Check[0];
         String sticky= mucus_Check[1];
@@ -624,10 +561,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         String likeEggWhite=mucus_Check[3];
         String watery=mucus_Check[4];
         String abnormal = mucus_Check[5];
-
-
-
-
 
 
 
@@ -652,8 +585,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 water.setText(str);
             }
         });
-
-
         exerciseplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -672,7 +603,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 exerciseH.setText(str1);
             }
         });
-
         exerciseminus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -740,8 +670,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             }
         });
 
-
-
         sleepplus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -792,60 +720,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         });
 
         date_today = findViewById(R.id.date_today);
-        date_today.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        date_today.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
-        main_date_view.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
+        cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
         cal_view.setSelectedDate(CalendarDay.today());
-
-
-//        int n=30; //시작일자 서버로 받아오기 or 시작 버튼 눌리면 넘겨서 날짜 받기
-//        int month1=5; //시작버튼을 누른 달 받아오기
-//        int duration=5; // 예측 기간 서버로 받아오기 & default 5
-//        Calendar c = Calendar.getInstance();
-//        int lastDay = c.getActualMaximum(5);    //선택된 달의 마지막 일자
-//        for(int i=0;i<duration;i++){
-//            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(2021,month1,n++))));
-//            if(n==lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-//                n=1;
-//                month1++;
-//            }
-//        }
-
-
-
-//        class RemoveDecorator implements DayViewDecorator {
-//            private final HashSet<CalendarDay> dates;
-
-//            private MaterialCalendarView widget;
-//            private RemoveDecorator decoratorReference;
-//            private List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
-
-//            private void removeEvent(CalendarDay day) {
-//                calendarDays.remove(day);
-//                widget.removeDecorator(decoratorReference);
-//                widget.invalidateDecorators();
-//            }
-//            public RemoveDecorator(Collection<CalendarDay> dates) {
-//                this.dates = new HashSet<>(dates);/
-//                           }
-
-//            @Override
-//            public boolean shouldDecorate(CalendarDay day) {
-//                return dates.contains(day);
-//                // also tried with just
-        // return false;
-//            }
-
-//            @Override
-//            public void decorate(DayViewFacade view) {
-//                // TODO: what to do?
-//            }
-//        }
-
 
         Button save_button=findViewById(R.id.save_button);
 
@@ -855,25 +738,21 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 give_info(ID);
             }
 
-
             void give_info(String ID)
             {
                 Log.w("캘린더 전체 ", "설정 정보 주는중");
 
                 try {
                     String id = ID;
-                    String sleepTime=sleepH.getText().toString()+":"+sleepM.getText().toString()+":"+"00";
-                    String exerciseTime=exerciseH.getText().toString()+":"+exerciseM.getText().toString()+":"+"00";
+                    String sleepTime=sleepH+":"+sleepM+":"+"00";
+                    String exerciseTime=exerciseH+":"+exerciseM+":"+"00";
                     String waterIntake = water.getText().toString();
-
                     String startDay=start_day_input;
-                    System.out.println("함수속= " +start_day_input);
                     String endDay=end_day_input;
-                    String symptom=symptom_none2;
+                    String symptom = symptom_none2;
                     String mucus=mucus_none2;
                     String [] symptom_Check2= new String[12];
                     String [] mucus_Check2=new String [6];
-
 
                     for(int i=0;i<12;i++)
                     {
@@ -901,11 +780,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
                     String today_date = sdf.format(date);
 
-                    Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
+                    Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
                     MainActivity2.customTask task = new MainActivity2.customTask();
                     String result = task.execute(id,today_date,sleepTime,exerciseTime,waterIntake,startDay,endDay,symptom,mucus).get();
-                    Log.w("(저장시)받은값", result);
+                    Log.w("(초기)받은값", result);
 
                     //return result;
 
@@ -920,26 +799,26 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         //String Startdate="null";
         final Date[] start = new Date[1];
         final Date[] end = new Date[1];
+
         start_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date =  main_date_view.getText().toString();
                 try {
                     start[0] = SelectedDate(date);
-                    start_day_input=setSelectedDate;
-                  //  System.out.print("start[0]= "+start[0]);
-                   // start_day_input= start[0].toString();
+                    start_day_input= start[0].toString();
                     int day = CalendarDay.from(start[0]).getDay();
                     int month = CalendarDay.from(start[0]).getMonth();
                     int year = CalendarDay.from(start[0]).getYear();
                     int period=5;
                     CalendarDay.from(start[0]).getDay();
                     Calendar cc = Calendar.getInstance();
+                    System.out.println(setSelectedDate);
 
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
                     int lastDay = mdays[month];
 
-                    System.out.println(start[0]);
+                    System.out.println(lastDay);
                     for(int i=0;i<period;i++){
                         cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
                         day++;
@@ -952,11 +831,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     e.printStackTrace();
                 }
             }
-
         });
 
-            start_day_input="null";
-        System.out.println("if 문 후=" +start_day_input);
 
         end_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -964,7 +840,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 String date =  main_date_view.getText().toString();
                 try {
                     end[0] = SelectedDate(date);
-                    end_day_input=setSelectedDate;
+
                     int day = CalendarDay.from(end[0]).getDay();
                     int month = CalendarDay.from(end[0]).getMonth();
                     int year = CalendarDay.from(end[0]).getYear();
@@ -986,27 +862,55 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             }
         });
 
-        end_day_input="null";
+        end_day_input= end[0].toString();
 
     }
 
-
     public Date SelectedDate(String str) throws ParseException {
-        //문제 시발!
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
         Date to = transFormat.parse(str);
-        System.out.println("to= "+to);
         return to;
     }
 
+    //날짜 선택되었을 때
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        main_date_view.setText(date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay() );
+        main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
         selectedYear=date.getYear();
         selectedMonth=date.getMonth()+1;
         selectedDay=date.getDay();
         setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
-        System.out.println("setSelectedDate= "+setSelectedDate);
+
+        giveSelectedInformation(ID_selected, setSelectedDate);
+
+        String [] selected_info = getSelectedInformation(ID_selected,setSelectedDate).split(" ");
+        String selected_symptom=selected_info[6];
+        String selected_mucus=selected_info[7];
+
+        TextView water, exerciseH, exerciseM, sleepH, sleepM;
+
+        String Exercise[]=selected_info[2].split(":");
+        String Sleep[]=selected_info[1].split(":");
+        water = (TextView)findViewById(R.id.water_record);
+        exerciseH = (TextView)findViewById(R.id.exercise_recordH);
+        exerciseM = (TextView)findViewById(R.id.exercise_recordM);
+        sleepH = (TextView)findViewById(R.id.sleep_recordH);
+        sleepM = (TextView)findViewById(R.id.sleep_recordM);
+
+        water.setText(selected_info[4]);
+        exerciseH.setText(Exercise[0]);
+        exerciseM.setText(Exercise[1]);
+        sleepH.setText(Sleep[0]);
+        sleepM.setText(Sleep[1]);
+
+
+
+    }
+
+    //달 바뀌었을 때
+    @Override
+    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
     }
 
     class MySelectorDecorator implements DayViewDecorator  {
@@ -1038,7 +942,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             this.color = color;
             this.dates = new HashSet<>(dates);
         }
-
         @Override
         public boolean shouldDecorate(CalendarDay day) {
             return dates.contains(day);
@@ -1053,14 +956,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
 
 
 
-    //getTask, customTask
     class customTask extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1111,7 +1013,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserCalender_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1193,14 +1095,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         }
     }
 
-
     class setSymptom extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1216,8 +1117,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id="+strings[0]+"&today_date="+strings[1]+"&none="+strings[2]+
                         "&cramps="+strings[3]+"&breastTenderness="+strings[4]+"&headache="+strings[5]
-                +"&acne="+strings[6]+"&lumbago="+strings[7]+"&nausea="+strings[8]+"&fatigue="+strings[9]
-                +"&abdominalBloating="+strings[10]+"&desires="+strings[11]+"&insomnia="
+                        +"&acne="+strings[6]+"&lumbago="+strings[7]+"&nausea="+strings[8]+"&fatigue="+strings[9]
+                        +"&abdominalBloating="+strings[10]+"&desires="+strings[11]+"&insomnia="
                         +strings[12]+"&constipation="+strings[13]+"&diarrhea="+strings[14];
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
@@ -1246,7 +1147,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
             return receiveMsg;
         }
     }
-
 
     class getMucus extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
@@ -1292,14 +1192,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         }
     }
 
-
     class setMucus extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendMucus_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setMucus_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -1313,8 +1212,96 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id="+strings[0]+"&today_date="+strings[1]+"&none="+strings[2]+
-                "&mottled="+strings[3]+"&sticky="+strings[4]+"&creamy="+strings[5]+"&likeEggWhite="+strings[6]
-                +"&watery="+strings[7]+"&abnormal="+strings[8];
+                        "&mottled="+strings[3]+"&sticky="+strings[4]+"&creamy="+strings[5]+"&likeEggWhite="+strings[6]
+                        +"&watery="+strings[7]+"&abnormal="+strings[8];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
+    class setDate extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0]+"&selected_date="+setSelectedDate;
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
+    class getDate extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0]+"&selected_date="+setSelectedDate;
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
