@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SymptomInfo"></activity>
+        <activity android:name=".SymptomInfo" />
         <activity android:name=".MucusInfo" />
         <activity android:name=".sleep_mod_reminder" />
         <activity android:name=".MainActivity2" />

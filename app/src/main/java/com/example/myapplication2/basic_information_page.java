@@ -85,8 +85,10 @@ public class basic_information_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+
                 intent.putExtra("Id", ID);
                 startActivity(intent);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         });
 
