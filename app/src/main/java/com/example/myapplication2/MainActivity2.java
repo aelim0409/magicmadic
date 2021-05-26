@@ -207,6 +207,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         }return result;
     }
 
+    String start_day_input="null";
+    String end_day_input="null";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -228,8 +230,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
         String [] init_symptoms ={"false","false","false","false","false","false","false","false","false","false","false","false"};
         String [] mucus_symptoms={"false","false","false","false","false","false"};
 
-        String start_day_input="null";
-        String end_day_input="null";
+
         ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
         TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
@@ -737,7 +738,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 give_info(ID);
             }
 
-            String start_day_input2=start_day_input;
 
             void give_info(String ID)
             {
@@ -748,8 +748,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                     String sleepTime=sleepH+":"+sleepM+":"+"00";
                     String exerciseTime=exerciseH+":"+exerciseM+":"+"00";
                     String waterIntake = water.getText().toString();
-                    String startDay=start_day_input2;
-                    String endDay=end_day_input2;
+                    String startDay=start_day_input;
+                    String endDay=end_day_input;
                     String symptom=symptom_none2;
                     String mucus=mucus_none2;
                     String [] symptom_Check2= new String[12];
@@ -806,6 +806,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 String date =  main_date_view.getText().toString();
                 try {
                     start[0] = SelectedDate(date);
+                    start_day_input= start[0].toString();
                     int day = CalendarDay.from(start[0]).getDay();
                     int month = CalendarDay.from(start[0]).getMonth();
                     int year = CalendarDay.from(start[0]).getYear();
@@ -830,12 +831,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 }
             }
 
-
         });
-        start_day_input= start[0].toString();
-
-
-
 
 
         end_button.setOnClickListener(new View.OnClickListener() {
@@ -864,8 +860,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener {
                 }
             }
         });
+
         end_day_input= end[0].toString();
+
+
     }
+
 
     public Date SelectedDate(String str) throws ParseException {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy년MM월dd일");
