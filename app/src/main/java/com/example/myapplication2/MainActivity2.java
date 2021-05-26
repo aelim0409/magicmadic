@@ -39,7 +39,6 @@ import java.util.Locale;
 
 public class MainActivity2 extends Activity implements OnDateSelectedListener, OnMonthChangedListener {
 
-
     TextView date_today;
     TextView main_date_view;
     MaterialCalendarView cal_view;
@@ -47,6 +46,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     Button mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
     int selectedYear, selectedMonth, selectedDay;
     String setSelectedDate;
+    String ID_selected;
 
     public void give_symptom(String ID)
     {
@@ -58,7 +58,51 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
     }
 
+    public String giveSelectedInformation(String ID, String setSelectedDate){
+        Log.w("선택된 날짜 정보", "설정 정보 주는중");
+
+        String result="null";
+
+        try {
+            String id = ID;
+
+            //Date date = new Date();
+           // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
+            MainActivity2.setDate task = new MainActivity2.setDate();
+            result = task.execute(id,setSelectedDate).get();
+            Log.w("(초기)받은값", result);
+
+            //return result;
+
+        } catch (Exception e) {
+
+        }return result;
+    }
+    public String getSelectedInformation(String ID, String setSelectedDate){
+        Log.w("선택한 날짜 정보 받기", "설정 정보 받는중");
+
+        String result="null";
+
+        try {
+            String id = ID;
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+
+            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
+            MainActivity2.getDate task = new MainActivity2.getDate();
+            result = task.execute(id,setSelectedDate).get();
+            Log.w("(초기)받은값", result);
+
+            //return result;
+
+        } catch (Exception e) {
+
+        }return result;
+    }
     public String getInformation(String ID) {
+
         Log.w("리마인더 온오프 설정", "설정 정보 주는중");
 
         String result="null";
@@ -130,14 +174,20 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         }return result;
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
         Intent Intent = getIntent();
+
         String ID = Intent.getStringExtra("Id");
+        ID_selected=ID;
         String [] init_info = getInformation(ID).split(" ");
+        String [] selected_info = getSelectedInformation(ID,setSelectedDate).split(" ");
+
         String sleep_time= init_info[1];
         String exercise_time = init_info[2];
         String water_intake= init_info[3];
@@ -150,6 +200,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String symptom_none="false";
         String [] init_symptoms ={"false","false","false","false","false","false","false","false","false","false","false","false"};
         String [] mucus_symptoms={"false","false","false","false","false","false"};
+
 
         ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
         TextView water, exerciseH, exerciseM, sleepH, sleepM;
@@ -251,8 +302,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         symptoms1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 symptom_Check[0]="true";
             }
         });
@@ -304,7 +353,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             public void onClick(View v) {
                 symptom_Check[8]="true";
             }
-        });symptoms10.setOnClickListener(new View.OnClickListener() {
+        });
+        symptoms10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 symptom_Check[9]="true";
@@ -408,7 +458,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             else if ((mucus_Check[i].equals( "true")) && (mucus_symptoms[i].equals("true")))
                 mucus_Check[i] = "false";
         }
-
 
         for(int i =0;i<6;i++)
         {
@@ -726,7 +775,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         selectedDay=date.getDay();
         setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
 
+        giveSelectedInformation(ID_selected, setSelectedDate);
+        getSelectedInformation(ID_selected,setSelectedDate);
+
     }
+
     //달 바뀌었을 때
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
@@ -1020,6 +1073,94 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "id="+strings[0];
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
+    class setDate extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0]+"&selected_date="+setSelectedDate;
+                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
+                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
+                osw.flush();
+
+
+                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
+                if(conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+                } else {    // 통신이 실패한 이유를 찍기위한 로그
+                    Log.i("통신 결과", conn.getResponseCode()+"에러");
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // 서버에서 보낸 값을 리턴합니다.
+            return receiveMsg;
+        }
+    }
+
+    class getDate extends AsyncTask<String,Void,String> {
+        String sendMsg,receiveMsg;
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                // ex) http://123.456.789.10:8080/hello/android
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
+                conn.setDoOutput(true);
+
+                // 서버에 보낼 값 포함해 요청함.
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "id="+strings[0]+"&selected_date="+setSelectedDate;
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
