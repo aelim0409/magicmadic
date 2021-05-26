@@ -263,8 +263,29 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         String ID = Intent.getStringExtra("Id");
         ID_selected=ID;
-        String [] init_info = getInformation(ID).split(" ");
 
+        Button symptom , mucus;
+        symptom  = (Button)findViewById(R.id.symptom_button);
+        mucus = (Button)findViewById(R.id.mucus_button);
+        symptom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),SymptomInfo.class);
+                intent.putExtra("Id", ID);
+                startActivity(intent);
+            }
+        });
+
+        mucus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MucusInfo.class);
+                intent.putExtra("Id", ID);
+                startActivity(intent);
+            }
+        });
+
+        String [] init_info = getInformation(ID).split(" ");
 
         String sleep_time= init_info[0];
         String exercise_time = init_info[1];

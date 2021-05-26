@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SymptomInfo"></activity>
+        <activity android:name=".MucusInfo" />
         <activity android:name=".sleep_mod_reminder" />
         <activity android:name=".MainActivity2" />
         <activity android:name=".MainActivity">
@@ -34,11 +36,8 @@
         <activity android:name=".Selftest5" />
         <activity android:name=".SelftestResult" />
         <activity android:name=".pills_mod_reminder" />
-        <activity android:name=".water_mod_reminder"/>
-        <activity android:name=".exercise_mode_reminder"/>
-
-
-
+        <activity android:name=".water_mod_reminder" />
+        <activity android:name=".exercise_mode_reminder" />
         <activity android:name=".MainActivity3" />
         <activity android:name=".graph" />
     </application>
