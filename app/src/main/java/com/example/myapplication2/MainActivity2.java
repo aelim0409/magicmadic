@@ -53,26 +53,23 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     String START="null";
     String END ="null";
 
-    public void giveSelectedInformation(String ID, String setSelectedDate){
-        Log.w("선택된 날짜 정보", "설정 정보 주는중");
+
+
+    public String giveChangingMonth(String ID, String month){
+        Log.w("달 바꾸기", "바뀐 달 주는중");
 
         String result="null";
         try {
             String id = ID;
 
-            //Date date = new Date();
-            // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
-
-            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate+", ");//+water
-            MainActivity2.setDate task = new MainActivity2.setDate();
-            result = task.execute(id,setSelectedDate).get();
-            Log.w("(초기)받은값", result);
-
-            //return result;
+            Log.w("앱에서 보낸 값", id +", "+month);
+            MainActivity2.getMonth task = new MainActivity2.getMonth();
+            result = task.execute(id,month).get();
+            Log.w("받은값", result);
 
         } catch (Exception e) {
 
-        }
+        }return result;
     }
 
     public String getSelectedInformation(String ID, String setSelectedDate){
@@ -119,6 +116,10 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         }return result;
     }
+
+
+
+
 
     String start_day_input="null";
     String end_day_input="null";
@@ -361,7 +362,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
-       // cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
+        cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
         cal_view.setSelectedDate(CalendarDay.today());
 
         Button save_button=findViewById(R.id.save_button);
@@ -476,7 +477,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     //END=end_day_input;
                     start_day_input="null";
 
-                    int day = CalendarDay.from(end[0]).getDay();
+                    int day = CalendarDay.from(end[0]).getDay()+1;
                     int month = CalendarDay.from(end[0]).getMonth();
                     int year = CalendarDay.from(end[0]).getYear();
                     CalendarDay.from(end[0]).getDay();
@@ -518,7 +519,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         else
             month=Integer.toString(selectedMonth);
         selectedDay=date.getDay();
-        setSelectedDate=selectedYear+"-"+month+"-"+selectedDay;
+        String day="null";
+        if(selectedDay<10)
+            day="0"+Integer.toString(selectedDay);
+        else
+            day=Integer.toString(selectedDay);
+
+        setSelectedDate=selectedYear+"-"+month+"-"+day;
 
         //?????
         //giveSelectedInformation(ID_selected, setSelectedDate);
@@ -549,6 +556,53 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     //달 바뀌었을 때
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+
+        int changed_month=date.getMonth()+1;
+        String month="null";
+
+        if(changed_month<10){
+            month="0"+Integer.toString(changed_month);
+        }
+        else{
+            month=Integer.toString(changed_month);
+        }
+
+        String [] month_info= giveChangingMonth(ID_selected,month).split(" ");
+        System.out.println(month_info);
+        //month_info[0]=2021-04-01, month_info[1]=2021-04-06, month_info[2]="null", month_info[3]="null", month_info[4]="null", month_info[5]="null"
+        Date startday;
+        Date endday;
+        int year;
+        int day;
+        int period=0;
+        for(int i=0;i<5;i+=2){
+            if(!month_info[i].equals("null")){
+                try {
+                    startday=SelectedDate(month_info[i]);  //startdate=20210401 date 형식
+                    endday=SelectedDate(month_info[i+1]);
+                    year=SelectedDate(month_info[i]).getYear();
+                    period=endday.getDate()-startday.getDate()+1;
+                    day=startday.getDate();
+
+                    int month_itr=changed_month-1;
+
+
+                    int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                    int lastDay = mdays[month_itr];
+                    for(int j=0;j<period;j++){
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month_itr,day))));
+                        day++;
+                        if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day=1;
+                            month_itr++;
+                        }
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
     }
 
@@ -845,15 +899,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     }
 
 
-
-
-    class setDate extends AsyncTask<String,Void,String> {
+    class getDate extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
             try {
                 String str;
-
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -890,13 +941,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             return receiveMsg;
         }
     }
-
-    class getDate extends AsyncTask<String,Void,String> {
+    class getMonth extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getMonth_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -905,7 +956,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&selected_date="+strings[1];
+                sendMsg = "id="+strings[0]+"&month="+strings[1];
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
