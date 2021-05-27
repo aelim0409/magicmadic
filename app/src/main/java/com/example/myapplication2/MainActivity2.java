@@ -141,6 +141,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         Button symptom , mucus;
         symptom  = (Button)findViewById(R.id.symptom_button);
         mucus = (Button)findViewById(R.id.mucus_button);
+
         symptom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,7 +156,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MucusInfo.class);
-                String [] intent_str={ID,setSelectedDate};
+                String [] intent_str=new String[] {ID,setSelectedDate};
                 intent.putExtra("info", intent_str);
                 startActivity(intent);
             }
