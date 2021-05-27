@@ -128,7 +128,7 @@
                         android:listSelector="@android:color/transparent"
                         android:text=" 생리 예정일"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/tw_expectedDay"
@@ -144,7 +144,7 @@
                         android:fontFamily="@font/dx"
                         android:text="00"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day1"
@@ -160,7 +160,7 @@
                         android:fontFamily="@font/dx"
                         android:text="일 후"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -179,7 +179,7 @@
                         android:listSelector="@android:color/transparent"
                         android:text=" 배란 예정일"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/tw_ovulationDay"
@@ -195,7 +195,7 @@
                         android:fontFamily="@font/dx"
                         android:text="00"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day2"
@@ -211,7 +211,7 @@
                         android:fontFamily="@font/dx"
                         android:text="일 후"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -230,7 +230,7 @@
                         android:listSelector="@android:color/transparent"
                         android:text=" 마지막 생리일"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/tw_lastphysicalDay"
@@ -246,7 +246,7 @@
                         android:fontFamily="@font/dx"
                         android:text="0000-00-00"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
 
@@ -266,7 +266,7 @@
                         android:listSelector="@android:color/transparent"
                         android:text=" 가임기 시작"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/tw_start"
@@ -282,7 +282,7 @@
                         android:fontFamily="@font/dx"
                         android:text="00"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day4"
@@ -299,7 +299,7 @@
                         android:fontFamily="@font/dx"
                         android:text="일 후"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -318,7 +318,7 @@
                         android:listSelector="@android:color/transparent"
                         android:text=" 평균 생리주기"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/tw_cycle"
@@ -334,7 +334,7 @@
                         android:fontFamily="@font/dx"
                         android:text="00"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:id="@+id/day5"
@@ -350,7 +350,7 @@
                         android:fontFamily="@font/dx"
                         android:text="일"
                         android:textColor="@color/brown"
-                        android:textSize="30dp" />
+                        android:textSize="20dp" />
                 </RelativeLayout>
 
 
