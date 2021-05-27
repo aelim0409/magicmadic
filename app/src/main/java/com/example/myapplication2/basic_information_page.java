@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,12 +24,12 @@ public class basic_information_page extends AppCompatActivity {
     String statement;
 
     public String getInformation(String ID) {
-        Log.w("수분섭취 초기 설정", "설정 정보 주는중");
+        Log.w("홈화면 초기 설정", "설정 정보 주는중");
         String result="null";
         try {
             String id = ID;
 
-            Log.w("(초기)앱에서 보낸 값", id );//+water
+            Log.w("(초기)앱에서 보낸 값", id );//
             basic_information_page.getTask task = new basic_information_page.getTask();
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
@@ -49,6 +50,12 @@ public class basic_information_page extends AppCompatActivity {
         String ID = Intent.getStringExtra("Id");
         TextView name= findViewById(R.id.PersonName);
         name.setText(ID);
+
+        String info = getInformation(ID);
+        String[] init_info = info.split(" ");
+
+
+
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +117,7 @@ public class basic_information_page extends AppCompatActivity {
             try {
                 String str;
 
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getUserWaterIntake_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getLimit3_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
