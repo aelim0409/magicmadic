@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -16,19 +15,25 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MucusInfo extends AppCompatActivity {
     CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
 
     Button mucus =findViewById(R.id.mucus_button);
-    String id,setSelectedDate;
 
-    public void give_mucus(String ID,String date,String []b)
+    public void give_mucus(String ID,String none,String []b)
     {
+
         Log.w("mucus 후기 설정", "설정 정보 주는중");
 
         try {
-            id = ID;
+            String id = ID;
+
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String today_date = sdf.format(date);
 
             String mottled=b[0];
             String sticky=b[1];
@@ -37,15 +42,16 @@ public class MucusInfo extends AppCompatActivity {
             String watery=b[4];
             String abnormal = b[5];
 
+
             /*
             id, date, none, mottled, sticky,
             creamy, likeEggWhite, watery, abnormal
             */
-            Log.w("(저장시)앱에서 보낸 값", id +", "+date+", "
+            Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+none+", "
                     +mottled+", "+sticky+", "+creamy+", "+likeEggWhite+", "+watery+", "
                     +", "+abnormal);//+water
             MucusInfo.setMucus task = new MucusInfo.setMucus();
-            String result = task.execute(id,date, mottled, sticky,
+            String result = task.execute(id,today_date,none, mottled, sticky,
                     creamy, likeEggWhite, watery, abnormal).get();
             Log.w("(저장시)받은값", result);
 
@@ -56,8 +62,7 @@ public class MucusInfo extends AppCompatActivity {
         }
 
     }
-
-    public String get_mucus_info(String ID,String date) {
+    public String get_mucus_info(String ID) {
         Log.w("mucus 초기 설정", "설정 정보 주는중");
 
         String result="null";
@@ -65,10 +70,13 @@ public class MucusInfo extends AppCompatActivity {
         try {
             String id = ID;
 
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String today_date = sdf.format(date);
 
-            Log.w("(초기)앱에서 보낸 값", id +", "+date);//+water
+            Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
             MucusInfo.getMucus task = new MucusInfo.getMucus();
-            result = task.execute(id,date).get();
+            result = task.execute(id,today_date).get();
             Log.w("(초기)받은값", result);
 
             //return result;
@@ -77,22 +85,13 @@ public class MucusInfo extends AppCompatActivity {
 
         }return result;
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mucus_info);
 
         Intent Intent = getIntent();
-        String [] get_info = Intent.getStringArrayExtra("info");
-        id=get_info[0];
-        setSelectedDate=get_info[1];
-
-        String [] mucus_Check= {"false","false","false","false","false","false"};
-        String [] init_info=get_mucus_info(id,setSelectedDate).split(" ");
-
-
-
+        String ID = Intent.getStringExtra("Id");
         //String [] init_info = getInformation(ID).split(" ");
 
         mucus1=(CheckBox)findViewById(R.id.mucus1);
@@ -108,96 +107,7 @@ public class MucusInfo extends AppCompatActivity {
         mucus5.setButtonDrawable(R.drawable.my_selector);
         mucus6.setButtonDrawable(R.drawable.my_selector);
 
-        mucus1.setChecked(Boolean.parseBoolean(init_info[0]));
-        mucus2.setChecked(Boolean.parseBoolean(init_info[1]));
-        mucus3.setChecked(Boolean.parseBoolean(init_info[2]));
-        mucus4.setChecked(Boolean.parseBoolean(init_info[3]));
-        mucus5.setChecked(Boolean.parseBoolean(init_info[4]));
-        mucus6.setChecked(Boolean.parseBoolean(init_info[5]));
 
-        mucus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                give_mucus(id,setSelectedDate,mucus_Check);
-            }
-        });
-
-
-        mucus1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[0]="true";
-                } else {
-                    mucus_Check[0]="false";
-                }
-
-            }
-        });
-        mucus2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[1]="true";
-                } else {
-                    mucus_Check[1]="false";
-                }
-            }
-        });
-        mucus3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[2]="true";
-                } else {
-                    mucus_Check[2]="false";
-                }
-            }
-        });
-        mucus4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[3]="true";
-                } else {
-                    mucus_Check[3]="false";
-                }
-            }
-        });
-        mucus5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[4]="true";
-                } else {
-                    mucus_Check[4]="false";
-                }
-            }
-        });
-        mucus6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (((CheckBox)v).isChecked()) {
-                    mucus_Check[5]="true";
-                } else {
-                    mucus_Check[5]="false";
-                }
-            }
-        });
-
-
-        for(int i=0;i<6;i++)
-        {
-            if ((mucus_Check[i].equals( "false") )&& (init_info[i].equals("true")))
-                mucus_Check[i] = "true";
-            else if ((mucus_Check[i] .equals("true")) && (init_info[i].equals("false")))
-                mucus_Check[i] = "true";
-            else if ((mucus_Check[i].equals( "false")) && (init_info[i].equals("false")))
-                mucus_Check[i] = "false";
-            else if ((mucus_Check[i].equals( "true")) && (init_info[i].equals("true")))
-                mucus_Check[i] = "false";
-        }
 
 
     }
@@ -217,7 +127,7 @@ public class MucusInfo extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&date="+strings[1];
+                sendMsg = "id="+strings[0]+"&today_date="+strings[1];
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
@@ -265,9 +175,9 @@ public class MucusInfo extends AppCompatActivity {
                  */
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&date="+strings[1]+
-                        "&mottled="+strings[2]+"&sticky="+strings[3]+"&creamy="+strings[4]+"&likeEggWhite="+strings[5]
-                        +"&watery="+strings[6]+"&abnormal="+strings[7];
+                sendMsg = "id="+strings[0]+"&today_date="+strings[1]+"&none="+strings[2]+
+                        "&mottled="+strings[3]+"&sticky="+strings[4]+"&creamy="+strings[5]+"&likeEggWhite="+strings[6]
+                        +"&watery="+strings[7]+"&abnormal="+strings[8];
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
