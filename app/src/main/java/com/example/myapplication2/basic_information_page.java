@@ -31,8 +31,6 @@ import java.util.Locale;
 
 public class basic_information_page extends AppCompatActivity {
 
-    String day;
-    String statement;
     public String getInformation(String ID) {
         Log.w("홈화면 초기 설정", "설정 정보 주는중");
         String result="null";
@@ -71,7 +69,7 @@ public class basic_information_page extends AppCompatActivity {
         TextView tw_lastphysicalDay = (TextView) findViewById(R.id.tw_lastphysicalDay);         //마지막 생리일
         TextView tw_start = (TextView)findViewById(R.id.tw_start);                              //가임기 시작
         TextView tw_cycle = (TextView)findViewById(R.id.tw_cycle);                            //평균생리주기
-        int num_expectedDay, num_ovulationDay, num_lastphsicalDay, num_start, num_cycle;
+
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         ArrayList<String> date_info = new ArrayList<>();
 
@@ -80,56 +78,49 @@ public class basic_information_page extends AppCompatActivity {
                 date_info.add(init_info[i*4]); date_info.add(init_info[i*4+1]); date_info.add(init_info[i*4+2]); date_info.add(init_info[i*4+3]);
             }
         }
-        System.out.println(today);
-        System.out.println(date_info.get(0));
-        num_cycle = CalMenstrualCycle(date_info);
+        int num_cycle = CalMenstrualCycle(date_info);
 
+
+
+
+
+       int[] expectedDay = DatePlus(today, num_cycle);
+       String expectedDay_string = expectedDay[0] + "-" + (expectedDay[1]+1) + "-" + expectedDay[2];
+       int num_expetedDay = DateCount(today, expectedDay_string);
+
+
+       int[] ovulationDay = DateMinus(expectedDay_string, num_cycle/2);
+       String ovulationDay_string = ovulationDay[0] + "-" + (ovulationDay[1] + 1) + "-" + ovulationDay[2];
+       int num_ovulationDay = DateCount(today, ovulationDay_string);
+
+
+       int[] startDay = DateMinus(ovulationDay_string, 4);
+       String startDay_string =  startDay[0] + "-" + (startDay[1] + 1) + "-" + startDay[2];
+       int num_startDay = DateCount(today, startDay_string);
+
+        // 평균생리주기
         tw_cycle.setText(Integer.toString(num_cycle));
-        if(date_info.size() > 4)
+
+        // 마지막 생리일일
+        if(date_info.size() > 4) {
             tw_lastphysicalDay.setText(date_info.get(1));
-        else
+            tw_expectedDay.setText(Integer.toString(num_expetedDay));
+
+            if(DateCompare(date_info.get(1), startDay_string) == 1){
+                tw_ovulationDay.setText(Integer.toString(num_ovulationDay));
+                tw_start.setText(Integer.toString(num_startDay));
+            }
+            else{
+                tw_ovulationDay.setText("배란 가능성 낮음");
+                tw_start.setText("배란 가능성 낮음");
+            }
+        }
+        else{
             tw_lastphysicalDay.setText("사용자 정보가 없습니다.");
-
-
-
-
-//        try {
-//            System.out.println( DateMenstrualCycle(date_info.get(0), date_info.get(4), date_info.get(8), date_info.get(12)));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-//        try {
-//            tw_cycle.setText(Integer.toString(CalMenstrualCycle(date_info)));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
-//        if(date_info.size() >= 16) {
-//            try {
-//                num_cycle = DateMenstrualCycle(date_info.get(0), date_info.get(4), date_info.get(8), date_info.get(12));
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else if(date_info.size() >= 12) {
-//            try {
-//                num_cycle =  DateMenstrualCycle(date_info.get(0), date_info.get(4), date_info.get(8));
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else if(date_info.size() >= 8) {
-//            try {
-//                num_cycle =  DateMenstrualCycle(date_info.get(0), date_info.get(4));
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        else{ num_cycle = 28 ;}
-//
-//        tw_cycle.setText(Integer.toString(num_cycle));
-
+            tw_expectedDay.setText("사용자 정보가 없습니다.");
+            tw_ovulationDay.setText("사용자 정보가 없습니다.");
+            tw_start.setText("사용자 정보가 없습니다.");
+        }
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -238,7 +229,7 @@ public class basic_information_page extends AppCompatActivity {
         return result;
     }
 
-    public int[] DatePlus(String date, int number) throws ParseException { // year month day
+    public int[] DatePlus(String date, int number){ // year month day
         int[] result_date = new int[3];
         int[] date1 =  SelectedDate(date);
         int date_day = date1[2];
@@ -329,11 +320,6 @@ public class basic_information_page extends AppCompatActivity {
             }
         }
         return cnt;
-    }
-
-    boolean DateBetweenAandB(String A, String B, String btween){
-        if(A.compareTo(btween) > 0  && B.compareTo(btween) < 0) return true;
-        else return false;
     }
 
     String IntToDateString(int year, int month, int day){
