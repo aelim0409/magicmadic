@@ -149,7 +149,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MucusInfo.class);
-                String [] intent_str={ID,setSelectedDate};
+                String [] intent_str =  new String[2];
+                intent_str[0] = ID;
+                intent_str[1] = setSelectedDate;
                 intent.putExtra("info", intent_str);
                 startActivity(intent);
             }

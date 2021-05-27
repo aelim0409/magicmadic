@@ -98,8 +98,8 @@ public class SymptomInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptom_info);
-        Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
+        Intent intent = getIntent();
+        String[] get_info = intent.getStringArrayExtra("info");
         //String [] init_info = getInformation(ID).split(" ");
 
         symptoms1=(CheckBox)findViewById(R.id.symptom1);

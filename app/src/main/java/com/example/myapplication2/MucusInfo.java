@@ -19,9 +19,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MucusInfo extends AppCompatActivity {
-    CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
-
-    Button mucus =findViewById(R.id.mucus_button);
 
     public void give_mucus(String ID,String none,String []b)
     {
@@ -90,9 +87,14 @@ public class MucusInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mucus_info);
 
-        Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
+        Intent intent = getIntent();
+        String[] get_info = intent.getStringArrayExtra("info");
         //String [] init_info = getInformation(ID).split(" ");
+
+
+        CheckBox  mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+
+        Button mucus =findViewById(R.id.mucus_button);
 
         mucus1=(CheckBox)findViewById(R.id.mucus1);
         mucus2=(CheckBox)findViewById(R.id.mucus2);
