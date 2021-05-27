@@ -167,5 +167,11 @@
             android:text="설사"
             android:textSize="10dp" />
 
+        <Button
+            android:id="@+id/symptom_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -89,6 +89,12 @@
             android:text="비정상"
             android:textSize="9dp" />
 
+        <Button
+            android:id="@+id/mucus_btn"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
     </LinearLayout>
 
 

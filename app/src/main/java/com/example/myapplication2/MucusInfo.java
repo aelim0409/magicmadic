@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 import java.io.BufferedReader;
@@ -19,6 +20,8 @@ import java.util.Date;
 
 public class MucusInfo extends AppCompatActivity {
     CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
+
+    Button mucus =findViewById(R.id.mucus_button);
 
     public void give_mucus(String ID,String none,String []b)
     {
@@ -103,6 +106,9 @@ public class MucusInfo extends AppCompatActivity {
         mucus4.setButtonDrawable(R.drawable.my_selector);
         mucus5.setButtonDrawable(R.drawable.my_selector);
         mucus6.setButtonDrawable(R.drawable.my_selector);
+
+
+
 
     }
 

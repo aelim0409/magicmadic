@@ -50,6 +50,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
 
+    String START="null";
+    String END ="null";
 
     public void giveSelectedInformation(String ID, String setSelectedDate){
         Log.w("선택된 날짜 정보", "설정 정보 주는중");
@@ -61,7 +63,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             //Date date = new Date();
             // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
-            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
+            Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate+", ");//+water
             MainActivity2.setDate task = new MainActivity2.setDate();
             result = task.execute(id,setSelectedDate).get();
             Log.w("(초기)받은값", result);
@@ -143,7 +145,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),SymptomInfo.class);
-                intent.putExtra("Id", ID);
+                String [] intent_str={ID,setSelectedDate};
+                intent.putExtra("info", intent_str);
                 startActivity(intent);
             }
         });
@@ -152,7 +155,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MucusInfo.class);
-                intent.putExtra("Id", ID);
+                String [] intent_str={ID,setSelectedDate};
+                intent.putExtra("info", intent_str);
                 startActivity(intent);
             }
         });
@@ -354,10 +358,10 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         });
 
         date_today = findViewById(R.id.date_today);
-        date_today.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        date_today.setText(new SimpleDateFormat("yyyy년 MM월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
-        main_date_view.setText(new SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        main_date_view.setText(new SimpleDateFormat("yyyy년 MM월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
@@ -385,19 +389,29 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     String endDay=end_day_input;
                     String symptom = "false";
                     String mucus="false";
-                    /*
-                    String symptom = symptom_none2;
-                    String mucus=mucus_none2;
-
-                     */
-
-
-
 
                     Date date = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     String today_date = sdf.format(date);
 
+                    if(!today_date.equals(setSelectedDate))
+                        today_date=setSelectedDate;
+                    else
+                        today_date=sdf.format(date);
+
+                    /*
+                    if(startDay.equals(START))
+                        startDay=START;
+                    if(endDay.equals(END))
+                        endDay=END;
+*/
+                    if(startDay=="null" && START!="null")
+                    {
+                        startDay=START;
+
+                    }
+                    else if(endDay=="null"&&END!="null")
+                        endDay=END;
                     Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
                     MainActivity2.customTask task = new MainActivity2.customTask();
@@ -425,6 +439,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 try {
                     start[0] = SelectedDate(date);
                     start_day_input= setSelectedDate;
+                    //START=start_day_input;
                     end_day_input="null";
                     int day = CalendarDay.from(start[0]).getDay();
                     int month = CalendarDay.from(start[0]).getMonth();
@@ -446,6 +461,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             month++;
                         }
                     }
+                  //  giveSelectedInformation(ID_selected,setSelectedDate);
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -460,6 +477,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 try {
                     end[0] = SelectedDate(date);
                     end_day_input=setSelectedDate;
+                    //END=end_day_input;
                     start_day_input="null";
 
                     int day = CalendarDay.from(end[0]).getDay();
@@ -495,33 +513,41 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     //날짜 선택되었을 때
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        main_date_view.setText(date.getYear() + "년" + (date.getMonth()+1) + "월" + date.getDay() + "일");
+        main_date_view.setText(date.getYear() + "-" + (date.getMonth()+1) + "-" + date.getDay());
         selectedYear=date.getYear();
+        String month="null";
         selectedMonth=date.getMonth()+1;
+        if(selectedMonth<10)
+            month="0"+Integer.toString(selectedMonth);
+        else
+            month=Integer.toString(selectedMonth);
         selectedDay=date.getDay();
-        setSelectedDate=selectedYear+"-"+selectedMonth+"-"+selectedDay;
+        setSelectedDate=selectedYear+"-"+month+"-"+selectedDay;
 
         //?????
-       // giveSelectedInformation(ID_selected, setSelectedDate);
+        //giveSelectedInformation(ID_selected, setSelectedDate);
 
         String [] selected_info = getSelectedInformation(ID_selected,setSelectedDate).split(" ");
 
         //TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
-        String Exercise[]=selected_info[2].split(":");
-        String Sleep[]=selected_info[1].split(":");
+        String Exercise[]=selected_info[1].split(":");
+        String Sleep[]=selected_info[0].split(":");
         water = (TextView)findViewById(R.id.water_record);
         exerciseH = (TextView)findViewById(R.id.exercise_recordH);
         exerciseM = (TextView)findViewById(R.id.exercise_recordM);
         sleepH = (TextView)findViewById(R.id.sleep_recordH);
         sleepM = (TextView)findViewById(R.id.sleep_recordM);
 
-        water.setText(selected_info[3]);
+        water.setText(selected_info[2]);
         exerciseH.setText(Exercise[0]);
         exerciseM.setText(Exercise[1]);
         sleepH.setText(Sleep[0]);
         sleepM.setText(Sleep[1]);
 
+        START=selected_info[3];
+        END=selected_info[4];
+        //시작날짜와 끝날짜 정보도 받음 캘린더 가시화 시켜야함.
     }
 
     //달 바뀌었을 때
@@ -718,7 +744,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         protected String doInBackground(String... strings) {
             try {
                 String str;
-
                 URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
