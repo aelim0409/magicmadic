@@ -53,6 +53,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     String START="null";
     String END ="null";
 
+    String start_day_input="null";
+    String end_day_input="null";
+
 
 
     public String giveChangingMonth(String ID, String month){
@@ -104,7 +107,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
-
             Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
             MainActivity2.getTask task = new MainActivity2.getTask();
             result = task.execute(id,today_date).get();
@@ -119,20 +121,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
 
 
-
-
-    String start_day_input="null";
-    String end_day_input="null";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
         Intent Intent = getIntent();
-
         String ID = Intent.getStringExtra("Id");
         ID_selected=ID;
+
         String [] init_info = getInformation(ID).split(" ");
 
         Button symptom , mucus;
@@ -158,19 +155,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             }
         });
 
+        //init_info[0]=sleeptime init_info[1]=exercisetime init_info[2]=waterintake
+        // init_info[3]=startday1 init_info[4]=endday1 init_info[5]=null init_info[6]=null init_info[7]=null init_info[8]=null
         String sleep_time= init_info[0];
         String exercise_time = init_info[1];
-        String water_intake= init_info[2];
+        String water_intake = init_info[2];
         //getinforamation 한 시작과 끝 날짜
-        String start_day= init_info[3];
-        String end_day=init_info[4];
-
-        /*
-        String mucus_none= "false";
-        String symptom_none="false";
-        String symptom_none2=symptom_none;
-*/
-
 
         waterminus = (ImageButton)findViewById(R.id.waterminus);
         waterplus = (ImageButton)findViewById(R.id.waterplus);
@@ -195,9 +185,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         TextView todayText = findViewById(R.id.today_text);
 
        // String mucus_none2= mucus_none;
-
-
-
 
         waterplus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -567,39 +554,43 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             month=Integer.toString(changed_month);
         }
 
-        String [] month_info= giveChangingMonth(ID_selected,month).split(" ");
+        String [] month_info= giveChangingMonth(ID_selected, month).split(" ");
         System.out.println(month_info);
         //month_info[0]=2021-04-01, month_info[1]=2021-04-06, month_info[2]="null", month_info[3]="null", month_info[4]="null", month_info[5]="null"
-        Date startday;
-        Date endday;
+
         int year;
         int day;
         int period=0;
+        String [] start_d_day;
+        String [] end_d_day;
         for(int i=0;i<5;i+=2){
             if(!month_info[i].equals("null")){
-                try {
-                    startday=SelectedDate(month_info[i]);  //startdate=20210401 date 형식
-                    endday=SelectedDate(month_info[i+1]);
-                    year=SelectedDate(month_info[i]).getYear();
-                    period=endday.getDate()-startday.getDate()+1;
-                    day=startday.getDate();
 
-                    int month_itr=changed_month-1;
+                start_d_day=month_info[i].split("-");
+                end_d_day=month_info[i+1].split("-");
+                //d_day[0]=2021 d_day[1]=06 d_day[2]=13
 
+                year=Integer.parseInt(start_d_day[0]);
+                int month_itr=Integer.parseInt(start_d_day[1])-1;
+                day=Integer.parseInt(start_d_day[2]);
+                int day_end=Integer.parseInt(end_d_day[2]);
 
-                    int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-                    int lastDay = mdays[month_itr];
-                    for(int j=0;j<period;j++){
-                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month_itr,day))));
-                        day++;
-                        if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                            day=1;
-                            month_itr++;
-                        }
+                period= day_end - day+1;
+
+                int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                int lastDay = mdays[month_itr];
+
+                if(period<0){
+                    period+=mdays[month_itr];
+                }
+                for(int j=0;j<period;j++){
+                    cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month_itr,day))));
+                    System.out.println("year = "+year+"month_itr = "+month_itr+" day= "+day);
+                    day++;
+                    if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                        day=1;
+                        month_itr++;
                     }
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
         }
