@@ -50,6 +50,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
 
+
     String START="null";
     String END ="null";
 
@@ -166,7 +167,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String symptom_none="false";
         String symptom_none2=symptom_none;
 */
-
 
         waterminus = (ImageButton)findViewById(R.id.waterminus);
         waterplus = (ImageButton)findViewById(R.id.waterplus);
@@ -356,7 +356,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
-       // cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
+        cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
         cal_view.setSelectedDate(CalendarDay.today());
 
         Button save_button=findViewById(R.id.save_button);
@@ -486,15 +486,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             month++;
                         }
                     }
+
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-
     }
-
     public Date SelectedDate(String str) throws ParseException {
         SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date to = transFormat.parse(str);
@@ -508,6 +508,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         selectedYear=date.getYear();
         String month="null";
         selectedMonth=date.getMonth()+1;
+
+        System.out.println(selectedMonth);
 
         if(selectedMonth<10)
             month="0"+Integer.toString(selectedMonth);
@@ -553,6 +555,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
 
+        System.out.println("들어옴들어옴들어몸"+1111111111);
         int changed_month=date.getMonth()+1;
         String month="null";
 
@@ -563,7 +566,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             month=Integer.toString(changed_month);
         }
 
-        String [] month_info=giveChangingMonth(ID_selected,month).split(" ");
+        String [] month_info= giveChangingMonth(ID_selected,month).split(" ");
+        System.out.println(month_info);
         //month_info[0]=2021-04-01, month_info[1]=2021-04-06, month_info[2]="null", month_info[3]="null", month_info[4]="null", month_info[5]="null"
         Date startday;
         Date endday;
@@ -571,7 +575,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         int day;
         int period=0;
         for(int i=0;i<5;i+=2){
-            if(month_info[i]!="null"){
+            if(!month_info[i].equals("null")){
                 try {
                     startday=SelectedDate(month_info[i]);  //startdate=20210401 date 형식
                     endday=SelectedDate(month_info[i+1]);
@@ -582,7 +586,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
                     int month_itr=changed_month-1;
 
-                    System.out.println("int형이고 month-1돼서 나와야함 year= "+year+" month= "+month_itr+"day= "+day);
+                    System.out.println("month-1돼서 나와야함 year= "+year+" month= "+month_itr+"day= "+day);
                     System.out.println("생리기간 peroid = "+period);
 
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
