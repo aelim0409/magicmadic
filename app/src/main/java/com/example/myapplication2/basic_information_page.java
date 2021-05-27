@@ -1,6 +1,7 @@
 package com.example.myapplication2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,6 +20,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.util.Collections;
 
 public class basic_information_page extends AppCompatActivity {
 
@@ -52,6 +57,14 @@ public class basic_information_page extends AppCompatActivity {
 
         String info = getInformation(ID);
         String[] init_info = info.split(" ");
+        Log.w("result 확인: info ", info);
+        System.out.println("init_info" + init_info);
+
+
+
+
+
+
 
 
 
@@ -109,7 +122,6 @@ public class basic_information_page extends AppCompatActivity {
         });
 
     }
-
     class getTask extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
         protected String doInBackground(String... strings) {
@@ -153,4 +165,10 @@ public class basic_information_page extends AppCompatActivity {
             return receiveMsg;
         }
     }
+
+
+
+
+
+
 }
