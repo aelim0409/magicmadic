@@ -22,7 +22,6 @@ public class basic_information_page extends AppCompatActivity {
 
     String day;
     String statement;
-
     public String getInformation(String ID) {
         Log.w("홈화면 초기 설정", "설정 정보 주는중");
         String result="null";

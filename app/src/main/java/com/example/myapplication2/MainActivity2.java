@@ -120,10 +120,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         }return result;
     }
 
-
-
-
-
     String start_day_input="null";
     String end_day_input="null";
 
@@ -575,7 +571,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
         return result_date;
     }
-    public int[] DatePlus(int date_year, int date_month, int date_day, int number) throws ParseException { // year month day
+    int[] DatePlus(int date_year, int date_month, int date_day, int number) throws ParseException { // year month day
         int[] result_date = new int[3];
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
         int lastDayOfdate = mdays[date_month];
@@ -607,7 +603,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
         return result_date;
     }
-    public int[] DateMinus(int date_year, int date_month, int date_day, int n) throws ParseException { // year month day
+    int[] DateMinus(int date_year, int date_month, int date_day, int n) throws ParseException { // year month day
         int[] result_date = new int[3];
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
         int lastDayOfdate = mdays[date_month];
@@ -647,12 +643,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         return cnt;
     }
 
-    public boolean DateBetweenAandB(String A, String B, String btween){
+    boolean DateBetweenAandB(String A, String B, String btween){
         if(A.compareTo(btween) > 0  && B.compareTo(btween) < 0) return true;
         else return false;
     }
 
-    public String IntToDateString(int year, int month, int day){
+    String IntToDateString(int year, int month, int day){
         return year+"-"+month+"-"+day;
     }
     public int DateCompare(String str1, String str2) throws ParseException {
@@ -675,7 +671,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         }
     }
     //배란일 가임기 표시
-    public String DateOvulationDay(String date, int cycle) throws ParseException { //최근 생리 시작 날짜
+    String DateOvulationDay(String date, int cycle) throws ParseException { //최근 생리 시작 날짜
         int[] week_after = DatePlus(date, 7);
         int[] result_OvulationDay = new int[3];
         result_OvulationDay = DatePlus(date, cycle-14);
