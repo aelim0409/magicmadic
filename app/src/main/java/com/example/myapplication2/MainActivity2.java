@@ -557,7 +557,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
 
-        System.out.println("들어옴들어옴들어몸"+1111111111);
         int changed_month=date.getMonth()+1;
         String month="null";
 
@@ -581,15 +580,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 try {
                     startday=SelectedDate(month_info[i]);  //startdate=20210401 date 형식
                     endday=SelectedDate(month_info[i+1]);
-                    System.out.println("Date형식 시작일자="+startday+"종료일자"+endday);
                     year=SelectedDate(month_info[i]).getYear();
                     period=endday.getDate()-startday.getDate()+1;
                     day=startday.getDate();
 
                     int month_itr=changed_month-1;
 
-                    System.out.println("month-1돼서 나와야함 year= "+year+" month= "+month_itr+"day= "+day);
-                    System.out.println("생리기간 peroid = "+period);
 
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
                     int lastDay = mdays[month_itr];
@@ -902,49 +898,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         }
     }
 
-
-    class getDate extends AsyncTask<String,Void,String> {
-        String sendMsg,receiveMsg;
-        protected String doInBackground(String... strings) {
-            try {
-                String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/getDate_view");  // 어떤 서버에 요청할지(localhost 안됨.)
-                // ex) http://123.456.789.10:8080/hello/android
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                conn.setRequestMethod("POST");                              //데이터를 POST 방식으로 전송합니다.
-                conn.setDoOutput(true);
-
-                // 서버에 보낼 값 포함해 요청함.
-                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&selected_date="+strings[1];
-                // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
-                osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
-                osw.flush();
-
-
-                // jsp와 통신이 잘 되고, 서버에서 보낸 값 받음.
-                if(conn.getResponseCode() == conn.HTTP_OK) {
-                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
-                    BufferedReader reader = new BufferedReader(tmp);
-                    StringBuffer buffer = new StringBuffer();
-                    while ((str = reader.readLine()) != null) {
-                        buffer.append(str);
-                    }
-                    receiveMsg = buffer.toString();
-                } else {    // 통신이 실패한 이유를 찍기위한 로그
-                    Log.i("통신 결과", conn.getResponseCode()+"에러");
-                }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            // 서버에서 보낸 값을 리턴합니다.
-            return receiveMsg;
-        }
-    }
 
     class getDate extends AsyncTask<String,Void,String> {
         String sendMsg,receiveMsg;
