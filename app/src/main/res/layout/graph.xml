@@ -2,58 +2,126 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerOuter"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    android:background="@drawable/shape_round_transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp"
+    android:rotation="0"
+    android:rotationX="0"
+    tools:context=".graph">
 
-    <TextView
-        android:id="@+id/tv_main"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/comp1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_round_pink"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:padding="5dp"
-        android:text="주기그래프"
-        android:fontFamily="@font/dx"
-        android:textColor="@color/brown"
-        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_round_yellow"
+        android:gravity="center"
+        android:paddingVertical="10dp">
 
-        />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_round_pink"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:text="그래프와 기록"
+                android:fontFamily="@font/dx"
+                android:textColor="@color/brown"
+                android:textSize="30dp" />
+        </LinearLayout>
+    </LinearLayout>
 
-    <com.jjoe64.graphview.GraphView
-        android:layout_below="@+id/tv_main"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:id="@+id/graph_date" />
+        android:layout_height="586dp"
+        android:layout_below="@+id/comp1">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph_water"
-        android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:layout_below="@+id/tv_main"
-
-        android:layout_centerInParent="true"
-
-        android:layout_marginTop="213dp"
-         />
-
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:layout_below="@+id/tv_main"
-
-        android:layout_marginTop="416dp" />
-
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph_sleep"
-        android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:layout_below="@+id/tv_main"
-
-        android:layout_marginTop="416dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월경주기 그래프"
+                android:background="@drawable/shape_round_transparent"
+                android:fontFamily="@font/dx"
+                android:textSize="30dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/brown"
+                android:layout_marginTop="10dp">
+            </TextView>
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_date"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수분 섭취량 그래프"
+                android:background="@drawable/shape_round_transparent"
+                android:textSize="30dp"
+                android:textColor="@color/brown"
+                android:fontFamily="@font/dx"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp">
+            </TextView>
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_water"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_round_transparent"
+                android:text="운동량 그래프"
+                android:textSize="30dp"
+                android:fontFamily="@font/dx"
+                android:textColor="@color/brown"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp">
+            </TextView>
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_exercise"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수면 시간 그래프"
+                android:background="@drawable/shape_round_transparent"
+                android:textSize="30dp"
+                android:fontFamily="@font/dx"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/brown"
+                android:layout_marginTop="20dp">
+            </TextView>
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/graph_sleep"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="fill_parent"
