@@ -62,7 +62,7 @@ public class basic_information_page extends AppCompatActivity {
         String info = getInformation(ID);
         String[] init_info = info.split(" ");
         Log.w("result 확인: info ", info);
-        System.out.println("init_info" + init_info);
+        System.out.println("info : " + info);
 
         TextView tw_expectedDay = (TextView) findViewById(R.id.tw_expectedDay);                 //생리 예정일
         TextView tw_ovulationDay = (TextView) findViewById(R.id.tw_ovulationDay);               //배란예정일
@@ -73,11 +73,20 @@ public class basic_information_page extends AppCompatActivity {
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         ArrayList<String> date_info = new ArrayList<>();
 
+        System.out.println("init_info : " + init_info[0]);
+
         for(int i=0;i<6;i++){
+//            System.out.println("init_info : " + (i*4)+ " " + init_info[i*4]);
+//            if(!init_info[i*4].equals("null") ) System.out.println("null!!!!!!!!!!!!");
             if(!init_info[i*4].equals("null")) {
-                date_info.add(init_info[i*4]); date_info.add(init_info[i*4+1]); date_info.add(init_info[i*4+2]); date_info.add(init_info[i*4+3]);
+                date_info.add(init_info[i*4]); date_info.add(init_info[(i*4)+1]); date_info.add(init_info[(i*4)+2]); date_info.add(init_info[(i*4)+3]);
             }
         }
+
+        System.out.println("date_info" + date_info);
+
+        System.out.println("date_info : " +date_info);
+
         int num_cycle = CalMenstrualCycle(date_info);
 
 
@@ -156,7 +165,7 @@ public class basic_information_page extends AppCompatActivity {
             state_remind.setText("가임기 입니다.");
         } else state_remind.setText("비가임기 입니다.");
 
-        //System.out.println( " 생리 예정일 : "+ expectedDay_string + " 예상 배란일  : "+ ovulationDay_string +  " 가임기 예상 : "+startDay_string +  " 생리 최근 마지막에 끝난날 : "+period_end_string +  " 가임기 끝나는날 : "+period2_end_string);
+        System.out.println( " 생리 예정일 : "+ expectedDay_string + " 예상 배란일  : "+ ovulationDay_string +  " 가임기 예상 : "+startDay_string +  " 생리 최근 마지막에 끝난날 : "+period_end_string +  " 가임기 끝나는날 : "+period2_end_string);
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -353,9 +362,7 @@ public class basic_information_page extends AppCompatActivity {
                     to_date_month++;
                 }
             }
-            cnt = -cnt;
             return cnt;
-
         }
 
         else{
