@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerOuter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    android:background="@drawable/shape_round_transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp"
+    android:rotation="0"
+    android:rotationX="0"
     tools:context=".MucusInfo">
 
     <LinearLayout
+        android:id="@+id/comp1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/shape_round_yellow"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+            <TextView
+                android:id="@+id/today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="분비물 기록"
+                android:textColor="@color/brown"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comp1"
+        android:layout_marginTop="60dp">
 
         <CheckBox
             android:id="@+id/mucus1"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -26,9 +69,9 @@
 
         <CheckBox
             android:id="@+id/mucus2"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -39,9 +82,9 @@
 
         <CheckBox
             android:id="@+id/mucus3"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -49,12 +92,18 @@
             android:background="@drawable/my_selector"
             android:text="크림같음"
             android:textSize="9dp" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay1"
+        android:layout_marginTop="30dp">
         <CheckBox
             android:id="@+id/mucus4"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -65,9 +114,9 @@
 
         <CheckBox
             android:id="@+id/mucus5"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -78,9 +127,9 @@
 
         <CheckBox
             android:id="@+id/mucus6"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -88,14 +137,34 @@
             android:background="@drawable/my_selector"
             android:text="비정상"
             android:textSize="9dp" />
-
-        <Button
-            android:id="@+id/mucus_btn"
-            android:layout_width="181dp"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:text="하루 하루 분비물 기록을 통해
+            나의 건강 상태를 확인해 보세요:)">
+        </TextView>
+    </LinearLayout>
+    <Button
+        android:id="@+id/mucus_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="150dp"
+        android:backgroundTint="@color/colorPink"
+        android:fontFamily="@font/dx"
+        android:text="저장"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

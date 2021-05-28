@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerOuter"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="7dp"
+    android:layout_marginVertical="7dp"
+    android:background="@drawable/shape_round_transparent"
+    android:orientation="vertical"
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp"
+    android:rotation="0"
+    android:rotationX="0"
     tools:context=".SymptomInfo">
 
     <LinearLayout
+        android:id="@+id/comp1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="5dp"
+        android:background="@drawable/shape_round_yellow"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:paddingVertical="10dp">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp">
+            <TextView
+                android:id="@+id/today_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#d2e8be"
+                android:fontFamily="@font/dx"
+                android:paddingHorizontal="9dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="5dp"
+                android:text="증상 기록"
+                android:textColor="@color/brown"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comp1"
+        android:layout_marginTop="60dp">
         <CheckBox
             android:id="@+id/symptom1"
             android:layout_width="36dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -26,22 +69,23 @@
 
         <CheckBox
             android:id="@+id/symptom2"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:adjustViewBounds="true"
             android:background="@drawable/my_selector"
             android:text="유방의압통"
-            android:textSize="7dp" />
+            android:textSize="7dp"
+            />
 
         <CheckBox
             android:id="@+id/symptom3"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -52,9 +96,9 @@
 
         <CheckBox
             android:id="@+id/symptom4"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -62,12 +106,18 @@
             android:background="@drawable/my_selector"
             android:text="여드름"
             android:textSize="10dp" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay1"
+        android:layout_marginTop="15dp">
         <CheckBox
             android:id="@+id/symptom5"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -78,9 +128,9 @@
 
         <CheckBox
             android:id="@+id/symptom6"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -91,9 +141,9 @@
 
         <CheckBox
             android:id="@+id/symptom7"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -104,9 +154,9 @@
 
         <CheckBox
             android:id="@+id/symptom8"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -114,12 +164,18 @@
             android:background="@drawable/my_selector"
             android:text="복부팽만감"
             android:textSize="7dp" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lay3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay2"
+        android:layout_marginTop="15dp">
         <CheckBox
             android:id="@+id/symptom9"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -130,9 +186,9 @@
 
         <CheckBox
             android:id="@+id/symptom10"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -143,9 +199,9 @@
 
         <CheckBox
             android:id="@+id/symptom11"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -156,9 +212,9 @@
 
         <CheckBox
             android:id="@+id/symptom12"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
@@ -166,12 +222,36 @@
             android:background="@drawable/my_selector"
             android:text="설사"
             android:textSize="10dp" />
-
-        <Button
-            android:id="@+id/symptom_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lay3"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:text="하루 하루 증상기록을 통해
+            자신만의 생리전 증후군과
+            증상들을 파악해 보세요:)"
+            ></TextView>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/symptom_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="150dp"
+        android:backgroundTint="@color/colorPink"
+        android:fontFamily="@font/dx"
+        android:text="확인"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

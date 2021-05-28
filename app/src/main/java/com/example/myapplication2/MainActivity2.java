@@ -49,14 +49,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
     TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
-
     String START="null";
     String END ="null";
 
     String start_day_input="null";
     String end_day_input="null";
-
-
 
     public String giveChangingMonth(String ID, String month){
         Log.w("달 바꾸기", "바뀐 달 주는중");
@@ -74,7 +71,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         }return result;
     }
-
     public String getSelectedInformation(String ID, String setSelectedDate){
         Log.w("선택한 날짜 정보 받기", "설정 정보 받는중");
 
@@ -82,8 +78,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         try {
             String id = ID;
-
-
             Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
             MainActivity2.getDate task = new MainActivity2.getDate();
             result = task.execute(id,setSelectedDate).get();
@@ -95,15 +89,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         }return result;
     }
-
     public String getInformation(String ID) {
         Log.w("캘린더 초기 설정", "설정 정보 주는중");
-
         String result="null";
 
         try {
             String id = ID;
-
             Date date = new Date();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
@@ -111,15 +102,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             MainActivity2.getTask task = new MainActivity2.getTask();
             result = task.execute(id,today_date).get();
             Log.w("(초기)받은값", result);
-
             //return result;
 
         } catch (Exception e) {
 
         }return result;
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,6 +148,43 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String sleep_time= init_info[0];
         String exercise_time = init_info[1];
         String water_intake = init_info[2];
+
+        /*for(int i=3;i<init_info.length;i+=2){
+            System.out.println(" "+3333333);
+            try {
+                if (!init_info[i].equals("null")) {
+
+                    String[] start_d_day = init_info[i].split("-");
+                    String[] end_d_day = init_info[i + 1].split("-");
+                    //d_day[0]=2021 d_day[1]=06 d_day[2]=13
+
+                    int year = Integer.parseInt(start_d_day[0]);
+                    int month_itr = Integer.parseInt(start_d_day[1]) - 1;
+                    int day = Integer.parseInt(start_d_day[2]);
+                    int day_end = Integer.parseInt(end_d_day[2]);
+
+                    int period = day_end - day + 1;
+
+                    int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    int lastDay = mdays[month_itr];
+
+                    if (period < 0) {
+                        period += mdays[month_itr];
+                    }
+                    for (int j = 0; j < period; j++) {
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year, month_itr, day))));
+                        System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
+                        day++;
+                        if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day = 1;
+                            month_itr++;
+                        }
+                    }
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }*/
         //getinforamation 한 시작과 끝 날짜
 
         waterminus = (ImageButton)findViewById(R.id.waterminus);
@@ -345,7 +370,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         date_today.setText(new SimpleDateFormat("yyyy년 MM월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
 
         main_date_view = findViewById(R.id.date_text);
-        main_date_view.setText(new SimpleDateFormat("yyyy년 MM월 d일", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
+        main_date_view.setText(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date())); // 오늘 날짜 초기화
         cal_view = (MaterialCalendarView)findViewById(R.id.calendar);
 
         cal_view.setOnDateChangedListener(this);
@@ -484,8 +509,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 }
             }
         });
-
-
     }
 
     public Date SelectedDate(String str) throws ParseException {
@@ -514,12 +537,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         setSelectedDate=selectedYear+"-"+month+"-"+day;
 
-        //?????
-        //giveSelectedInformation(ID_selected, setSelectedDate);
-
         String [] selected_info = getSelectedInformation(ID_selected,setSelectedDate).split(" ");
-
-        //TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
         String Exercise[]=selected_info[1].split(":");
         String Sleep[]=selected_info[0].split(":");
@@ -542,7 +560,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
     //달 바뀌었을 때
     @Override
-    public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+    public void onMonthChanged (MaterialCalendarView widget, CalendarDay date) {
 
         int changed_month=date.getMonth()+1;
         String month="null";
@@ -565,32 +583,35 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String [] end_d_day;
         for(int i=0;i<5;i+=2){
             if(!month_info[i].equals("null")){
+                try {
+                    start_d_day = month_info[i].split("-");
+                    end_d_day = month_info[i + 1].split("-");
+                    //d_day[0]=2021 d_day[1]=06 d_day[2]=13
 
-                start_d_day=month_info[i].split("-");
-                end_d_day=month_info[i+1].split("-");
-                //d_day[0]=2021 d_day[1]=06 d_day[2]=13
+                    year = Integer.parseInt(start_d_day[0]);
+                    int month_itr = Integer.parseInt(start_d_day[1]) - 1;
+                    day = Integer.parseInt(start_d_day[2]);
+                    int day_end = Integer.parseInt(end_d_day[2]);
 
-                year=Integer.parseInt(start_d_day[0]);
-                int month_itr=Integer.parseInt(start_d_day[1])-1;
-                day=Integer.parseInt(start_d_day[2]);
-                int day_end=Integer.parseInt(end_d_day[2]);
+                    period = day_end - day + 1;
 
-                period= day_end - day+1;
+                    int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    int lastDay = mdays[month_itr];
 
-                int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-                int lastDay = mdays[month_itr];
-
-                if(period<0){
-                    period+=mdays[month_itr];
-                }
-                for(int j=0;j<period;j++){
-                    cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month_itr,day))));
-                    System.out.println("year = "+year+"month_itr = "+month_itr+" day= "+day);
-                    day++;
-                    if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                        day=1;
-                        month_itr++;
+                    if (period < 0) {
+                        period += mdays[month_itr];
                     }
+                    for (int j = 0; j < period; j++) {
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year, month_itr, day))));
+                        System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
+                        day++;
+                        if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day = 1;
+                            month_itr++;
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
         }
