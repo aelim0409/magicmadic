@@ -44,7 +44,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     MaterialCalendarView cal_view;
 
     int selectedYear, selectedMonth, selectedDay;
-    String setSelectedDate;
+    String setSelectedDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
     String ID_selected;
     ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
     TextView water, exerciseH, exerciseM, sleepH, sleepM;
@@ -127,7 +127,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),SymptomInfo.class);
-                String [] intent_str={ID,setSelectedDate};
+                String [] intent_str =  new String[2];
+                intent_str[0] = ID;
+                intent_str[1] = setSelectedDate;
                 intent.putExtra("info", intent_str);
                 startActivity(intent);
             }

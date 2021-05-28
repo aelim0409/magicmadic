@@ -81,9 +81,6 @@ public class basic_information_page extends AppCompatActivity {
         int num_cycle = CalMenstrualCycle(date_info);
 
 
-
-
-
        int[] expectedDay = DatePlus(today, num_cycle);
        String expectedDay_string = expectedDay[0] + "-" + (expectedDay[1]+1) + "-" + expectedDay[2];
        int num_expetedDay = DateCount(today, expectedDay_string);
@@ -104,11 +101,21 @@ public class basic_information_page extends AppCompatActivity {
         // 마지막 생리일일
         if(date_info.size() > 4) {
             tw_lastphysicalDay.setText(date_info.get(1));
-            tw_expectedDay.setText(Integer.toString(num_expetedDay));
+            if(Integer.toString(num_expetedDay).equals(today)){
+                tw_expectedDay.setText("오늘 입니다.");
+            }
+            else {tw_expectedDay.setText(Integer.toString(num_expetedDay) +" 일 후 ");}
 
             if(DateCompare(date_info.get(1), startDay_string) == 1){
-                tw_ovulationDay.setText(Integer.toString(num_ovulationDay));
-                tw_start.setText(Integer.toString(num_startDay));
+                if(Integer.toString(num_ovulationDay).equals(today)){
+                    tw_ovulationDay.setText("오늘 입니다.");
+                }
+                else {tw_ovulationDay.setText(Integer.toString(num_ovulationDay) +" 일 후 ");}
+
+                if(Integer.toString(num_startDay).equals(today)){
+                    tw_start.setText("오늘 입니다.");
+                }
+                else {tw_start.setText(Integer.toString(num_startDay) +" 일 후 ");}
             }
             else{
                 tw_ovulationDay.setText("배란 가능성 낮음");
@@ -121,6 +128,25 @@ public class basic_information_page extends AppCompatActivity {
             tw_ovulationDay.setText("사용자 정보가 없습니다.");
             tw_start.setText("사용자 정보가 없습니다.");
         }
+
+        TextView state_remind = (TextView)findViewById(R.id.state_remind);
+        int[] period = DatePlus(date_info.get(0),7);
+        String period_end_string = period[0] + "-" + (period[1]+1) + "-" + period[2];
+
+        int[] period2 = DatePlus(startDay_string, 5);
+        String period2_end_string = period2[0] + "-" + (period2[1]+1) + "-" + period2[2];
+
+        if(DateCompare(expectedDay_string, today)>0){
+            state_remind.setText("예상 생리일정이 지났습니다.");
+        } else if (DateCompare(ovulationDay_string, today) == 0){
+            state_remind.setText("예상 배란일 입니다.");
+        } else if (DateCompare(today , date_info.get(0)) > 0 && DateCompare(today, period_end_string) < 0){
+            state_remind.setText("생리 중 입니다.");
+        } else if(DateCompare(today , startDay_string) > 0 && DateCompare(today, period2_end_string) < 0){
+            state_remind.setText("가임기 입니다.");
+        } else state_remind.setText("비가임기 입니다.");
+
+
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
