@@ -131,7 +131,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         ID_selected=ID;
 
         String [] init_info = getInformation(ID).split(" ");
-
+        setSelectedDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Button symptom , mucus;
         symptom  = (Button)findViewById(R.id.symptom_button);
         mucus = (Button)findViewById(R.id.mucus_button);

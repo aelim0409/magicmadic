@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 import java.io.BufferedReader;
@@ -23,15 +24,16 @@ public class SymptomInfo extends AppCompatActivity {
 
     CheckBox symptoms1,symptoms2,symptoms3,symptoms4,symptoms5,symptoms6,symptoms7,symptoms8,symptoms9,symptoms10,symptoms11,symptoms12;
 
-    public void give_symptom(String ID,String none, String []a)
+
+    String id,setSelectedDate;
+    public void give_symptom(String ID,String date, String []a)
     {
         Log.w("symptom 후기 설정", "설정 정보 주는중");
         try {
             String id = ID;
 
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String today_date = sdf.format(date);
+            String none="true";
+
 
 
             String cramps=a[0];
@@ -53,12 +55,12 @@ public class SymptomInfo extends AppCompatActivity {
             fatigue, abdominalBloating, desires,
             insomnia, constipation, diarrhea
              */
-            Log.w("(저장시)앱에서 보낸 값", id +", "+today_date+", "+none+", "
+            Log.w("(저장시)앱에서 보낸 값", id +", "+date+", "+none+", "
                     +cramps+", "+breastTenderness+", "+headache+", "+acne+", "+lumbago+", "
                     +", "+nausea+", "+fatigue+", "+abdominalBloating+", "+
                     desires+", "+insomnia+", "+constipation+", "+diarrhea);//+water
             SymptomInfo.setSymptom task = new SymptomInfo.setSymptom();
-            String result = task.execute(id,today_date,none, cramps, breastTenderness,
+            String result = task.execute(id,date, none,cramps, breastTenderness,
                     headache, acne, lumbago, nausea,
                     fatigue, abdominalBloating, desires,
                     insomnia, constipation, diarrhea).get();
@@ -71,7 +73,7 @@ public class SymptomInfo extends AppCompatActivity {
         }
     }
 
-    public String get_symptom_info(String ID) {
+    public String get_symptom_info(String ID,String date) {
         Log.w("symptom 초기 설정", "설정 정보 주는중");
 
         String result="null";
@@ -79,13 +81,9 @@ public class SymptomInfo extends AppCompatActivity {
         try {
             String id = ID;
 
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String today_date = sdf.format(date);
-
-            Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
+            Log.w("(초기)앱에서 보낸 값", id +", "+date);//+water
             SymptomInfo.getSymptom task = new SymptomInfo.getSymptom();
-            result = task.execute(id,today_date).get();
+            result = task.execute(id,date).get();
             Log.w("(초기)받은값", result);
 
             //return result;
@@ -94,14 +92,26 @@ public class SymptomInfo extends AppCompatActivity {
 
         }return result;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_symptom_info);
-        Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
-        //String [] init_info = getInformation(ID).split(" ");
 
+        Intent Intent = getIntent();
+        String [] get_info = Intent.getStringArrayExtra("info");
+        id=get_info[0];
+        setSelectedDate=get_info[1];
+        if(setSelectedDate.equals("null"))
+        {
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String today_date = sdf.format(date);
+            setSelectedDate=today_date;
+        }
+        String [] init_info = get_symptom_info(id,setSelectedDate).split(" ");
+
+        Button symptom=findViewById(R.id.symptom_btn);
         symptoms1=(CheckBox)findViewById(R.id.symptom1);
         symptoms2=(CheckBox)findViewById(R.id.symptom2);
         symptoms3=(CheckBox)findViewById(R.id.symptom3);
@@ -127,6 +137,21 @@ public class SymptomInfo extends AppCompatActivity {
         symptoms10.setButtonDrawable(R.drawable.my_selector);
         symptoms11.setButtonDrawable(R.drawable.my_selector);
         symptoms12.setButtonDrawable(R.drawable.my_selector);
+
+        symptoms1.setChecked(Boolean.parseBoolean(init_info[1]));
+        symptoms2.setChecked(Boolean.parseBoolean(init_info[2]));
+        symptoms3.setChecked(Boolean.parseBoolean(init_info[3]));
+        symptoms4.setChecked(Boolean.parseBoolean(init_info[4]));
+        symptoms5.setChecked(Boolean.parseBoolean(init_info[5]));
+        symptoms6.setChecked(Boolean.parseBoolean(init_info[6]));
+        symptoms7.setChecked(Boolean.parseBoolean(init_info[7]));
+
+        symptoms8.setChecked(Boolean.parseBoolean(init_info[8]));
+        symptoms9.setChecked(Boolean.parseBoolean(init_info[9]));
+        symptoms10.setChecked(Boolean.parseBoolean(init_info[10]));
+        symptoms11.setChecked(Boolean.parseBoolean(init_info[11]));
+        symptoms12.setChecked(Boolean.parseBoolean(init_info[12]));
+
 
         String [] symptom_Check={"false","false","false","false","false","false","false","false","false","false","false","false"};
         symptoms1.setOnClickListener(new View.OnClickListener() {
@@ -252,6 +277,28 @@ public class SymptomInfo extends AppCompatActivity {
             }
         });
 
+        for(int i=0;i<12;i++)
+        {
+            if ((symptom_Check[i].equals( "false") )&& (init_info[i+1].equals("true")))
+                symptom_Check[i] = "true";
+            else if ((symptom_Check[i] .equals("true")) && (init_info[i+1].equals("false")))
+                symptom_Check[i] = "true";
+            else if ((symptom_Check[i].equals( "false")) && (init_info[i+1].equals("false")))
+                symptom_Check[i] = "false";
+            else if ((symptom_Check[i].equals( "true")) && (init_info[i+1].equals("true")))
+                symptom_Check[i] = "false";
+
+        }
+
+        symptom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                give_symptom(id,setSelectedDate,symptom_Check);
+            }
+        });
+
+
 
     }
 
@@ -270,7 +317,7 @@ public class SymptomInfo extends AppCompatActivity {
 
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&today_date="+strings[1];
+                sendMsg = "id="+strings[0]+"&date="+strings[1];
                 // GET방식으로 작성해 POST로 보냄 ex) "id=admin&pwd=1234";
                 osw.write(sendMsg);                           // OutputStreamWriter에 담아 전송
                 osw.flush();
@@ -304,7 +351,7 @@ public class SymptomInfo extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/setSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
+                URL url = new URL("http://3.36.134.232:8080/MedicMagic_SPRING/sendSymptom_view");  // 어떤 서버에 요청할지(localhost 안됨.)
                 // ex) http://123.456.789.10:8080/hello/android
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
@@ -318,7 +365,7 @@ public class SymptomInfo extends AppCompatActivity {
                  */
                 // 서버에 보낼 값 포함해 요청함.
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "id="+strings[0]+"&today_date="+strings[1]+"&none="+strings[2]+
+                sendMsg = "id="+strings[0]+"&date="+strings[1]+"&none="+strings[2]+
                         "&cramps="+strings[3]+"&breastTenderness="+strings[4]+"&headache="+strings[5]
                         +"&acne="+strings[6]+"&lumbago="+strings[7]+"&nausea="+strings[8]+"&fatigue="+strings[9]
                         +"&abdominalBloating="+strings[10]+"&desires="+strings[11]+"&insomnia="
