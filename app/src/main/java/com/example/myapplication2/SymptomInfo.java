@@ -33,6 +33,7 @@ public class SymptomInfo extends AppCompatActivity {
             String id = ID;
 
             String none="true";
+            //얜무조건 트루
 
 
 

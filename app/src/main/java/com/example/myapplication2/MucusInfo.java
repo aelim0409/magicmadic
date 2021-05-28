@@ -19,9 +19,7 @@ import java.net.URL;
 
 public class MucusInfo extends AppCompatActivity {
     CheckBox mucus1,mucus2,mucus3, mucus4,mucus5,mucus6;
-
-
-    String none="true";
+    
     String id,setSelectedDate;
 
     public void give_mucus(String ID,String date,String []b)
@@ -32,6 +30,7 @@ public class MucusInfo extends AppCompatActivity {
             id = ID;
 
             String none="true";
+            //얜 무조건 트루
             String mottled=b[0];
             String sticky=b[1];
             String creamy=b[2];
