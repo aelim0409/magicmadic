@@ -25,16 +25,40 @@
         android:layout_below="@+id/tv_main"
         android:layout_width="match_parent"
         android:layout_height="200dip"
-        android:id="@+id/graph" />
+        android:id="@+id/graph_date" />
 
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_water"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_below="@+id/tv_main"
+
+        android:layout_centerInParent="true"
+
+        android:layout_marginTop="213dp"
+         />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_below="@+id/tv_main"
+
+        android:layout_marginTop="416dp" />
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_sleep"
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:layout_below="@+id/tv_main"
+
+        android:layout_marginTop="416dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-
         android:layout_height="wrap_content"
-
         android:layout_alignParentBottom="true">
-
 
         <Button
             android:id="@+id/fitness_btn"
