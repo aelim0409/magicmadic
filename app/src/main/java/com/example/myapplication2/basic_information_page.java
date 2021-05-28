@@ -81,9 +81,9 @@ public class basic_information_page extends AppCompatActivity {
         int num_cycle = CalMenstrualCycle(date_info);
 
 
-       int[] expectedDay = DatePlus(today, num_cycle);
-       String expectedDay_string = expectedDay[0] + "-" + (expectedDay[1]+1) + "-" + expectedDay[2];
-       int num_expetedDay = DateCount(today, expectedDay_string);
+       int[] expectedDay = DatePlus(date_info.get(0), num_cycle);
+       String expectedDay_string = expectedDay[0] + "-" + (expectedDay[1]+1) + "-" + expectedDay[2]; // date_info.get(3);
+       int num_expetedDay = DateCount(today, expectedDay_string); // 예상일이 지나면 계산 안됨.
 
 
        int[] ovulationDay = DateMinus(expectedDay_string, num_cycle/2);
@@ -95,24 +95,41 @@ public class basic_information_page extends AppCompatActivity {
        String startDay_string =  startDay[0] + "-" + (startDay[1] + 1) + "-" + startDay[2];
        int num_startDay = DateCount(today, startDay_string);
 
+       TextView state_remind = (TextView)findViewById(R.id.state_remind);
+
+       int[] period = new int[3];
+       String period_end_string;
+       if(date_info.get(1) == null) {
+           period = DatePlus(date_info.get(0),7);
+           period_end_string = period[0] + "-" + (period[1]+1) + "-" + period[2];
+       } else period_end_string = date_info.get(1);
+
+       int[] period2 = DatePlus(startDay_string, 5);
+       String period2_end_string = period2[0] + "-" + (period2[1]+1) + "-" + period2[2];
+
         // 평균생리주기
         tw_cycle.setText(Integer.toString(num_cycle));
 
         // 마지막 생리일일
         if(date_info.size() > 4) {
             tw_lastphysicalDay.setText(date_info.get(1));
-            if(Integer.toString(num_expetedDay).equals(today)){
+            if(num_expetedDay == 0){
                 tw_expectedDay.setText("오늘 입니다.");
             }
-            else {tw_expectedDay.setText(Integer.toString(num_expetedDay) +" 일 후 ");}
+            else {
+                if(num_expetedDay > 0)
+                    tw_expectedDay.setText(Integer.toString(num_expetedDay) +" 일 후 ");
+                else
+                    tw_expectedDay.setText(Integer.toString(num_expetedDay) +" 일 전 ");
+            }
 
-            if(DateCompare(date_info.get(1), startDay_string) == 1){
-                if(Integer.toString(num_ovulationDay).equals(today)){
+            if(DateCompare(period_end_string, startDay_string) == 1){// date_info.get(1) 없을수도 있을때는? 해결
+                if(num_ovulationDay == 0){
                     tw_ovulationDay.setText("오늘 입니다.");
                 }
                 else {tw_ovulationDay.setText(Integer.toString(num_ovulationDay) +" 일 후 ");}
 
-                if(Integer.toString(num_startDay).equals(today)){
+                if(num_startDay == 0){
                     tw_start.setText("오늘 입니다.");
                 }
                 else {tw_start.setText(Integer.toString(num_startDay) +" 일 후 ");}
@@ -129,24 +146,17 @@ public class basic_information_page extends AppCompatActivity {
             tw_start.setText("사용자 정보가 없습니다.");
         }
 
-        TextView state_remind = (TextView)findViewById(R.id.state_remind);
-        int[] period = DatePlus(date_info.get(0),7);
-        String period_end_string = period[0] + "-" + (period[1]+1) + "-" + period[2];
-
-        int[] period2 = DatePlus(startDay_string, 5);
-        String period2_end_string = period2[0] + "-" + (period2[1]+1) + "-" + period2[2];
-
-        if(DateCompare(expectedDay_string, today)>0){
+        if(DateCompare(expectedDay_string, today) > 0){
             state_remind.setText("예상 생리일정이 지났습니다.");
         } else if (DateCompare(ovulationDay_string, today) == 0){
             state_remind.setText("예상 배란일 입니다.");
-        } else if (DateCompare(today , date_info.get(0)) > 0 && DateCompare(today, period_end_string) < 0){
+        } else if (DateCompare(today , date_info.get(0)) >= 0 && DateCompare(today, period_end_string) <= 0){
             state_remind.setText("생리 중 입니다.");
-        } else if(DateCompare(today , startDay_string) > 0 && DateCompare(today, period2_end_string) < 0){
+        } else if(DateCompare(today , startDay_string) >= 0 && DateCompare(today, period2_end_string) <= 0){
             state_remind.setText("가임기 입니다.");
         } else state_remind.setText("비가임기 입니다.");
 
-
+        //System.out.println( " 생리 예정일 : "+ expectedDay_string + " 예상 배란일  : "+ ovulationDay_string +  " 가임기 예상 : "+startDay_string +  " 생리 최근 마지막에 끝난날 : "+period_end_string +  " 가임기 끝나는날 : "+period2_end_string);
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
@@ -321,31 +331,59 @@ public class basic_information_page extends AppCompatActivity {
         return result_date;
     }
     public int DateCount(String to_date, String from_date){ // year month day // 생리기간 생리주기 계산가능
-        int[] result_todate = new int[3];
-        int[] result_fromdate = new int[3];
+        if(DateCompare(to_date , from_date) < 0) {
+            int[] dateto =  SelectedDate(from_date);
+            int[] datefrom =  SelectedDate(to_date);
+            int to_date_day = dateto[2];
+            int to_date_month = dateto[1];
+            int to_date_year = dateto[0];
 
-        int[] dateto =  SelectedDate(to_date);
-        int[] datefrom =  SelectedDate(from_date);
-        int to_date_day = dateto[2];
-        int to_date_month = dateto[1];
-        int to_date_year = dateto[0];
+            int from_date_day = datefrom[2];
+            int from_date_month = datefrom[1];
+            int from_date_year = datefrom[0];
 
-        int from_date_day = datefrom[2];
-        int from_date_month = datefrom[1];
-        int from_date_year = datefrom[0];
+            int cnt = 0;
 
-        int cnt = 0;
-
-        int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-        int lastDayOfdate = mdays[to_date_month];
-        for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
-            to_date_day++; cnt++;
-            if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                to_date_day=1;
-                to_date_month++;
+            int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+            int lastDayOfdate = mdays[to_date_month];
+            for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
+                to_date_day++; cnt++;
+                if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                    to_date_day=1;
+                    to_date_month++;
+                }
             }
+            cnt = -cnt;
+            return cnt;
+
         }
-        return cnt;
+
+        else{
+            int[] dateto =  SelectedDate(to_date);
+            int[] datefrom =  SelectedDate(from_date);
+            int to_date_day = dateto[2];
+            int to_date_month = dateto[1];
+            int to_date_year = dateto[0];
+
+            int from_date_day = datefrom[2];
+            int from_date_month = datefrom[1];
+            int from_date_year = datefrom[0];
+
+            int cnt = 0;
+
+            int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+            int lastDayOfdate = mdays[to_date_month];
+            for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
+                to_date_day++; cnt++;
+                if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                    to_date_day=1;
+                    to_date_month++;
+                }
+            }
+            return cnt;
+        }
+
+
     }
 
     String IntToDateString(int year, int month, int day){
@@ -358,15 +396,19 @@ public class basic_information_page extends AppCompatActivity {
         int date_year = date1[0];
 
         int[] date2 =  SelectedDate(str2);
-        int date_day2 = date1[2];
-        int date_month2 = date1[1];
-        int date_year2 = date1[0];
+        int date_day2 = date2[2];
+        int date_month2 = date2[1];
+        int date_year2 = date2[0];
 
-        if(date_year > date_year2) return -1; else if(date_year < date_year2) return 1;
+        if(date_year > date_year2) return -1;
+        else if(date_year < date_year2) return 1;
         else{
-            if(date_month > date_month2) return -1; else if(date_month < date_month2) return 1;
+            if(date_month > date_month2) return -1;
+            else if(date_month < date_month2) return 1;
             else{
-                if(date_day > date_day2) return -1; else if(date_day < date_day2) return 1; else return 0;
+                if(date_day > date_day2) return -1;
+                else if(date_day < date_day2) return 1;
+                else return 0;
             }
         }
     }
