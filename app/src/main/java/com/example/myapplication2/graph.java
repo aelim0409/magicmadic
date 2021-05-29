@@ -183,6 +183,7 @@ public class graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -192,6 +193,7 @@ public class graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -201,6 +203,7 @@ public class graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),graph.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -210,7 +213,10 @@ public class graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+
+                intent.putExtra("Id", ID);
                 startActivity(intent);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         });
 
@@ -219,6 +225,7 @@ public class graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });

@@ -85,7 +85,7 @@ public class basic_information_page extends AppCompatActivity {
 
         System.out.println("date_info" + date_info);
 
-        System.out.println("date_info : " +date_info);
+        System.out.println("date_info : " + date_info);
 
         int num_cycle = CalMenstrualCycle(date_info);
 
