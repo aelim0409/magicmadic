@@ -49,6 +49,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     ImageButton waterplus, waterminus, exerciseplus, exerciseminus, sleepplus, sleepminus;
     TextView water, exerciseH, exerciseM, sleepH, sleepM;
 
+    Button start_button, end_button;
+
     String START="null";
     String END ="null";
 
@@ -123,6 +125,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         Button symptom , mucus;
         symptom  = (Button)findViewById(R.id.symptom_button);
         mucus = (Button)findViewById(R.id.mucus_button);
+        start_button = (Button)findViewById(R.id.start_button);
+        end_button = (Button)findViewById(R.id.end_button);
         symptom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -425,10 +429,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     if(startDay=="null" && START!="null")
                     {
                         startDay=START;
-
                     }
                     else if(endDay=="null"&&END!="null")
+                    {
                         endDay=END;
+                    }
+
                     Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
                     MainActivity2.customTask task = new MainActivity2.customTask();
@@ -442,9 +448,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 }
             }
         });
-
-        Button start_button = (Button)findViewById(R.id.start_button);
-        Button end_button = (Button)findViewById(R.id.end_button);
         //String Startdate="null";
         final Date[] start = new Date[1];
         final Date[] end = new Date[1];
@@ -453,35 +456,49 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 String date =  main_date_view.getText().toString();
+
+                int day = 1, month = 1, year = 2021, period = 5, lastDay = 31;
+
                 try {
+                    end_day_input = "null";
                     start[0] = SelectedDate(date);
-                    start_day_input= setSelectedDate;
-                    //START=start_day_input;
-                    end_day_input="null";
-                    int day = CalendarDay.from(start[0]).getDay();
-                    int month = CalendarDay.from(start[0]).getMonth();
-                    int year = CalendarDay.from(start[0]).getYear();
-                    int period=5;
+                    day = CalendarDay.from(start[0]).getDay();
+                    month = CalendarDay.from(start[0]).getMonth();
+                    year = CalendarDay.from(start[0]).getYear();
                     CalendarDay.from(start[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     System.out.println(setSelectedDate);
-
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-                    int lastDay = mdays[month];
-
-                    System.out.println(lastDay);
-                    for(int i=0;i<period;i++){
-                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
-                        day++;
-                        if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                            day=1;
-                            month++;
+                    lastDay = mdays[month];
+                } catch(ParseException e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    if(!START.equals("null")) {
+                        start_button.setBackgroundColor(Color.rgb(255,255,255));
+                        START = "null";
+                        start_day_input = "null";
+                        for(int i=0;i<period;i++){
+                            cal_view.addDecorators(new EventDecorator(Color.rgb(237, 250, 255), Collections.singleton(CalendarDay.from(year,month,day))));
+                            day++;
+                            if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                day=1;
+                                month++;
+                            }
+                        }
+                    } else {
+                        start_button.setBackgroundColor(Color.rgb(255, 255, 182));
+                        start_day_input= setSelectedDate;
+                        START = start_day_input;
+                        for(int i=0;i<period;i++){
+                            cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year,month,day))));
+                            day++;
+                            if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                day=1;
+                                month++;
+                            }
                         }
                     }
-                  //  giveSelectedInformation(ID_selected,setSelectedDate);
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
                 }
             }
         });
@@ -491,29 +508,40 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             @Override
             public void onClick(View v) {
                 String date =  main_date_view.getText().toString();
+
+                int day = 1, month = 1, year = 2021, period = 5, lastDay = 31;
+
                 try {
                     end[0] = SelectedDate(date);
-                    end_day_input=setSelectedDate;
-                    //END=end_day_input;
                     start_day_input="null";
 
-                    int day = CalendarDay.from(end[0]).getDay()+1;
-                    int month = CalendarDay.from(end[0]).getMonth();
-                    int year = CalendarDay.from(end[0]).getYear();
+                    day = CalendarDay.from(end[0]).getDay()+1;
+                    month = CalendarDay.from(end[0]).getMonth();
+                    year = CalendarDay.from(end[0]).getYear();
                     CalendarDay.from(end[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-                    int lastDay = mdays[month];
-                    for(int i=0;i<5;i++){
-                        cal_view.addDecorators(new EventDecorator(Color.parseColor("#EDFAFF"), Collections.singleton(CalendarDay.from(year,month,day))));
-                        day+=1;
-                        if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                            day=1;
-                            month++;
-                        }
-                    }
+                    lastDay = mdays[month];
                 } catch (ParseException e) {
                     e.printStackTrace();
+                } finally {
+                    if(!END.equals("null")) {
+                        end_button.setBackgroundColor(Color.rgb(255, 255, 255));
+                        END = "null";
+                        end_day_input = "null";
+                    } else {
+                        end_button.setBackgroundColor(Color.rgb(255, 255, 182));
+                        end_day_input = setSelectedDate;
+                        END = end_day_input;
+                        for(int i=0;i<5;i++){
+                            cal_view.addDecorators(new EventDecorator(Color.parseColor("#EDFAFF"), Collections.singleton(CalendarDay.from(year,month,day))));
+                            day+=1;
+                            if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                day=1;
+                                month++;
+                            }
+                        }
+                    }
                 }
             }
         });
@@ -562,7 +590,17 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         sleepM.setText(Sleep[1]);
 
         START=selected_info[3];
+        if(!START.equals("null")) {
+            start_button.setBackgroundColor(Color.rgb(255, 255, 182));
+        } else {
+            start_button.setBackgroundColor(Color.rgb(255, 255, 255));
+        }
         END=selected_info[4];
+        if(!END.equals("null")) {
+            end_button.setBackgroundColor(Color.rgb(255, 255, 182));
+        } else {
+            end_button.setBackgroundColor(Color.rgb(255, 255, 255));
+        }
         //시작날짜와 끝날짜 정보도 받음 캘린더 가시화 시켜야함.
     }
 
