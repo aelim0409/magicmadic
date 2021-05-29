@@ -151,42 +151,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String exercise_time = init_info[1];
         String water_intake = init_info[2];
 
-        /*for(int i=3;i<init_info.length;i+=2){
-            System.out.println(" "+3333333);
-            try {
-                if (!init_info[i].equals("null")) {
-
-                    String[] start_d_day = init_info[i].split("-");
-                    String[] end_d_day = init_info[i + 1].split("-");
-                    //d_day[0]=2021 d_day[1]=06 d_day[2]=13
-
-                    int year = Integer.parseInt(start_d_day[0]);
-                    int month_itr = Integer.parseInt(start_d_day[1]) - 1;
-                    int day = Integer.parseInt(start_d_day[2]);
-                    int day_end = Integer.parseInt(end_d_day[2]);
-
-                    int period = day_end - day + 1;
-
-                    int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-                    int lastDay = mdays[month_itr];
-
-                    if (period < 0) {
-                        period += mdays[month_itr];
-                    }
-                    for (int j = 0; j < period; j++) {
-                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year, month_itr, day))));
-                        System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
-                        day++;
-                        if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                            day = 1;
-                            month_itr++;
-                        }
-                    }
-                }
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }*/
         //getinforamation 한 시작과 끝 날짜
 
         waterminus = (ImageButton)findViewById(R.id.waterminus);
@@ -378,6 +342,48 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         cal_view.setOnDateChangedListener(this);
         cal_view.setOnMonthChangedListener((OnMonthChangedListener) this);
         cal_view.setSelectedDate(CalendarDay.today());
+
+        int year;
+        int day;
+        int period=0;
+        String [] start_d_day;
+        String [] end_d_day;
+
+        for(int i=0;i<5;i+=2){
+            if(!init_info[i+5].equals("null")){
+                try {
+                    start_d_day = init_info[i+5].split("-");
+                    end_d_day = init_info[i + 6].split("-");
+
+                    year = Integer.parseInt(start_d_day[0]);
+                    int month_itr = Integer.parseInt(start_d_day[1]) - 1;
+                    day = Integer.parseInt(start_d_day[2]);
+                    int day_end = Integer.parseInt(end_d_day[2]);
+
+                    period = day_end - day + 1;
+
+                    int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    int lastDay = mdays[month_itr];
+
+                    if (period < 0) {
+                        period += mdays[month_itr];
+                    }
+
+                    for (int j = 0; j < period; j++) {
+
+                        cal_view.addDecorators(new EventDecorator(Color.RED, Collections.singleton(CalendarDay.from(year, month_itr, day))));
+                        System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
+                        day++;
+                        if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                            day = 1;
+                            month_itr++;
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
         Button save_button=findViewById(R.id.save_button);
 
