@@ -579,32 +579,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             period += mdays[month_itr];
                         }
 
-
-
-//                        String start_sl;
-//                        try {
-//                            start_sl = DateOvulationDay(year + "-" + (month+1) + "-" + day, 28);
-//                            int[] end_sl_num = DatePlus(start_sl, 5);
-//                            String end_sl = end_sl_num[0] + "-" + (end_sl_num[1] + 1) + "-" + end_sl_num[2];
-//
-//                            System.out.println("start_sl :" + start_sl);
-//                            System.out.println("end_sl : " + end_sl );
-//
-//                            Iterator<EventDecorator> iterator1 = eventDecoratorArrayList.iterator();
-//                            while(iterator1.hasNext()) {
-//                                EventDecorator eventDecorator1 = iterator1.next();
-//                                System.out.println(eventDecorator1.dates);
-//                                if(DateCompare(eventDecorator1.dates.toString(), start_sl) >= 0 && DateCompare(eventDecorator1.dates.toString(), end_sl) <= 0) {
-//                                    cal_view.removeDecorator(eventDecorator1);
-//                                    iterator1.remove();
-//                                }
-//                            }
-//
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-
-
                         try {
                             String[] start_sl_string = DateOvulationDay(year + "-" + (month+1) + "-" + day, 28, 7).split("-");
                             int[] start_sl_int = new int[3];
@@ -612,7 +586,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             start_sl_int[1] = Integer.parseInt(start_sl_string[1]);
                             start_sl_int[2] = Integer.parseInt(start_sl_string[2]);
                             for(int i=0;i<period;i++){
-                                System.out.println("ddd : " + start_sl_int[0] + " -" + start_sl_int[1] + " -" + start_sl_int[2]);
                                 EventDecorator objectDecorator1 = new EventDecorator(Collections.singleton(CalendarDay.from(start_sl_int[0] , start_sl_int[1]-1 , start_sl_int[2] )));
 
                                 Iterator<EventDecorator> iterator1 = eventDecoratorArrayList.iterator();
@@ -635,7 +608,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
 
                         for(int i=0;i<period;i++){
-                            System.out.println(year+"-"+month+"-"+day);
                             EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year, month, day)));
 
                             Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
@@ -753,7 +725,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                                     iterator.remove();
                                 }
                             }
-
                             day2++;
                             if (day2 > lastDay2) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                                 day2 = 1;
@@ -773,10 +744,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             }
                         }
 
-
-
                         ///// ++++
-
                         int count = 0;
                         try {
                             count = DateCount(mg_START, mg_END);
@@ -791,7 +759,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             start_sl_int[1] = Integer.parseInt(start_sl_string[1]);
                             start_sl_int[2] = Integer.parseInt(start_sl_string[2]);
                             for(int i=0;i<period;i++){
-                                System.out.println("ddd : " + start_sl_int[0] + " -" + start_sl_int[1] + " -" + start_sl_int[2]);
                                 EventDecorator objectDecorator1 = new EventDecorator(Collections.singleton(CalendarDay.from(start_sl_int[0] , start_sl_int[1]-1 , start_sl_int[2] )));
 
                                 Iterator<EventDecorator> iterator1 = eventDecoratorArrayList.iterator();
@@ -840,6 +807,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         period = day_end - day + 1;
 
                         int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                        if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                            mdays[1] = 29;
                         lastDay = mdays[month_itr];
 
                         if (period < 0) {
