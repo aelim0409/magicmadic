@@ -353,21 +353,54 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String [] start_d_day;
         String [] end_d_day;
 
+        //init_info[0]=sleeptime init_info[1]=exercisetime init_info[2]=waterintake
+        // init_info[3]=startday1 init_info[4]=endday1 init_info[5]=null init_info[6]=null init_info[7]=null init_info[8]=null
+
         for(int i=0;i<5;i+=2){
             if(!init_info[i+5].equals("null")){
                 try {
                     start_d_day = init_info[i+5].split("-");
-                    end_d_day = init_info[i + 6].split("-");
+                    end_d_day = init_info[i + 5].split("-");
 
                     year = Integer.parseInt(start_d_day[0]);
                     int month_itr = Integer.parseInt(start_d_day[1]) - 1;
                     day = Integer.parseInt(start_d_day[2]);
-                    int day_end = Integer.parseInt(end_d_day[2]);
-
-                    period = day_end - day + 1;
 
                     int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
                     int lastDay = mdays[month_itr];
+
+                    if(init_info[i+6].equals("null")){
+                        period=5;
+                        int day_end=Integer.parseInt(start_d_day[2])+4;
+                        //end_d_day[2]=start_d_day[2];
+                        if(day_end > lastDay){
+                            if(Integer.parseInt(start_d_day[1])+1<10){
+                                end_d_day[1]="0"+Integer.toString(Integer.parseInt(start_d_day[1])+1);
+                            }
+                            else{
+                                end_d_day[1]=Integer.toString(Integer.parseInt(start_d_day[1])+1);
+                            }
+                            end_d_day[0]= start_d_day[0];
+                            if(day_end-lastDay<10){
+                                end_d_day[2]="0"+Integer.toString(day_end-lastDay);
+                            }
+                            else{
+                                end_d_day[2]= Integer.toString(day_end-lastDay);
+                            }
+                        }
+                        else{
+                            end_d_day[0]=start_d_day[0];
+                            end_d_day[1]=start_d_day[1];
+                            end_d_day[2]=Integer.toString(day_end);
+                        }
+                        System.out.println("첫 화면에서 end 정보가 없는 경우"+end_d_day[0]+"년 "+end_d_day[1]+"월 "+end_d_day[2]+"일일");
+                    }
+                    else{
+                        end_d_day = init_info[i + 6].split("-");
+                        int day_end = Integer.parseInt(end_d_day[2]);
+                        period = day_end - day + 1;
+                        System.out.println("첫 화면에서 end 정보가 있는 경우"+end_d_day[0]+"년 "+end_d_day[1]+"월 "+end_d_day[2]+"일일");
+                    }
 
                     if (period < 0) {
                         period += mdays[month_itr];
@@ -619,7 +652,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         }
 
         String [] month_info= giveChangingMonth(ID_selected, month).split(" ");
-        System.out.println(month_info);
         //month_info[0]=2021-04-01, month_info[1]=2021-04-06, month_info[2]="null", month_info[3]="null", month_info[4]="null", month_info[5]="null"
 
         int year;
@@ -630,20 +662,50 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         for(int i=0;i<5;i+=2){
             if(!month_info[i].equals("null")){
                 try {
-                    start_d_day = month_info[i].split("-");
-                    end_d_day = month_info[i + 1].split("-");
-                    //d_day[0]=2021 d_day[1]=06 d_day[2]=13
+
+                    start_d_day = month_info[i].split("-");  // start_d_day[0]=년 start_d_day[1]=월 start_d_day[2]=일
+                    end_d_day= month_info[i].split("-");
 
                     year = Integer.parseInt(start_d_day[0]);
                     int month_itr = Integer.parseInt(start_d_day[1]) - 1;
                     day = Integer.parseInt(start_d_day[2]);
-                    int day_end = Integer.parseInt(end_d_day[2]);
-
-                    period = day_end - day + 1;
 
                     int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
                     int lastDay = mdays[month_itr];
 
+                    if(month_info[i+1].equals("null")){
+                        period=5;
+                        int day_end=Integer.parseInt(start_d_day[2])+4;
+                        //end_d_day[2]=start_d_day[2];
+                        if(day_end > lastDay){
+                            if(Integer.parseInt(start_d_day[1])+1<10){
+                                end_d_day[1]="0"+ Integer.toString(month_itr+1);
+                            }
+                            else{
+                                end_d_day[1]= Integer.toString(month_itr+1);
+                            }
+                            if(day_end-lastDay<10){
+                                end_d_day[2]="0"+Integer.toString((day_end-lastDay));
+                            }
+                            else{
+                                end_d_day[2]= Integer.toString((day_end-lastDay));
+                            }
+                        }
+                        else{
+                            end_d_day[0]=start_d_day[0];
+                            end_d_day[1]=start_d_day[1];
+                            end_d_day[2]=Integer.toString(day_end);
+                        }
+                        System.out.println("달 바꼈을 때 end 정보가 없는 경우"+end_d_day[0]+"년 "+end_d_day[1]+"월 "+end_d_day[2]+"일일");
+                   }
+                    else{
+                        end_d_day = month_info[i + 1].split("-");
+                        int day_end = Integer.parseInt(end_d_day[2]);
+                        period = day_end - day + 1;
+                        System.out.println("달 바꼈을 때 end 정보가 있는 경우 "+end_d_day[0]+end_d_day[1]+ end_d_day[2]);
+                    }
+
+                    //start_d_day[0]=2021 start_d_day[1]=06 start_d_day[2]=13
                     if (period < 0) {
                         period += mdays[month_itr];
                     }
