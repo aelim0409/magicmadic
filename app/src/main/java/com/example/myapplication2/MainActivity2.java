@@ -132,10 +132,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         String [] init_info = getInformation(ID).split(" ");
         for(int i = 5 ; i < 11; i++) {
-            if(i % 2 != 0) {
-                mg_STARTList.add(init_info[i]);
-            } else {
-                mg_ENDList.add(init_info[i]);
+            if(!init_info[i].equals("null")) {
+                if(i % 2 != 0) {
+                    mg_STARTList.add(init_info[i]);
+                } else {
+                    mg_ENDList.add(init_info[i]);
+                }
             }
         }
 
@@ -513,6 +515,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 int day = 1, month = 1, year = 2021, period = 5, lastDay = 31;
 
                 try {
+                    start_day_input = "null";
                     end_day_input = "null";
                     start[0] = SelectedDate(date);
                     day = CalendarDay.from(start[0]).getDay();
@@ -582,6 +585,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                                 month++;
                             }
 
+                            mg_STARTList.remove(mg_START);
                             START = "null";
                             start_day_input = "null";
                             mg_START = "null";
@@ -589,16 +593,20 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     } else {
                         start_button.setBackgroundColor(Color.rgb(255, 255, 182));
                         start_day_input= setSelectedDate;
-                        START = setSelectedDate;
-                        mg_START = start_day_input;
 
-                        for(int i=0;i<5;i++){
-                            eventDecoratorArrayList.add(new EventDecorator(Collections.singleton(CalendarDay.from(year, month, day))));
-                            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
-                            day++;
-                            if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                                day=1;
-                                month++;
+                        if(mg_STARTList.size() == mg_ENDList.size()) {
+                            START = setSelectedDate;
+                            mg_START = start_day_input;
+                            mg_STARTList.add(mg_START);
+
+                            for(int i=0;i<5;i++){
+                                eventDecoratorArrayList.add(new EventDecorator(Collections.singleton(CalendarDay.from(year, month, day))));
+                                cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+                                day++;
+                                if(day>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                    day=1;
+                                    month++;
+                                }
                             }
                         }
                     }
@@ -616,6 +624,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
                 try {
                     start_day_input = "null";
+                    end_day_input = "null";
                     end[0] = SelectedDate(date);
 
                     day = CalendarDay.from(end[0]).getDay()+1;
@@ -695,6 +704,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             }
                         }
 
+                        mg_ENDList.remove(mg_END);
                         END = "null";
                         end_day_input = "null";
                         mg_END = "null";
@@ -705,69 +715,80 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         END = end_day_input;
                         mg_END = end_day_input;
 
-                        String[] start_day = mg_START.split("-");
-                        String[] end_day = mg_END.split("-");
-
-                        System.out.println(start_day[0]+"-"+start_day[1]+"-"+start_day[2]);
-                        System.out.println(end_day[0]+"-"+end_day[1]+"-"+end_day[2]);
-
-                        year = Integer.parseInt(start_day[0]);
-                        int month_itr = Integer.parseInt(start_day[1]) - 1;
-                        day = Integer.parseInt(start_day[2]);
-                        int day_end = Integer.parseInt(end_day[2]);
-
-                        period = day_end - day + 1;
-
-                        int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-                        lastDay = mdays[month_itr];
-
-                        if (period < 0) {
-                            period += mdays[month_itr];
-                        }
-
-                        int year2 = year, day2 = day, month_itr2 = month_itr, lastDay2 = lastDay;
-                        for(int j = 0; j < 5; j++) {
-                            EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year2, month_itr2, day2)));
-
-                            Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
-                            while(iterator.hasNext()) {
-                                EventDecorator eventDecorator1 = iterator.next();
-                                System.out.println(eventDecorator1.dates);
-                                if(eventDecorator1.dates.equals(objectDecorator.dates)) {
-                                    cal_view.removeDecorator(eventDecorator1);
-                                    iterator.remove();
-                                }
-                            }
-
-                            day2++;
-                            if (day2 > lastDay2) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                                day2 = 1;
-                                month_itr2++;
+                        if(mg_START.equals("null")) {
+                            if(mg_STARTList.size() > mg_ENDList.size()) {
+                                mg_START = mg_STARTList.get(mg_STARTList.size()-1);
                             }
                         }
 
-                        for (int j = 0; j < period; j++) {
-                            EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year, month_itr, day)));
-                            System.out.println(year+","+month_itr+","+day);
+                        if(!mg_START.equals("null")) {
+                            if (mg_START.compareTo(mg_END) < 0 && mg_STARTList.size() == mg_ENDList.size()+1) {
+                                String[] start_day = mg_START.split("-");
+                                String[] end_day = mg_END.split("-");
 
-                            Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
-                            while(iterator.hasNext()) {
-                                EventDecorator eventDecorator1 = iterator.next();
-                                System.out.println(eventDecorator1.dates);
-                                if(eventDecorator1.dates.equals(objectDecorator.dates)) {
-                                    cal_view.removeDecorator(eventDecorator1);
-                                    iterator.remove();
+                                System.out.println(start_day[0]+"-"+start_day[1]+"-"+start_day[2]);
+                                System.out.println(end_day[0]+"-"+end_day[1]+"-"+end_day[2]);
+
+                                year = Integer.parseInt(start_day[0]);
+                                int month_itr = Integer.parseInt(start_day[1]) - 1;
+                                day = Integer.parseInt(start_day[2]);
+                                int day_end = Integer.parseInt(end_day[2]);
+
+                                period = day_end - day + 1;
+
+                                int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                                lastDay = mdays[month_itr];
+
+                                if (period < 0) {
+                                    period += mdays[month_itr];
                                 }
-                            }
 
-                            eventDecoratorArrayList.add(objectDecorator);
-                            cal_view.addDecorators(objectDecorator);
+                                int year2 = year, day2 = day, month_itr2 = month_itr, lastDay2 = lastDay;
+                                for(int j = 0; j < 5; j++) {
+                                    EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year2, month_itr2, day2)));
 
-                            System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
-                            day++;
-                            if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                                day = 1;
-                                month_itr++;
+                                    Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
+                                    while(iterator.hasNext()) {
+                                        EventDecorator eventDecorator1 = iterator.next();
+                                        System.out.println(eventDecorator1.dates);
+                                        if(eventDecorator1.dates.equals(objectDecorator.dates)) {
+                                            cal_view.removeDecorator(eventDecorator1);
+                                            iterator.remove();
+                                        }
+                                    }
+
+                                    day2++;
+                                    if (day2 > lastDay2) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                        day2 = 1;
+                                        month_itr2++;
+                                    }
+                                }
+
+                                for (int j = 0; j < period; j++) {
+                                    EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year, month_itr, day)));
+                                    System.out.println(year+","+month_itr+","+day);
+
+                                    Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
+                                    while(iterator.hasNext()) {
+                                        EventDecorator eventDecorator1 = iterator.next();
+                                        System.out.println(eventDecorator1.dates);
+                                        if(eventDecorator1.dates.equals(objectDecorator.dates)) {
+                                            cal_view.removeDecorator(eventDecorator1);
+                                            iterator.remove();
+                                        }
+                                    }
+
+                                    eventDecoratorArrayList.add(objectDecorator);
+                                    cal_view.addDecorators(objectDecorator);
+
+                                    System.out.println("year = " + year + "month_itr = " + month_itr + " day= " + day);
+                                    day++;
+                                    if (day > lastDay) {   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                        day = 1;
+                                        month_itr++;
+                                    }
+                                }
+                                mg_ENDList.add(mg_END);
                             }
                         }
                     }
@@ -850,10 +871,12 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String [] month_info= giveChangingMonth(ID_selected, month).split(" ");
         System.out.println(month_info);
         for(int i = 0; i < 6; i++) {
-            if(i % 2 == 0) {
-                mg_STARTList.add(month_info[i]);
-            } else {
-                mg_ENDList.add(month_info[i]);
+            if(!month_info[i].equals("null")) {
+                if(i % 2 == 0) {
+                    mg_STARTList.add(month_info[i]);
+                } else {
+                    mg_ENDList.add(month_info[i]);
+                }
             }
         }
         //month_info[0]=2021-04-01, month_info[1]=2021-04-06, month_info[2]="null", month_info[3]="null", month_info[4]="null", month_info[5]="null"
