@@ -57,7 +57,7 @@ public class basic_information_page extends AppCompatActivity {
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
         TextView name= findViewById(R.id.PersonName);
-        name.setText(ID+ " 님 안녕하세요 :)");
+        name.setText(ID);
 
         String info = getInformation(ID);
         String[] init_info = info.split(" ");
@@ -77,7 +77,7 @@ public class basic_information_page extends AppCompatActivity {
         TextView today_is = (TextView)findViewById(R.id.today_is);
         today_is.setText(today);
 
-
+        System.out.println("init_info : " + init_info[0]);
 
         for(int i=0;i<6;i++){
 //            System.out.println("init_info : " + (i*4)+ " " + init_info[i*4]);
@@ -87,12 +87,7 @@ public class basic_information_page extends AppCompatActivity {
             }
         }
 
-
-//        System.out.println("init_info : " + init_info[0]);
-//
-//        System.out.println("date_info" + date_info);
-//
-//        System.out.println("date_info : " + date_info);
+        System.out.println("date_info" + date_info);
 
 
 
@@ -123,12 +118,12 @@ public class basic_information_page extends AppCompatActivity {
 
 
 
-            int[] period = new int[3];
-            String period_end_string;
-            if (date_info.get(1).equals("null")) {
-                period = DatePlus(date_info.get(0), 7);
-                period_end_string = period[0] + "-" + (period[1] + 1) + "-" + period[2];
-            } else period_end_string = date_info.get(1);
+       int[] period = new int[3];
+       String period_end_string;
+       if(date_info.get(1) == null) {
+           period = DatePlus(date_info.get(0),7);
+           period_end_string = period[0] + "-" + (period[1]+1) + "-" + period[2];
+       } else period_end_string = date_info.get(1);
 
             int[] period2 = DatePlus(startDay_string, 5);
             String period2_end_string = period2[0] + "-" + (period2[1] + 1) + "-" + period2[2];
