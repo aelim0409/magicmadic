@@ -387,6 +387,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     day = Integer.parseInt(start_d_day[2]);
 
                     int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     int lastDay = mdays[month_itr];
 
                     if(init_info[i+6].equals("null")){
@@ -523,6 +525,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     Calendar cc = Calendar.getInstance();
                     System.out.println(setSelectedDate);
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     lastDay = mdays[month];
                 } catch(ParseException e) {
                     e.printStackTrace();
@@ -546,6 +550,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         int month_itr = Integer.parseInt(start_day[1]) - 1;
                         day = Integer.parseInt(start_day[2]);
                         int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                        if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                            mdays[1] = 29;
                         lastDay = mdays[month_itr];
 
                         int day_end;
@@ -627,6 +633,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     CalendarDay.from(end[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     lastDay = mdays[month];
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -655,6 +663,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         period = day_end - day + 1;
 
                         int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                        if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                            mdays[1] = 29;
                         lastDay = mdays[month_itr];
 
                         if (period < 0) {
@@ -951,13 +961,15 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         int date_month = CalendarDay.from(date1).getMonth();
         int date_year = CalendarDay.from(date1).getYear();
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if(((date_year % 4 == 0) && (date_year % 100 != 0)) || (date_year % 400 == 0))
+            mdays[1] = 29;
         int lastDayOfdate = mdays[date_month];
 
         for(int i=0;i<number;i++){
             date_day++;
             if(date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                 date_day=1;
-                date_month++;
+                date_month++; if(date_month == 12) { date_month = 0; date_year++; }
             }
         }
         result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
@@ -966,6 +978,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     int[] DatePlus(int date_year, int date_month, int date_day, int number) throws ParseException { // year month day
         int[] result_date = new int[3];
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+
         int lastDayOfdate = mdays[date_month];
         for(int i=0;i<number;i++){
             date_day++;
@@ -984,11 +997,13 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         int date_month = CalendarDay.from(date1).getMonth();
         int date_year = CalendarDay.from(date1).getYear();
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if(((date_year % 4 == 0) && (date_year % 100 != 0)) || (date_year % 400 == 0))
+            mdays[1] = 29;
         int lastDayOfdate = mdays[date_month];
         for(int i=0;i<n;i++){
             date_day--;
             if(date_day == 0){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_month--;
+                date_month--; if(date_month < 0) { date_month = 11; date_year--;}
                 date_day  = mdays[date_month];
             }
         }
@@ -1024,12 +1039,14 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         int cnt = 0;
 
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if(((to_date_year % 4 == 0) && (to_date_year % 100 != 0)) || (to_date_year % 400 == 0))
+            mdays[1] = 29;
         int lastDayOfdate = mdays[to_date_month];
         for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
             to_date_day++; cnt++;
             if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                 to_date_day=1;
-                to_date_month++;
+                to_date_month++;if(to_date_month == 12) { to_date_month = 0; to_date_month++; }
             }
         }
         return cnt;
@@ -1043,6 +1060,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     String IntToDateString(int year, int month, int day){
         return year+"-"+month+"-"+day;
     }
+
     public int DateCompare(String str1, String str2) throws ParseException {
         Date date1 =  SelectedDate(str1);
         int date_day = CalendarDay.from(date1).getDay();

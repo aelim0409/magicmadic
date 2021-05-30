@@ -25,12 +25,15 @@ public class Selftest_main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selftest_main);
 
+        Intent Intent = getIntent();
+        String ID = Intent.getStringExtra("Id");
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -40,6 +43,7 @@ public class Selftest_main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -49,6 +53,7 @@ public class Selftest_main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),graph.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -58,6 +63,7 @@ public class Selftest_main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -67,6 +73,7 @@ public class Selftest_main extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -92,26 +99,32 @@ public class Selftest_main extends AppCompatActivity {
 
                 if( strText.equals("자궁경부암")){
                     Intent intent1 = new Intent(Selftest_main.this, Selftest0.class);
+                    intent1.putExtra("Id", ID);
                     startActivity(intent1);
                 }
                 else if( strText.equals("아르거시-갱년기")){
                     Intent intent2 = new Intent(Selftest_main.this, Selftest1.class);
+                    intent2.putExtra("Id", ID);
                     startActivity(intent2);
                 }
                 else if( strText.equals("자궁근종")){
                     Intent intent2 = new Intent(Selftest_main.this, Selftest2.class);
+                    intent2.putExtra("Id", ID);
                     startActivity(intent2);
                 }
                 else if( strText.equals("다낭성 난소 증후군")){
                     Intent intent2 = new Intent(Selftest_main.this, Selftest3.class);
+                    intent2.putExtra("Id", ID);
                     startActivity(intent2);
                 }
                 else if( strText.equals("폐경기")){
                     Intent intent2 = new Intent(Selftest_main.this, Selftest4.class);
+                    intent2.putExtra("Id", ID);
                     startActivity(intent2);
                 }
                 else if( strText.equals("쿠퍼만-갱년기")){
                     Intent intent2 = new Intent(Selftest_main.this, Selftest5.class);
+                    intent2.putExtra("Id", ID);
                     startActivity(intent2);
                 }
             }

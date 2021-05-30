@@ -1,7 +1,11 @@
 package com.example.myapplication2;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +23,34 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class pills_mod_reminder extends AppCompatActivity {
 
+    //알람 설정
+    public void setAlarm(int hour, int minute)
+    {
+        alarm = Calendar.getInstance();
+        alarm.setTimeInMillis(System.currentTimeMillis());
+        alarm.set(Calendar.HOUR_OF_DAY,hour);
+        alarm.set(Calendar.MINUTE,minute);
+        alarm.set(Calendar.SECOND,0);
+
+        if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
+
+        Intent alarmIntent = new Intent(getApplicationContext(),AlarmReciver_pills.class);
+        AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmIntent.setAction(AlarmReciver_pills.ACTION_RESTART_SERVICE);
+        PendingIntent alarmCallpendingIntent = PendingIntent.getBroadcast(pills_mod_reminder.this,0,alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
+        else if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
+
+        System.out.println("알람알람알람ㅇ람마 되라도리다릳로다릳라라디");
+    }
     public String getInformation(String ID) {
         Log.w("피임약 초기 설정", "설정 정보 주는중");
         String result="null";
@@ -41,10 +68,15 @@ public class pills_mod_reminder extends AppCompatActivity {
         return result;
     }
 
+    Calendar alarm;
+    int alarm_hour;
+    int alarm_minute ;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pills_mod_reminder);
+
+
 
         Intent Intent_get = getIntent();
         String ID = Intent_get.getStringExtra("Id");
@@ -76,13 +108,18 @@ public class pills_mod_reminder extends AppCompatActivity {
         pills_startDay1.setText(get_pills_day);
         pills_days1.setText(init_info[3]);
 
+        alarm_hour = Integer.parseInt(pills_hour1.getText().toString());
+        alarm_minute = Integer.parseInt(pills_minute1.getText().toString());
+
 
         button_move = findViewById(R.id.button_move);
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 move_exercise_func();
+                setAlarm(alarm_hour, alarm_minute);
             }
+
 
             void move_exercise_func() {
 
@@ -138,6 +175,8 @@ public class pills_mod_reminder extends AppCompatActivity {
 
         });
     }
+
+
 
 
     class CustomTask extends AsyncTask<String, Void, String> {
