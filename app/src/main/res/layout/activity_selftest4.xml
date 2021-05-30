@@ -64,7 +64,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="얼굴이 확확 달아오른 적이 있습니까?" />
                 <RadioButton
@@ -91,10 +91,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="가슴이 두근두근 거린 적이 있습니까?"/>
+                    android:text="가슴이 두근두근 거린 적이 있습니까?" />
                 <RadioButton
                     android:id="@+id/radio_2.4.1"
                     android:layout_width="wrap_content"
@@ -119,10 +120,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="땀을 많이 흘리십니까?"/>
+                    android:text="땀을 많이 흘리십니까?" />
                 <RadioButton
                     android:id="@+id/radio_3.4.1"
                     android:layout_width="wrap_content"
@@ -146,10 +148,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="머리가 자주 아픕니까?"/>
+                    android:text="머리가 자주 아픕니까?" />
                 <RadioButton
                     android:id="@+id/radio_4.4.1"
                     android:layout_width="wrap_content"
@@ -173,10 +176,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="잠을 잘 못 이루진 않습니까?"/>
+                    android:text="잠을 잘 못 이루진 않습니까?" />
                 <RadioButton
                     android:id="@+id/radio_5.4.1"
                     android:layout_width="wrap_content"
@@ -200,10 +204,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="앞가슴에 불편감이나 통증을 경험하셨습니까?"/>
+                    android:text="앞가슴에 불편감이나 통증을 경험하셨습니까?" />
                 <RadioButton
                     android:id="@+id/radio_6.4.1"
                     android:layout_width="wrap_content"
@@ -227,10 +232,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="호흡을 길게 하지 못하고 짧은 숨을 몰아쉬게 되지 않습니까?"/>
+                    android:text="호흡을 길게 하지 못하고 짧은 숨을 몰아쉬게 되지 않습니까?" />
                 <RadioButton
                     android:id="@+id/radio_7.4.1"
                     android:layout_width="wrap_content"
@@ -254,10 +260,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="손발이 저리거나 쑤십니까?"/>
+                    android:text="손발이 저리거나 쑤십니까?" />
                 <RadioButton
                     android:id="@+id/radio_8.4.1"
                     android:layout_width="wrap_content"
@@ -281,10 +288,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="쉽게 피로하고 전신에 힘이 없습니까?"/>
+                    android:text="쉽게 피로하고 전신에 힘이 없습니까?" />
                 <RadioButton
                     android:id="@+id/radio_9.4.1"
                     android:layout_width="wrap_content"
@@ -308,10 +316,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="관절 마디에 통증이 있습니까?"/>
+                    android:text="관절 마디에 통증이 있습니까?" />
                 <RadioButton
                     android:id="@+id/radio_10.4.1"
                     android:layout_width="wrap_content"
@@ -335,10 +344,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="건망증이 심해지진 않습니까?"/>
+                    android:text="건망증이 심해지진 않습니까?" />
                 <RadioButton
                     android:id="@+id/radio_11.4.1"
                     android:layout_width="wrap_content"
@@ -362,10 +372,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="괜히 불안해 하지 않습니까?"/>
+                    android:text="괜히 불안해 하지 않습니까?" />
                 <RadioButton
                     android:id="@+id/radio_12.4.1"
                     android:layout_width="wrap_content"
@@ -389,10 +400,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="우울한 느낌이 들 때가 많습니까?"/>
+                    android:text="우울한 느낌이 들 때가 많습니까?" />
                 <RadioButton
                     android:id="@+id/radio_13.4.1"
                     android:layout_width="wrap_content"
@@ -416,10 +428,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="여러 사람 속에서 혼자 있는 것을 두려워 하진 않습니까?"/>
+                    android:text="여러 사람 속에서 혼자 있는 것을 두려워 하진 않습니까?" />
                 <RadioButton
                     android:id="@+id/radio_14.4.1"
                     android:layout_width="wrap_content"
@@ -443,10 +456,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="소변을 자주 보게 됩니까?"/>
+                    android:text="소변을 자주 보게 됩니까?" />
                 <RadioButton
                     android:id="@+id/radio_15.4.1"
                     android:layout_width="wrap_content"
@@ -470,10 +484,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="아래에 분비물이 없어지진 않았습니까?"/>
+                    android:text="아래에 분비물이 없어지진 않았습니까?" />
                 <RadioButton
                     android:id="@+id/radio_16.4.1"
                     android:layout_width="wrap_content"
@@ -497,10 +512,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="성욕이 거의 없어지진 않았습니까?"/>
+                    android:text="성욕이 거의 없어지진 않았습니까?" />
                 <RadioButton
                     android:id="@+id/radio_17.4.1"
                     android:layout_width="wrap_content"
@@ -524,10 +540,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
-                    android:text="부부관계시 통증을 경험하셨습니까?"/>
+                    android:text="부부관계시 통증을 경험하셨습니까?" />
                 <RadioButton
                     android:id="@+id/radio_18.4.1"
                     android:layout_width="wrap_content"
@@ -551,7 +568,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
                     android:text="웃거나 뛰거나 할 때 소변이 저절로 나온 적이 있습니까?"/>
                 <RadioButton
@@ -578,7 +595,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="220dp"
+                    android:layout_width="213dp"
                     android:layout_height="wrap_content"
                     android:text="피부나 모발이 건조합니까?"/>
                 <RadioButton

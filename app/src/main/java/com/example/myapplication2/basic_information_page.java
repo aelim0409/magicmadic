@@ -57,7 +57,7 @@ public class basic_information_page extends AppCompatActivity {
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
         TextView name= findViewById(R.id.PersonName);
-        name.setText(ID);
+        name.setText(ID+ " 님 안녕하세요 :)");
 
         String info = getInformation(ID);
         String[] init_info = info.split(" ");
@@ -74,6 +74,8 @@ public class basic_information_page extends AppCompatActivity {
 
         String today = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         ArrayList<String> date_info = new ArrayList<>();
+        TextView today_is = (TextView)findViewById(R.id.today_is);
+        today_is.setText(today);
 
 
 
@@ -123,7 +125,7 @@ public class basic_information_page extends AppCompatActivity {
 
             int[] period = new int[3];
             String period_end_string;
-            if (date_info.get(1) == null) {
+            if (date_info.get(1).equals("null")) {
                 period = DatePlus(date_info.get(0), 7);
                 period_end_string = period[0] + "-" + (period[1] + 1) + "-" + period[2];
             } else period_end_string = date_info.get(1);
@@ -136,7 +138,14 @@ public class basic_information_page extends AppCompatActivity {
 
             // 마지막 생리일일
             if (date_info.size() > 4) {
-                tw_lastphysicalDay.setText(date_info.get(1));
+
+                if(date_info.get(1).equals("null")){
+                    if(date_info.size() > 4) {
+                        tw_lastphysicalDay.setText(date_info.get(5));
+                    } else tw_lastphysicalDay.setText("사용자 정보가 없습니다.");
+                } else tw_lastphysicalDay.setText(date_info.get(1));
+
+
                 if (num_expetedDay == 0) {
                     tw_expectedDay.setText("오늘 입니다.");
                 } else {
@@ -295,27 +304,17 @@ public class basic_information_page extends AppCompatActivity {
         int date_month = date1[1];
         int date_year = date1[0];
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if(((date_year % 4 == 0) && (date_year % 100 != 0)) || (date_year % 400 == 0))
+            mdays[1] = 29;
+
         int lastDayOfdate = mdays[date_month];
+
 
         for(int i=0;i<number;i++){
             date_day++;
             if(date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                 date_day=1;
-                date_month++;
-            }
-        }
-        result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
-        return result_date;
-    }
-    int[] DatePlus(int date_year, int date_month, int date_day, int number) { // year month day
-        int[] result_date = new int[3];
-        int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-        int lastDayOfdate = mdays[date_month];
-        for(int i=0;i<number;i++){
-            date_day++;
-            if(date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_day=1;
-                date_month++;
+                date_month++; if(date_month == 12) { date_month = 0; date_year++; }
             }
         }
         result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
@@ -328,25 +327,13 @@ public class basic_information_page extends AppCompatActivity {
         int date_month = date1[1];
         int date_year = date1[0];
         int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if(((date_year % 4 == 0) && (date_year % 100 != 0)) || (date_year % 400 == 0))
+            mdays[1] = 29;
         int lastDayOfdate = mdays[date_month];
         for(int i=0;i<n;i++){
             date_day--;
             if(date_day == 0){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_month--;
-                date_day  = mdays[date_month];
-            }
-        }
-        result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
-        return result_date;
-    }
-    int[] DateMinus(int date_year, int date_month, int date_day, int n){ // year month day
-        int[] result_date = new int[3];
-        int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-        int lastDayOfdate = mdays[date_month];
-        for(int i=0;i<n;i++){
-            date_day--;
-            if(date_day == 0){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_month--;
+                date_month--; if(date_month < 0) { date_month = 11; date_year--;}
                 date_day  = mdays[date_month];
             }
         }
@@ -368,12 +355,14 @@ public class basic_information_page extends AppCompatActivity {
             int cnt = 0;
 
             int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+            if(((to_date_year % 4 == 0) && (to_date_year % 100 != 0)) || (to_date_year % 400 == 0))
+                mdays[1] = 29;
             int lastDayOfdate = mdays[to_date_month];
             for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
                 to_date_day++; cnt++;
                 if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                     to_date_day=1;
-                    to_date_month++;
+                    to_date_month++;if(to_date_month == 12) { to_date_month = 0; to_date_month++; }
                 }
             }
             return cnt;
@@ -393,12 +382,16 @@ public class basic_information_page extends AppCompatActivity {
             int cnt = 0;
 
             int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+            if(((to_date_year % 4 == 0) && (to_date_year % 100 != 0)) || (to_date_year % 400 == 0))
+                mdays[1] = 29;
+
+
             int lastDayOfdate = mdays[to_date_month];
             for(int i=0;!(to_date_day == from_date_day && to_date_month == from_date_month && to_date_year == from_date_year);i++){
                 to_date_day++; cnt++;
                 if(to_date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                     to_date_day=1;
-                    to_date_month++;
+                    to_date_month++; if(to_date_month == 12) { to_date_month = 0; to_date_month++; }
                 }
             }
             return cnt;
