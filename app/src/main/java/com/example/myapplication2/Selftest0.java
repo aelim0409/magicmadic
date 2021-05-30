@@ -14,16 +14,21 @@ import android.widget.CheckBox;
 
 public class Selftest0 extends AppCompatActivity implements View.OnClickListener {
     int score = 0;
+    String ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selftest0);
+
+        Intent Intent = getIntent();
+        ID = Intent.getStringExtra("Id");
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -33,6 +38,7 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -41,8 +47,9 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                intent.putExtra("Id", ID);
+                startActivity(intent);
             }
         });
 
@@ -51,7 +58,10 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+
+                intent.putExtra("Id", ID);
                 startActivity(intent);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         });
 
@@ -60,15 +70,19 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
+
+
 
         Button btn_back = (Button) findViewById(R.id.test0back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Selftest0.this, Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -76,7 +90,6 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
         Button btn_done = (Button) findViewById(R.id.test0done);
         btn_done.setOnClickListener(this);
 
-        Intent intent1 = getIntent();
 
         findViewById(R.id.check1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,7 +174,10 @@ public class Selftest0 extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         if(v.getId() == R.id.test0done){
             Intent intent = new Intent(this, SelftestResult.class);
-            intent.putExtra("score", Checked(v));
+            String[] strings = new String[2];
+            strings[0] = ID;
+            strings[1] = Integer.toString(Checked(v));
+            intent.putExtra("score", strings);
             startActivity(intent);
         }
     }

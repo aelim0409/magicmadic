@@ -18,17 +18,23 @@ public class SelftestResult extends AppCompatActivity {
     // 5쿠퍼만-갱년기
     // 4폐경기
     int disease_code, disease_result;
-
+    String ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selftest_result);
+
+        Intent Intent = getIntent();
+        String[] strings = Intent.getStringArrayExtra("score");
+        ID = strings[0];
+        disease_code = Integer.parseInt(strings[1]);
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -38,6 +44,7 @@ public class SelftestResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Selftest_main.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
@@ -46,8 +53,9 @@ public class SelftestResult extends AppCompatActivity {
         graph_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),graph.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(),graph.class);
+                intent.putExtra("Id", ID);
+                startActivity(intent);
             }
         });
 
@@ -56,7 +64,10 @@ public class SelftestResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+
+                intent.putExtra("Id", ID);
                 startActivity(intent);
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         });
 
@@ -65,17 +76,18 @@ public class SelftestResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                intent.putExtra("Id", ID);
                 startActivity(intent);
             }
         });
+
 
 
         TextView disease = (TextView) findViewById(R.id.diseasename);
         TextView result = (TextView) findViewById(R.id.diseaseresult);
         Button back = (Button) findViewById(R.id.btn_back);
 
-        Intent intent = getIntent();
-        disease_code = intent.getIntExtra("score", 0);
+
         disease_result = disease_code % 100 ;
         disease_code = disease_code / 100;
         if( disease_code == 0){
@@ -153,6 +165,7 @@ public class SelftestResult extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(SelftestResult.this, Selftest_main.class);
+                intent1.putExtra("Id", ID);
                 startActivity(intent1);
             }
         });
