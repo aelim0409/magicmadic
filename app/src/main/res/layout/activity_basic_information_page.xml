@@ -133,16 +133,15 @@
                     <TextView
                         android:id="@+id/tw_expectedDay"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginEnd="126dp"
-                        android:layout_marginRight="126dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="17dp"
+                        android:layout_marginRight="17dp"
                         android:fontFamily="@font/dx"
-                        android:text="00"
+                        android:text="사용자 정보가 없습니다."
                         android:textColor="@color/brown"
                         android:textSize="20dp" />
 
@@ -174,11 +173,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginEnd="125dp"
-                        android:layout_marginRight="125dp"
-                        android:layout_marginBottom="9dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/dx"
-                        android:text="00"
+                        android:text="사용자 정보가 없습니다."
                         android:textColor="@color/brown"
                         android:textSize="20dp" />
 
@@ -210,11 +209,10 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginEnd="44dp"
-                        android:layout_marginRight="44dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="14dp"
+                        android:layout_marginRight="14dp"
                         android:fontFamily="@font/dx"
-                        android:text="0000-00-00"
+                        android:text="사용자 정보가 없습니다."
                         android:textColor="@color/brown"
                         android:textSize="20dp" />
                 </RelativeLayout>
@@ -246,11 +244,11 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginEnd="122dp"
-                        android:layout_marginRight="122dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/dx"
-                        android:text="00"
+                        android:text="사용자 정보가 없습니다."
                         android:textColor="@color/brown"
                         android:textSize="20dp" />
 
@@ -282,29 +280,14 @@
                         android:layout_alignParentRight="true"
                         android:layout_alignParentBottom="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginEnd="119dp"
-                        android:layout_marginRight="119dp"
-                        android:layout_marginBottom="7dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="13dp"
                         android:fontFamily="@font/dx"
-                        android:text="00"
+                        android:text="사용자 정보가 없습니다."
                         android:textColor="@color/brown"
                         android:textSize="20dp" />
 
-                    <TextView
-                        android:id="@+id/day5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginEnd="61dp"
-                        android:layout_marginRight="61dp"
-                        android:layout_marginBottom="6dp"
-                        android:fontFamily="@font/dx"
-                        android:text="일"
-                        android:textColor="@color/brown"
-                        android:textSize="20dp" />
                 </RelativeLayout>
 
 
