@@ -385,6 +385,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     day = Integer.parseInt(start_d_day[2]);
 
                     int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     int lastDay = mdays[month_itr];
 
                     if(init_info[i+6].equals("null")){
@@ -520,6 +522,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     Calendar cc = Calendar.getInstance();
                     System.out.println(setSelectedDate);
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     lastDay = mdays[month];
                 } catch(ParseException e) {
                     e.printStackTrace();
@@ -543,6 +547,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         int month_itr = Integer.parseInt(start_day[1]) - 1;
                         day = Integer.parseInt(start_day[2]);
                         int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                        if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                            mdays[1] = 29;
                         lastDay = mdays[month_itr];
 
                         int day_end;
@@ -618,6 +624,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     CalendarDay.from(end[0]).getDay();
                     Calendar cc = Calendar.getInstance();
                     int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
+                    if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                        mdays[1] = 29;
                     lastDay = mdays[month];
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -646,6 +654,8 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         period = day_end - day + 1;
 
                         int[] mdays = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                        if(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+                            mdays[1] = 29;
                         lastDay = mdays[month_itr];
 
                         if (period < 0) {
