@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:andriod="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    andriod:layout_height="wrap_content"
+
+    andriod:layout_width="match_parent">
+
+
+    <com.ebanx.swipebtn.SwipeButton
+        andriod:id="@+id/swipe_btn_physiology"
+        andriod:layout_width="395dp"
+        andriod:layout_height="301dp"
+        andriod:layout_alignParentStart="true"
+        andriod:layout_alignParentLeft="true"
+        andriod:layout_alignParentEnd="true"
+        andriod:layout_alignParentRight="true"
+        andriod:layout_alignParentBottom="true"
+        andriod:layout_centerHorizontal="true"
+        andriod:layout_marginStart="12dp"
+        andriod:layout_marginLeft="12dp"
+        andriod:layout_marginEnd="4dp"
+        andriod:layout_marginRight="4dp"
+        andriod:layout_marginBottom="4dp"
+        app:button_bottom_padding="20dp"
+        app:has_activate_state="true"
+        app:initial_state="disabled"
+        app:inner_text="생리 알람 시간이 되었습니다"
+        app:inner_text_background="@drawable/shape_round_pink"
+        app:inner_text_color="@color/black"
+        app:inner_text_bottom_padding="18dp"
+        app:inner_text_left_padding="80dp"
+        app:inner_text_size="16sp"
+        app:inner_text_top_padding="18dp" />
+
+    <TextView
+        andriod:id="@+id/time_phy"
+        andriod:layout_width="195dp"
+        andriod:layout_height="149dp"
+        andriod:layout_alignParentTop="true"
+        andriod:layout_alignParentEnd="true"
+        andriod:layout_alignParentRight="true"
+        andriod:layout_centerInParent="true"
+        andriod:layout_marginTop="291dp"
+        andriod:layout_marginEnd="104dp"
+        andriod:layout_marginRight="104dp"
+        andriod:gravity="center"
+        andriod:text="시간 표시 자리"
+        andriod:textSize="30sp" />
+
+    <!-- app:button_image_disabled="@drawable/alarm"-->
+</RelativeLayout>

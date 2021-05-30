@@ -1,7 +1,11 @@
 package com.example.myapplication2;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -17,9 +21,36 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 
 public class physiology extends AppCompatActivity {
 
+    //알람 설정
+    public void setAlarm(int hour, int minute)
+    {
+        alarm = Calendar.getInstance();
+        alarm.setTimeInMillis(System.currentTimeMillis());
+        alarm.set(Calendar.HOUR_OF_DAY,hour);
+        alarm.set(Calendar.MINUTE,minute);
+        alarm.set(Calendar.SECOND,0);
+
+        if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
+
+        Intent alarmIntent = new Intent(getApplicationContext(),AlarmReciver_pills.class);
+        AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmIntent.setAction(AlarmReciver_pills.ACTION_RESTART_SERVICE);
+        PendingIntent alarmCallpendingIntent = PendingIntent.getBroadcast(physiology.this,0,alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
+        else if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
+
+        System.out.println("알람알람알람ㅇ람마 되라도리다릳로다릳라라디");
+    }
+
+    Calendar alarm;
+    int alarm_hour;
+    int alarm_minute ;
     public String getInformation(String ID) {
         Log.w("생리알람 초기 설정", "설정 정보 주는중");
         String result="null";
@@ -59,11 +90,15 @@ public class physiology extends AppCompatActivity {
         physiology_H.setText(init_info[1].split(":")[0]);
         physiology_M.setText(init_info[1].split(":")[1]);
 
+        alarm_hour = Integer.parseInt(physiology_H.getText().toString());
+        alarm_minute = Integer.parseInt(physiology_M.getText().toString());
+
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 water_mod_func();
+                setAlarm(alarm_hour,alarm_minute);
             }
 
             void water_mod_func()
