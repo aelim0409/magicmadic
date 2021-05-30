@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.myapplication2">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication2"
         android:usesCleartextTraffic="true">
-        <activity android:name=".physiology"></activity>
+        <activity android:name=".physiology"/>
         <activity android:name=".SymptomInfo" />
         <activity android:name=".MucusInfo" />
         <activity android:name=".sleep_mod_reminder" />
@@ -41,6 +42,21 @@
         <activity android:name=".exercise_mode_reminder" />
         <activity android:name=".MainActivity3" />
         <activity android:name=".graph" />
+        <activity android:name=".AlarmActivity_pills"/>
+        <service
+            android:name="com.example.myapplication2.AlarmService_pills"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_pills" />
+        <activity android:name=".AlarmActivity_physiology"/>
+        <service
+            android:name="com.example.myapplication2.AlarmService_physiology"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_physiology" />
+
     </application>
 
 </manifest>

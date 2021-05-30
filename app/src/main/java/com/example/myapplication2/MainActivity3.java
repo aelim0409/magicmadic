@@ -132,6 +132,14 @@ public class MainActivity3 extends AppCompatActivity {
             }
         });
         //생리 버튼 좀 생각정리 필요
+        physiology.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_5 = new Intent(getApplicationContext(), physiology.class);
+                intent_5.putExtra("Id", ID);
+                startActivity(intent_5);
+            }
+        });
 
         class switch1Listener implements CompoundButton.OnCheckedChangeListener {
 
