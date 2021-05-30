@@ -139,6 +139,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             }
         }
 
+        System.out.println(mg_STARTList);
+        System.out.println(mg_ENDList);
+
         setSelectedDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         Button symptom , mucus;
         symptom  = (Button)findViewById(R.id.symptom_button);
@@ -373,7 +376,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
         //init_info[0]=sleeptime init_info[1]=exercisetime init_info[2]=waterintake
         // init_info[3]=startday1 init_info[4]=endday1 init_info[5]=null init_info[6]=null init_info[7]=null init_info[8]=null
-
         for(int i=0;i<5;i+=2){
             if(!init_info[i+5].equals("null")){
                 try {
@@ -441,6 +443,19 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 }
             }
         }
+
+        // ovulation
+
+        for(int i=0;i<3;i++){
+            if(!mg_STARTList.get(i).equals("null")) {
+                try {
+                    String string = DateOvulationDay(mg_STARTList.get(i), 28);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
 
         Button save_button=findViewById(R.id.save_button);
 
@@ -529,7 +544,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     e.printStackTrace();
                 }
                 finally {
-                    if(!START.equals("null")) {
+                    if(!START.equals("null")) { // 버튼 취소하는 것
                         start_button.setBackgroundColor(Color.rgb(255,255,255));
                         mg_START = START;
 
@@ -563,6 +578,62 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         if (period < 0) {
                             period += mdays[month_itr];
                         }
+
+
+
+//                        String start_sl;
+//                        try {
+//                            start_sl = DateOvulationDay(year + "-" + (month+1) + "-" + day, 28);
+//                            int[] end_sl_num = DatePlus(start_sl, 5);
+//                            String end_sl = end_sl_num[0] + "-" + (end_sl_num[1] + 1) + "-" + end_sl_num[2];
+//
+//                            System.out.println("start_sl :" + start_sl);
+//                            System.out.println("end_sl : " + end_sl );
+//
+//                            Iterator<EventDecorator> iterator1 = eventDecoratorArrayList.iterator();
+//                            while(iterator1.hasNext()) {
+//                                EventDecorator eventDecorator1 = iterator1.next();
+//                                System.out.println(eventDecorator1.dates);
+//                                if(DateCompare(eventDecorator1.dates.toString(), start_sl) >= 0 && DateCompare(eventDecorator1.dates.toString(), end_sl) <= 0) {
+//                                    cal_view.removeDecorator(eventDecorator1);
+//                                    iterator1.remove();
+//                                }
+//                            }
+//
+//                        } catch (ParseException e) {
+//                            e.printStackTrace();
+//                        }
+
+
+                        try {
+                            String[] start_sl_string = DateOvulationDay(year + "-" + (month+1) + "-" + day, 28).split("-");
+                            int[] start_sl_int = new int[3];
+                            start_sl_int[0] = Integer.parseInt(start_sl_string[0]);
+                            start_sl_int[1] = Integer.parseInt(start_sl_string[1]);
+                            start_sl_int[2] = Integer.parseInt(start_sl_string[2]);
+                            for(int i=0;i<period;i++){
+                                System.out.println("ddd : " + start_sl_int[0] + " -" + start_sl_int[1] + " -" + start_sl_int[2]);
+                                EventDecorator objectDecorator1 = new EventDecorator(Collections.singleton(CalendarDay.from(start_sl_int[0] , start_sl_int[1]-1 , start_sl_int[2] )));
+
+                                Iterator<EventDecorator> iterator1 = eventDecoratorArrayList.iterator();
+                                while(iterator1.hasNext()) {
+                                    EventDecorator eventDecorator1 = iterator1.next();
+                                    if(eventDecorator1.dates.equals(objectDecorator1.dates)) {
+                                        cal_view.removeDecorator(eventDecorator1);
+                                        iterator1.remove();
+                                    }
+                                }
+                                start_sl_int[2]++;
+                                if( start_sl_int[2]>lastDay){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
+                                    start_sl_int[2]=1;
+                                    start_sl_int[1]++;
+                                }
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+
                         for(int i=0;i<period;i++){
                             System.out.println(year+"-"+month+"-"+day);
                             EventDecorator objectDecorator = new EventDecorator(Collections.singleton(CalendarDay.from(year, month, day)));
@@ -570,7 +641,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             Iterator<EventDecorator> iterator = eventDecoratorArrayList.iterator();
                             while(iterator.hasNext()) {
                                 EventDecorator eventDecorator1 = iterator.next();
-                                System.out.println(eventDecorator1.dates);
                                 if(eventDecorator1.dates.equals(objectDecorator.dates)) {
                                     cal_view.removeDecorator(eventDecorator1);
                                     iterator.remove();
@@ -586,11 +656,17 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                             start_day_input = "null";
                             mg_START = "null";
                         }
-                    } else {
+                    } else { // 버튼 눌러서 생리 시작 넣기위해
                         start_button.setBackgroundColor(Color.rgb(255, 255, 182));
                         start_day_input= setSelectedDate;
                         START = setSelectedDate;
                         mg_START = start_day_input;
+
+                        try {
+                            DateOvulationDay(year + "-" + (month+1 ) + "-" + day, 28);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
                         for(int i=0;i<5;i++){
                             eventDecoratorArrayList.add(new EventDecorator(Collections.singleton(CalendarDay.from(year, month, day))));
@@ -847,6 +923,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             month=Integer.toString(changed_month);
         }
 
+        mg_STARTList.clear();
+        mg_ENDList.clear();
+
         String [] month_info= giveChangingMonth(ID_selected, month).split(" ");
         System.out.println(month_info);
         for(int i = 0; i < 6; i++) {
@@ -929,6 +1008,18 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             }
         }
 
+
+
+        for(int i=0;i<3;i++){
+            if(!mg_STARTList.get(i).equals("null")) {
+                try {
+                    String string = DateOvulationDay(mg_STARTList.get(i), 28);
+                    System.out.println("ddd");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public int[] DatePlus(String date, int number) throws ParseException { // year month day
@@ -952,21 +1043,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
         return result_date;
     }
-    int[] DatePlus(int date_year, int date_month, int date_day, int number) throws ParseException { // year month day
-        int[] result_date = new int[3];
-        int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-
-        int lastDayOfdate = mdays[date_month];
-        for(int i=0;i<number;i++){
-            date_day++;
-            if(date_day>lastDayOfdate){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_day=1;
-                date_month++;
-            }
-        }
-        result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
-        return result_date;
-    }
     public int[] DateMinus(String date, int n) throws ParseException { // year month day
         int[] result_date = new int[3];
         Date date1 =  SelectedDate(date);
@@ -981,20 +1057,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             date_day--;
             if(date_day == 0){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
                 date_month--; if(date_month < 0) { date_month = 11; date_year--;}
-                date_day  = mdays[date_month];
-            }
-        }
-        result_date [0] = date_year; result_date[1] = date_month; result_date[2] = date_day;
-        return result_date;
-    }
-    int[] DateMinus(int date_year, int date_month, int date_day, int n) throws ParseException { // year month day
-        int[] result_date = new int[3];
-        int[] mdays = {31,28,31,30,31,30,31,31,30,31,30,31};
-        int lastDayOfdate = mdays[date_month];
-        for(int i=0;i<n;i++){
-            date_day--;
-            if(date_day == 0){   //달을 넘겨가며 생리가 이어질 경우 다음달로 초기화 해주기 위함
-                date_month--;
                 date_day  = mdays[date_month];
             }
         }
@@ -1070,22 +1132,32 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         String A = week_after[0]+"-"+(week_after[1]+1)+"-"+week_after[2];
         String B = calculate_date[0]+"-"+(calculate_date[1]+1)+"-"+calculate_date[2];
 
+        int[] result_date = new int[3];
+        result_date[0] = calculate_date[0]; result_date[1] = calculate_date[1]; result_date[2] = calculate_date[2];
+
         if(DateCompare(A, B) > 0) // 가임기가 생리 주기랑 겹치면 안찍음
         {
-//            //배란일
-//            cal_view.addDecorators(new EventDecorator(Color.GREEN, Collections.singleton(CalendarDay.from(result_OvulationDay[0],result_OvulationDay[1],result_OvulationDay[2]))));
-//            //가임기
-//            cal_view.addDecorators(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
-//            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],3);
-//            cal_view.addDecorators(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
-//            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],2);
-//            cal_view.addDecorators(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
-//            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],1);
-//            cal_view.addDecorators(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
-//            calculate_date = DatePlus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],1);
-//            cal_view.addDecorators(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            //배란일
+            eventDecoratorArrayList.add(new EventDecorator(Color.GREEN, Collections.singleton(CalendarDay.from(result_OvulationDay[0],result_OvulationDay[1],result_OvulationDay[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+            //가임기
+            eventDecoratorArrayList.add(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+
+            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],3);
+            eventDecoratorArrayList.add(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],2);
+            eventDecoratorArrayList.add(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+            calculate_date = DateMinus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],1);
+            eventDecoratorArrayList.add(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
+            calculate_date = DatePlus(result_OvulationDay[0]+"-"+(result_OvulationDay[1]+1)+"-"+result_OvulationDay[2],1);
+            eventDecoratorArrayList.add(new EventDecorator(Color.BLUE, Collections.singleton(CalendarDay.from(calculate_date[0],calculate_date[1],calculate_date[2]))));
+            cal_view.addDecorators(eventDecoratorArrayList.get(eventDecoratorArrayList.size()-1));
             String result;
-            result = result_OvulationDay[0] + "-" + result_OvulationDay[1] + "-" + result_OvulationDay[2];
+            result = result_date[0] + "-" + (result_date[1] + 1) + "-" + result_date[2];
             return result;
         }
         else return "0000-00-00";
