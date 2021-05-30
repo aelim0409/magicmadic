@@ -69,7 +69,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="안면 홍조(얼굴 화끈거림)" />
                 <RadioButton
@@ -103,7 +103,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="발한(등 뒤로 땀이 흐름)" />
                 <RadioButton
@@ -136,7 +136,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="불면증" />
                 <RadioButton
@@ -169,7 +169,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="신경질" />
                 <RadioButton
@@ -202,7 +202,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="우울증" />
                 <RadioButton
@@ -235,7 +235,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="어지럼증" />
                 <RadioButton
@@ -268,7 +268,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="피로감" />
                 <RadioButton
@@ -301,7 +301,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="관절통, 근육통" />
                 <RadioButton
@@ -334,7 +334,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="두통" />
                 <RadioButton
@@ -367,7 +367,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="가슴 두근거림" />
                 <RadioButton
@@ -400,7 +400,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="160dp"
+                    android:layout_width="156dp"
                     android:layout_height="wrap_content"
                     android:text="질 건조, 분비물 감소" />
                 <RadioButton
