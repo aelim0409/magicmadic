@@ -785,7 +785,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         }
 
                         try {
-                            String[] start_sl_string = DateOvulationDay(start_day[0] + "-" + start_day[1] + "-" + start_day[2], 28, count).split("-");
+                            String[] start_sl_string = DateOvulationDay(start_day[0] + "-" + start_day[1] + "-" + start_day[2], 28 + count - 5, count).split("-");
                             int[] start_sl_int = new int[3];
                             start_sl_int[0] = Integer.parseInt(start_sl_string[0]);
                             start_sl_int[1] = Integer.parseInt(start_sl_string[1]);
@@ -818,13 +818,6 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-
-
-
-
-
-
-
 
                         END = "null";
                         end_day_input = "null";
@@ -935,8 +928,11 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
+
+
+
                         try {
-                            DateOvulationDay(start_day[0] + "-" + start_day[1] + "-" + start_day[2], 28, count);
+                            DateOvulationDay(start_day[0] + "-" + start_day[1] + "-" + start_day[2], 28 + count - 5 , count);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
