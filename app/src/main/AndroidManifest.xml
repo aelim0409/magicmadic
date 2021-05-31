@@ -43,6 +43,13 @@
         <activity android:name=".MainActivity3" />
         <activity android:name=".graph" />
         <activity android:name=".AlarmActivity_pills"/>
+        <activity android:name=".AlarmAcitivity_hospital"/>
+        <activity android:name=".AlarmActivity_exercise"/>
+        <activity android:name=".AlarmActivity_sleep"/>
+        <activity android:name=".AlarmActivity_water"/>
+
+
+
         <service
             android:name="com.example.myapplication2.AlarmService_pills"
             android:enabled="true"
@@ -56,6 +63,30 @@
             android:exported="true" />
 
         <receiver android:name="com.example.myapplication2.AlarmReciver_physiology" />
+        <service
+            android:name="com.example.myapplication2.AlarmService_water"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_water" />
+        <service
+            android:name="com.example.myapplication2.AlarmService_sleep"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_sleep" />
+        <service
+            android:name="com.example.myapplication2.AlarmService_hospital"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_hospital" />
+        <service
+            android:name="com.example.myapplication2.AlarmService_exercise"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name="com.example.myapplication2.AlarmReciver_exercise" />
 
     </application>
 
