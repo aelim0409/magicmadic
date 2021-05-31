@@ -111,6 +111,8 @@ Test 를 통해 도출된 결과로 본인의 몸 상태를 간단히 확인할 
  김한슬 : https://github.com/slcloe <br>
  김수라 : https://github.com/srsw000521 <br>
  박수민 : https://github.com/moong2 <br>
+ <br><br>
+ magicmadic BACKEND : https://github.com/moong2/MedicMagic-BACKEND 
 ## 7. 버전 ( 업데이트 소식 )
 
 
