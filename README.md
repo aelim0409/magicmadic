@@ -107,10 +107,10 @@ Test 를 통해 도출된 결과로 본인의 몸 상태를 간단히 확인할 
 
 
 ## 6. 프로그램 작성자 및 도움을 준 사람
-신애림 : https://github.com/aelim0409
-김한슬 : https://github.com/slcloe
-김수라 : https://github.com/srsw000521
-박수민 : https://github.com/moong2
+<br 신애림 : https://github.com/aelim0409 >
+<br 김한슬 : https://github.com/slcloe >
+<br 김수라 : https://github.com/srsw000521 >
+<br 박수민 : https://github.com/moong2 >
 ## 7. 버전 ( 업데이트 소식 )
 
 
