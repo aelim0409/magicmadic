@@ -33,57 +33,58 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //startActivity(intent);
-                login_func();
+                String result = login_func();
+                if(result.equals("아이디 혹은 패스워드가 다릅니다")){
+                    Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_SHORT).show();
+                    // System.out.println(result=="아이디 혹은 패스워드가 다릅니다");
+
+                    //finish();
+                }
+                else if(result.equals("회원이 존재하지 않습니다")){
+                    Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
+                    //finish();
+                    //System.out.println(result=="회원이 존재하지 않습니다");
+                }
+                else if(result.equals("필수 입력 사항입니다")){
+                    Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_LONG).show();
+                    //finish();
+                }
+                else{
+                    //result=aelim aelim 2000-04-04 aelim 22
+                    String [] save = result.split(" ");
+                    String ID= save[0];
+
+                    Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
+                    intent.putExtra("Id", save[0]);
+                    startActivity(intent);
+                }
             }
-            void login_func(){
+            String login_func(){
+                String result="null";
                 Log.w("login","로그인 하는중");
                 try {
                     String id = id_edit.getText().toString();
                     String pw = pw_edit.getText().toString();
 
-                    if(id_edit.getText().length()==0)
-                    {
-                        id="null";
+                    if (id_edit.getText().length() == 0) {
+                        id = "null";
                     }
-                    if(pw_edit.getText().length()==0)
-                    {
-                        pw="null";
+                    if (pw_edit.getText().length() == 0) {
+                        pw = "null";
                     }
-                    Log.w("앱에서 보낸값",id+", "+pw);
+                    Log.w("앱에서 보낸값", id + ", " + pw);
 
                     CustomTask task = new CustomTask();
                     //서버에서 받ㅇ느 값
-                    String result = task.execute(id,pw).get();
-                    Log.w("받은값",result);
+                    result = task.execute(id, pw).get();
+                    Log.w("받은값", result);
 
 
-                    if(result.equals("아이디 혹은 패스워드가 다릅니다")){
-                        Toast.makeText(getApplicationContext(),"아이디 혹은 패스워드가 다릅니다.", Toast.LENGTH_LONG).show();
-                       // System.out.println(result=="아이디 혹은 패스워드가 다릅니다");
 
-                        //finish();
-                    }
-                    else if(result.equals("회원이 존재하지 않습니다")){
-                        Toast.makeText(getApplicationContext(),"회원이 존재하지 않습니다.", Toast.LENGTH_LONG).show();
-                        //finish();
-                        //System.out.println(result=="회원이 존재하지 않습니다");
-                    }
-                    else if(result.equals("필수 입력 사항입니다")){
-                        Toast.makeText(getApplicationContext(),"필수 입력 사항이 빠졌습니다.", Toast.LENGTH_LONG).show();
-                        //finish();
-                    }
-                    else{
-                        //result=aelim aelim 2000-04-04 aelim 22
-                        String [] save = result.split(" ");
-                        String ID= save[0];
-
-                        Intent intent = new Intent(getApplicationContext(),basic_information_page.class);
-                        intent.putExtra("Id", save[0]);
-                        startActivity(intent);
-                    }
                 } catch (Exception e) {
 
                 }
+                return result;
             }
         });
 

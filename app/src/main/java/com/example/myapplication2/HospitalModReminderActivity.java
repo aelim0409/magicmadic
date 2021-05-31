@@ -111,11 +111,28 @@ public class HospitalModReminderActivity extends AppCompatActivity {
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                func();
+                String result= func();
+                if(result.equals("양수를 입력해주세요"))
+                {
+                    //토스트 메시지 출력
+                    Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"병원 방문 정보를 저장하였습니다", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(HospitalModReminderActivity.this, MainActivity3.class);
+                    intent.putExtra("Id",ID);
+                    startActivity(intent);
+
+                    finish();
+                }
+
                 //setAlarm(alarm_hour,alarm_minute);
             }
-            void func() {
+            String func() {
 
+                String result = "null";
                 Log.w("remember", "병원정보 저장 하는중");
                 try {
                     String id = ID;
@@ -137,25 +154,13 @@ public class HospitalModReminderActivity extends AppCompatActivity {
                     Log.w("앱에서 보낸값", id+", "+ hospital_date+", "+hospital_time);
 
                     HospitalModReminderActivity.CustomTask task = new HospitalModReminderActivity.CustomTask();
-                    String result = task.execute(id,hospital_date,hospital_time).get();
+                    result = task.execute(id,hospital_date,hospital_time).get();
                     Log.w("받은값", result);
 
-                    if(result.equals("양수를 입력해주세요"))
-                    {
-                        //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    else {
-                        Intent intent = new Intent(HospitalModReminderActivity.this, MainActivity3.class);
-                        intent.putExtra("Id",ID);
-                        startActivity(intent);
-
-                        finish();
-                    }
 
                 } catch (Exception e) {
                 }
+                return result;
             }
 
         });

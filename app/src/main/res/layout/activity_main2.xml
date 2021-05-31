@@ -203,7 +203,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="44dp"
-                        android:src="@android:drawable/ic_menu_add"
+                        android:src="@drawable/ic_baseline_expand_less_24"
                         android:tint="#000000" />
 
                     <ImageButton
@@ -214,7 +214,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy" />
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:tint="#000000"/>
 
                     <TextView
                         android:id="@+id/water_record"
@@ -314,7 +315,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="44dp"
-                        android:src="@android:drawable/ic_menu_add"
+                        android:src="@drawable/ic_baseline_expand_less_24"
                         android:tint="#000000" />
 
                     <ImageButton
@@ -325,7 +326,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy" />
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:tint="#000000"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -405,7 +407,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="44dp"
-                        android:src="@android:drawable/ic_menu_add"
+                        android:src="@drawable/ic_baseline_expand_less_24"
                         android:tint="#000000" />
 
                     <ImageButton
@@ -416,7 +418,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:adjustViewBounds="true"
-                        android:src="@android:drawable/presence_busy" />
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:tint="#000000"/>
                 </RelativeLayout>
 
                 <LinearLayout

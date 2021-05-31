@@ -90,11 +90,28 @@ public class exercise_mode_reminder extends AppCompatActivity {
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                move_exercise_func();
+                String result = move_exercise_func();
+                if(result.equals("양수를 입력해주세요"))
+                {
+                    //토스트 메시지 출력
+                    Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"목표 운동시간 저장하였습니다", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(exercise_mode_reminder.this, MainActivity3.class);
+                    intent.putExtra("Id",ID);
+                    startActivity(intent);
+
+                    finish();
+                }
+
             }
 
-            void move_exercise_func() {
+            String move_exercise_func() {
 
+                String result="null";
                 Log.w("remember", "운동 정보 저장 하는중");
                 try {
                     String exercise_hour = exercise_time.getText().toString();
@@ -103,25 +120,13 @@ public class exercise_mode_reminder extends AppCompatActivity {
                     Log.w("앱에서 보낸값", id+ ", "+exercise_hour);
 
                     exercise_mode_reminder.CustomTask task = new exercise_mode_reminder.CustomTask();
-                    String result = task.execute(id,exercise_hour).get();
+                    result = task.execute(id,exercise_hour).get();
                     Log.w("받은값", result);
 
-                    if(result.equals("양수를 입력해주세요"))
-                    {
-                        //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    else {
-                        Intent intent = new Intent(exercise_mode_reminder.this, MainActivity3.class);
-                        intent.putExtra("Id",ID);
-                        startActivity(intent);
-
-                        finish();
-                    }
 
                 } catch (Exception e) {
                 }
+                return result;
             }
 
         });

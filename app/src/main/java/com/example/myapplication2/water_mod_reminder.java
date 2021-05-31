@@ -96,12 +96,27 @@ public class water_mod_reminder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                water_mod_func();
+               String result = water_mod_func();
+                if(result.equals("양수를 입력해주세요"))
+                {
+                    //토스트 메시지 출력
+                    Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else{
+                    //water_text.setText(water_goal);
+                    Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                    intent.putExtra("Id",ID);
+                    startActivity(intent);
+                    finish();
+                }
                // setAlarm(alarm_hour,alarm_minute);
             }
 
-            void water_mod_func()
+            String water_mod_func()
             {
+                String result= "null";
                 Log.w("water_mod","물목표설정중");
                 try{
 
@@ -111,28 +126,13 @@ public class water_mod_reminder extends AppCompatActivity {
                     String water_time="18:00:00";
                     Log.w("앱에서 보낸 값", id+", "+water_goal+", "+water_time);
                     water_mod_reminder.customTask task = new water_mod_reminder.customTask();
-                    String result = task.execute(id,water_goal,water_time).get();
+                    result = task.execute(id,water_goal,water_time).get();
                     Log.w("받은값",result);
-
-                    if(result.equals("양수를 입력해주세요"))
-                    {
-                        //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    else{
-                        //water_text.setText(water_goal);
-                        Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
-                        intent.putExtra("Id",ID);
-                        startActivity(intent);
-                        finish();
-                    }
 
 
                 }catch(Exception e){
-
                 }
+                return result;
             }
         });
     }
