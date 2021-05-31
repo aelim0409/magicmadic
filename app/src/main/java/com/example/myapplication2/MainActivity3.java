@@ -251,6 +251,8 @@ public class MainActivity3 extends AppCompatActivity {
         }
 
 
+
+
         pills_switch.setOnCheckedChangeListener(new switch1Listener());
         physilogy_switch.setOnCheckedChangeListener(new switch2Listener());
         hospital_switch.setOnCheckedChangeListener(new switch3Listener());

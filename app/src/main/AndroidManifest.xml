@@ -48,7 +48,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name="com.example.myapplication2.AlarmReciver_pills" />
+       <!-- <receiver android:name="com.example.myapplication2.AlarmReciver_pills" />-->
         <activity android:name=".AlarmActivity_physiology"/>
         <service
             android:name="com.example.myapplication2.AlarmService_physiology"

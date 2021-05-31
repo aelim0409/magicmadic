@@ -6,9 +6,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-
-public class AlarmService_pills extends Service {
-
+public class AlarmService_sleep extends Service {
     String TAG = "TAG+Service";
     @Nullable
     @Override
@@ -20,12 +18,9 @@ public class AlarmService_pills extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags,int startId)
     {
-        Log.d(TAG,"AlarmService");
-        Intent alarmIntent= new Intent(getApplicationContext(),AlarmActivity_pills.class);
+        Log.w(TAG,"AlarmService");
+        Intent alarmIntent= new Intent(getApplicationContext(),AlarmActivity_sleep.class);
         startActivity(alarmIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         return super.onStartCommand(intent,flags,startId);
-
     }
-
-
 }

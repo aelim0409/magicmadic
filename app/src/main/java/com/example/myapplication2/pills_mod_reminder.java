@@ -38,7 +38,7 @@ public class pills_mod_reminder extends AppCompatActivity {
         alarm.set(Calendar.MINUTE,minute);
         alarm.set(Calendar.SECOND,0);
 
-        if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
+       // if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
 
         Intent alarmIntent = new Intent(getApplicationContext(),AlarmReciver_pills.class);
         AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -48,8 +48,6 @@ public class pills_mod_reminder extends AppCompatActivity {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
         else if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT)
             alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
-
-        System.out.println("알람알람알람ㅇ람마 되라도리다릳로다릳라라디");
     }
     public String getInformation(String ID) {
         Log.w("피임약 초기 설정", "설정 정보 주는중");
@@ -117,7 +115,8 @@ public class pills_mod_reminder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 move_exercise_func();
-                setAlarm(alarm_hour, alarm_minute);
+
+               setAlarm(alarm_hour, alarm_minute);
             }
 
 
@@ -163,6 +162,7 @@ public class pills_mod_reminder extends AppCompatActivity {
 
                     else {
                         Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+
                         intent.putExtra("Id", ID);
                         startActivity(intent);
                         finish();
