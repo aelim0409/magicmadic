@@ -10,7 +10,8 @@
         android:layout_width="134dp"
         android:layout_height="119dp"
         android:gravity="center"
-        android:text="MAGICMADIC"
+        android:text="MEDIC
+        MAGIC"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
