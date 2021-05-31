@@ -34,18 +34,16 @@ public class physiology extends AppCompatActivity {
         alarm.set(Calendar.MINUTE,minute);
         alarm.set(Calendar.SECOND,0);
 
-        if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
+       // if(alarm.before(Calendar.getInstance())) alarm.add(Calendar.DATE,1);
 
-        Intent alarmIntent = new Intent(getApplicationContext(),AlarmReciver_pills.class);
+        Intent alarmIntent = new Intent(getApplicationContext(),AlarmReciver_physiology.class);
         AlarmManager alarmManager= (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmIntent.setAction(AlarmReciver_pills.ACTION_RESTART_SERVICE);
+        alarmIntent.setAction(AlarmReciver_physiology.ACTION_RESTART_SERVICE);
         PendingIntent alarmCallpendingIntent = PendingIntent.getBroadcast(physiology.this,0,alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M)
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
         else if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT)
             alarmManager.setExact(AlarmManager.RTC_WAKEUP,alarm.getTimeInMillis(),alarmCallpendingIntent);
-
-        System.out.println("알람알람알람ㅇ람마 되라도리다릳로다릳라라디");
     }
 
     Calendar alarm;

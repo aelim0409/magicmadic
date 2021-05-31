@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class AlarmActivity_pills extends AppCompatActivity {
+public class AlarmActivity_exercise extends AppCompatActivity {
     Calendar calendar;
     Button alarm_btn_pills;
     TextView timeText;
@@ -23,11 +23,11 @@ public class AlarmActivity_pills extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_alarm_pills);
-           // Log.d("알람 페이지", "실행");
+            setContentView(R.layout.activity_alarm_exercise);
+            // Log.d("알람 페이지", "실행");
             calendar = Calendar.getInstance();
-            alarm_btn_pills = (Button) findViewById(R.id.alarm_pills_btn);
-            timeText = (TextView) findViewById(R.id.pills_alarm_time);
+            alarm_btn_pills = (Button) findViewById(R.id.alarm_exercise_btn);
+            timeText = (TextView) findViewById(R.id.exercise_alarm_time);
 
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                     | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
@@ -36,8 +36,8 @@ public class AlarmActivity_pills extends AppCompatActivity {
             // 잠금화면 위로 띄어줌
 
             // mediaPlayer = MediaPlayer.create(getApplicationContext(),R.raw.beep);
-           // mediaPlayer.setLooping(true);
-           // mediaPlayer.start();
+            // mediaPlayer.setLooping(true);
+            // mediaPlayer.start();
 
             new Thread(new Runnable(){
                 @Override
@@ -71,7 +71,7 @@ public class AlarmActivity_pills extends AppCompatActivity {
             alarm_btn_pills.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   // mediaPlayer.stop();
+                    // mediaPlayer.stop();
                     flag = false;
                     Toast.makeText(getApplicationContext(),"종료하였습니다", Toast.LENGTH_LONG).show();
                     finish();
