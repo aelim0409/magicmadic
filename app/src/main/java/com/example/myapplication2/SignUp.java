@@ -37,10 +37,30 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),login.class);
                 //startActivity(intent);
-                signUp_func();
+                String result = signUp_func();
+                if(result.equals("이미 가입된 아이디입니다"))
+                {
+                    //토스트 메시지 출력
+                    Toast.makeText(getApplicationContext(),"이미 가입된 아이디입니다", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                else if(result.equals("필수 입력 사항입니다"))
+                {
+
+                    Toast.makeText(getApplicationContext(),"필수 입력 사항입니다", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+                //성공시에
+                else if(result.equals("회원가입이 완료되었습니다")) {
+
+                    Intent intent2 = new Intent(SignUp.this, login.class);
+                    startActivity(intent2);
+                    finish();
+                }
             }
-            void signUp_func()
+            String signUp_func()
             {
+                String result= "null";
                 Log.w("signUp","회원가입하는중");
                 try{
                     String id = id_edit.getText().toString();
@@ -71,32 +91,15 @@ public class SignUp extends AppCompatActivity {
                     }
                     Log.w("앱에서 보낸 값", id+", "+name+", "+pw+", "+birthday+", "+age);
                     customTask task = new customTask();
-                    String result = task.execute(id,name,pw,birthday,age).get();
+                    result = task.execute(id,name,pw,birthday,age).get();
                     Log.w("받은값",result);
 
-                    if(result.equals("이미 가입된 아이디입니다"))
-                    {
-                        //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"이미 가입된 아이디입니다", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    else if(result.equals("필수 입력 사항입니다"))
-                    {
 
-                        Toast.makeText(getApplicationContext(),"필수 입력 사항입니다", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
-                    //성공시에
-                    else if(result.equals("회원가입이 완료되었습니다")) {
-
-                        Intent intent2 = new Intent(SignUp.this, login.class);
-                        startActivity(intent2);
-                        finish();
-                    }
 
                 }catch(Exception e){
 
                 }
+                return result;
             }
         });
     }

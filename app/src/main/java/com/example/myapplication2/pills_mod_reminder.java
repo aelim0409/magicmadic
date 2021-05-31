@@ -114,14 +114,31 @@ public class pills_mod_reminder extends AppCompatActivity {
         button_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                move_exercise_func();
+                String result = move_exercise_func();
 
+                if(result.equals("양수를 입력해주세요"))
+                {
+                    //토스트 메시지 출력
+                    Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+
+                else {
+                    Toast.makeText(getApplicationContext(),"피임약 설정 완료하였습니다", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+
+                    intent.putExtra("Id", ID);
+                    startActivity(intent);
+                    finish();
+                }
                setAlarm(alarm_hour, alarm_minute);
             }
 
 
-            void move_exercise_func() {
+            String move_exercise_func() {
 
+                String result="null";
                 Log.w("remember", "피임약 정보 저장 하는중");
                 try {
 
@@ -150,27 +167,15 @@ public class pills_mod_reminder extends AppCompatActivity {
 
 
                     pills_mod_reminder.CustomTask task = new pills_mod_reminder.CustomTask();
-                    String result = task.execute(id,pills_time, pills_date, days).get();
+                    result = task.execute(id,pills_time, pills_date, days).get();
                     Log.w("받은값", result);
 
-                    if(result.equals("양수를 입력해주세요"))
-                    {
-                        //토스트 메시지 출력
-                        Toast.makeText(getApplicationContext(),"양수를 입력해주세요.", Toast.LENGTH_LONG).show();
-                        finish();
-                    }
 
-                    else {
-                        Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
-
-                        intent.putExtra("Id", ID);
-                        startActivity(intent);
-                        finish();
-                    }
 
 
                 } catch (Exception e) {
                 }
+                return result;
             }
 
         });
