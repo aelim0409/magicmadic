@@ -53,6 +53,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -503,11 +504,30 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                give_info(ID);
+                String result = give_info(ID);
+
+                if(result.equals("이전 주기를 완료해주세요")){
+                    Toast.makeText(getApplicationContext(),"이전 주기를 완료해주세요.", Toast.LENGTH_SHORT).show();
+                    // System.out.println(result=="아이디 혹은 패스워드가 다릅니다");
+
+                    //finish();
+                }
+                else if(result.equals("시작된 주기가 없습니다")){
+                    Toast.makeText(getApplicationContext(),"시작된 주기가 없습니다.", Toast.LENGTH_LONG).show();
+                    //finish();
+                    //System.out.println(result=="회원이 존재하지 않습니다");
+                }
+                else if (result.equals("시작 날짜를 끝나는 날짜 이전으로 맞춰주세요"))
+                {
+                    Toast.makeText(getApplicationContext(),"시작 날짜를 끝나는 날짜 이전으로 맞춰주세요.", Toast.LENGTH_LONG).show();
+                    //finish();
+                }
+
             }
 
-            void give_info(String ID)
+            String give_info(String ID)
             {
+                String result = "null";
                 Log.w("캘린더 전체 ", "설정 정보 주는중");
 
                 try {
@@ -547,7 +567,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
                     MainActivity2.customTask task = new MainActivity2.customTask();
-                    String result = task.execute(id,today_date,sleepTime,exerciseTime,waterIntake,startDay,endDay,symptom,mucus).get();
+                     result = task.execute(id,today_date,sleepTime,exerciseTime,waterIntake,startDay,endDay,symptom,mucus).get();
                     Log.w("(초기)받은값", result);
 
                     //return result;
@@ -555,6 +575,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 } catch (Exception e) {
 
                 }
+                return result;
             }
         });
         //String Startdate="null";

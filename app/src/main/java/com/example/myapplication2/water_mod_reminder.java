@@ -62,7 +62,6 @@ public class water_mod_reminder extends AppCompatActivity {
             Log.w("(초기)받은값", result);
 
         } catch (Exception e) {
-
         }
         return result;
     }
@@ -128,8 +127,6 @@ public class water_mod_reminder extends AppCompatActivity {
                     water_mod_reminder.customTask task = new water_mod_reminder.customTask();
                     result = task.execute(id,water_goal,water_time).get();
                     Log.w("받은값",result);
-
-
                 }catch(Exception e){
                 }
                 return result;
