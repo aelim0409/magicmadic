@@ -523,6 +523,9 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     Toast.makeText(getApplicationContext(),"시작 날짜를 끝나는 날짜 이전으로 맞춰주세요.", Toast.LENGTH_LONG).show();
                     //finish();
                 }
+                else {
+                    Toast.makeText(getApplicationContext(),"저장 성공!", Toast.LENGTH_LONG).show();
+                }
 
             }
 
