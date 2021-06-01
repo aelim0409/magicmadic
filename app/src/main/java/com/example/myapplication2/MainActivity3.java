@@ -42,11 +42,12 @@ public class MainActivity3 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main3);
 
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        System.out.println(ID+",,,,,,,,,,,,,,,,,,,,");
 
         Button water = findViewById(R.id.water_setting_btn);
         Button pills= findViewById(R.id.pills_setting_btn);

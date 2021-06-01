@@ -20,7 +20,7 @@ public class Selftest5 extends AppCompatActivity implements View.OnClickListener
         Button btn_back = (Button) findViewById(R.id.test5back);
 
         Intent Intent = getIntent();
-        String ID = Intent.getStringExtra("Id");
+        ID = Intent.getStringExtra("Id");
 
         Button btn_home = findViewById(R.id.home_btn);
         btn_home.setOnClickListener(new View.OnClickListener() {
