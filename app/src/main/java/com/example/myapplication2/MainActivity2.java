@@ -44,6 +44,7 @@ package com.example.myapplication2;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -562,6 +563,20 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                     else if(endDay=="null"&&END!="null")
                     {
                         endDay=END;
+                    }
+
+                    ColorDrawable color = (ColorDrawable)start_button.getBackground();
+                    ColorDrawable color2 = (ColorDrawable)end_button.getBackground();
+                    if(color.getColor() == Color.rgb(255, 255, 182)) {
+                        startDay = today_date;
+                    } else {
+                        startDay = "null";
+                    }
+
+                    if(color2.getColor() == Color.rgb(255, 255, 182)) {
+                        endDay = today_date;
+                    } else {
+                        endDay = "null";
                     }
 
                     Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
