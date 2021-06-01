@@ -507,7 +507,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
                 String result = give_info(ID);
 
                 if(result.equals("이전 주기를 완료해주세요")){
-                    Toast.makeText(getApplicationContext(),"이전 주기를 완료해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"이전 주기를 완료해주세요.", Toast.LENGTH_LONG).show();
                     // System.out.println(result=="아이디 혹은 패스워드가 다릅니다");
 
                     //finish();

@@ -50,6 +50,8 @@ public class login extends AppCompatActivity {
                     //finish();
                 }
                 else{
+                    Toast.makeText(getApplicationContext(),"로그인 성공하였습니다!", Toast.LENGTH_LONG).show();
+
                     //result=aelim aelim 2000-04-04 aelim 22
                     String [] save = result.split(" ");
                     String ID= save[0];
