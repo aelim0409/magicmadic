@@ -110,7 +110,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="201dp"
             android:fillViewport="true"
             android:paddingHorizontal="10dp"
             android:paddingTop="10dp"
@@ -131,7 +131,7 @@
 
                         android:id="@+id/textview1"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"
@@ -165,7 +165,7 @@
 
                         android:id="@+id/textview2"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"
@@ -201,7 +201,7 @@
 
                         android:id="@+id/day3"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"
@@ -236,7 +236,7 @@
 
                         android:id="@+id/textview4"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"
@@ -272,7 +272,7 @@
 
                         android:id="@+id/textview5"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/shape_round_pink"
                         android:fontFamily="@font/dx"
                         android:gravity="center_vertical"

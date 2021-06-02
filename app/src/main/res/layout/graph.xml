@@ -98,11 +98,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp">
             </TextView>
+
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/graph_exercise"
                 android:layout_width="match_parent"
                 android:layout_height="200dip"
                 android:layout_marginTop="10dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,7 +162,6 @@
             android:autoText="false"
             android:freezesText="false"
             android:text="calendar"
-            android:textSize="11dp"
             android:background="@color/white"/>
 
         <Button
