@@ -29,12 +29,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:background="@color/Pink2"
             android:text="DONE" />
 
         <Button
             android:id="@+id/test1back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/Pink2"
             android:layout_toRightOf="@id/test1done"
             android:layout_alignBaseline="@id/test1done"
             android:text="BACK" />

@@ -30,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:background="@color/Pink2"
             android:text="DONE" />
 
         <Button
@@ -38,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/test3done"
             android:layout_alignBaseline="@id/test3done"
+            android:background="@color/Pink2"
             android:text="BACK" />
 
     </LinearLayout>
