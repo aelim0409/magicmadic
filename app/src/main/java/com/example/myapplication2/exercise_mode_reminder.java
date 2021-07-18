@@ -100,7 +100,7 @@ public class exercise_mode_reminder extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(),"목표 운동시간 저장하였습니다", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(exercise_mode_reminder.this, MainActivity3.class);
+                    Intent intent = new Intent(exercise_mode_reminder.this, Reminder_Main.class);
                     intent.putExtra("Id",ID);
                     startActivity(intent);
 

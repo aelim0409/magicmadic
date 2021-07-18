@@ -103,7 +103,7 @@ public class sleep_mod_reminder extends AppCompatActivity {
                 else{
                     //sleep_goal.setText(sleep);
                     Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                    Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
                     intent.putExtra("Id",ID);
                     startActivity(intent);
                     finish();

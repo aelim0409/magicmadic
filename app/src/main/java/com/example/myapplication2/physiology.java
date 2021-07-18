@@ -122,7 +122,7 @@ public class physiology extends AppCompatActivity {
                     else{
                         //water_text.setText(water_goal);
                         Toast.makeText(getApplicationContext(),"목표 정보를 저장했습니다.", Toast.LENGTH_LONG).show();
-                        android.content.Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                        android.content.Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
                         intent.putExtra("Id",ID);
                         startActivity(intent);
                         finish();

@@ -61,7 +61,7 @@ public class SelftestResult extends AppCompatActivity {
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), Calender_Main.class);
 
                 intent.putExtra("Id", ID);
                 startActivity(intent);
@@ -73,7 +73,7 @@ public class SelftestResult extends AppCompatActivity {
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
                 intent.putExtra("Id", ID);
                 startActivity(intent);
             }

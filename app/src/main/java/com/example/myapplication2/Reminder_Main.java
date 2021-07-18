@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MainActivity3 extends AppCompatActivity {
+public class Reminder_Main extends AppCompatActivity {
 
     public String getInformation(String ID) {
         Log.w("리마인더 온오프 설정", "설정 정보 주는중");
@@ -29,7 +29,7 @@ public class MainActivity3 extends AppCompatActivity {
             String id = ID;
 
             Log.w("(초기)앱에서 보낸 값", id );//+water
-            MainActivity3.getTask task = new MainActivity3.getTask();
+            Reminder_Main.getTask task = new Reminder_Main.getTask();
             result = task.execute(id).get();
             Log.w("(초기)받은값", result);
 
@@ -43,7 +43,7 @@ public class MainActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.reminder_main);
 
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
@@ -291,7 +291,7 @@ public class MainActivity3 extends AppCompatActivity {
                     // 서버에 없음
 
                     Log.w("앱에서 보낸 값", id + ", "+birthControlPills + ", " +physiology +", "+ hospital+", "+ water+ ", " + exerciseTimeGoal +", " + sleepTimeGoal );//+water
-                    MainActivity3.customTask task = new MainActivity3.customTask();
+                    Reminder_Main.customTask task = new Reminder_Main.customTask();
                     String result = task.execute(id,birthControlPills, physiology, hospital, water,exerciseTimeGoal ,sleepTimeGoal).get();
                     Log.w("받은값", result);
 
@@ -339,7 +339,7 @@ public class MainActivity3 extends AppCompatActivity {
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), Calender_Main.class);
                 intent.putExtra("Id", ID);
                 startActivity(intent);
             }
@@ -349,7 +349,7 @@ public class MainActivity3 extends AppCompatActivity {
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
                 intent.putExtra("Id", ID);
                 startActivity(intent);
             }

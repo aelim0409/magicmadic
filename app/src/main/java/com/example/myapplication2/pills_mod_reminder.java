@@ -126,7 +126,7 @@ public class pills_mod_reminder extends AppCompatActivity {
                 else {
                     Toast.makeText(getApplicationContext(),"피임약 설정 완료하였습니다", Toast.LENGTH_LONG).show();
 
-                    Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                    Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
 
                     intent.putExtra("Id", ID);
                     startActivity(intent);

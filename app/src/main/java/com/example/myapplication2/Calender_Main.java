@@ -83,7 +83,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity2 extends Activity implements OnDateSelectedListener, OnMonthChangedListener {
+public class Calender_Main extends Activity implements OnDateSelectedListener, OnMonthChangedListener {
 
     TextView date_today;
     TextView main_date_view;
@@ -118,7 +118,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             String id = ID;
 
             Log.w("앱에서 보낸 값", id +", "+month);
-            MainActivity2.getMonth task = new MainActivity2.getMonth();
+            Calender_Main.getMonth task = new Calender_Main.getMonth();
             result = task.execute(id,month).get();
             Log.w("받은값", result);
 
@@ -134,7 +134,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         try {
             String id = ID;
             Log.w("(초기)앱에서 보낸 값", id +", "+setSelectedDate);//+water
-            MainActivity2.getDate task = new MainActivity2.getDate();
+            Calender_Main.getDate task = new Calender_Main.getDate();
             result = task.execute(id,setSelectedDate).get();
             Log.w("(초기)받은값", result);
 
@@ -154,7 +154,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String today_date = sdf.format(date);
             Log.w("(초기)앱에서 보낸 값", id +", "+today_date);//+water
-            MainActivity2.getTask task = new MainActivity2.getTask();
+            Calender_Main.getTask task = new Calender_Main.getTask();
             result = task.execute(id,today_date).get();
             Log.w("(초기)받은값", result);
             //return result;
@@ -167,7 +167,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.calender_main);
 
         Intent Intent = getIntent();
         String ID = Intent.getStringExtra("Id");
@@ -336,7 +336,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         calendar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                Intent intent = new Intent(getApplicationContext(), Calender_Main.class);
                 intent.putExtra("Id", ID);
                 startActivity(intent);
             }
@@ -345,7 +345,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
         remind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity3.class);
+                Intent intent = new Intent(getApplicationContext(), Reminder_Main.class);
                 intent.putExtra("Id", ID);
                 startActivity(intent);
             }
@@ -584,7 +584,7 @@ public class MainActivity2 extends Activity implements OnDateSelectedListener, O
 
                     Log.w("(초기)앱에서 보낸 값", id +", "+today_date+", "+sleepTime+", "+exerciseTime+", "+waterIntake+", "+startDay
                             +", "+endDay+", "+symptom+", "+mucus);//+water
-                    MainActivity2.customTask task = new MainActivity2.customTask();
+                    Calender_Main.customTask task = new Calender_Main.customTask();
                      result = task.execute(id,today_date,sleepTime,exerciseTime,waterIntake,startDay,endDay,symptom,mucus).get();
                     Log.w("(초기)받은값", result);
 

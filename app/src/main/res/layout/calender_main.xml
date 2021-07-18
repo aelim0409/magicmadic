@@ -13,7 +13,7 @@
     android:paddingVertical="5dp"
     android:rotation="0"
     android:rotationX="0"
-    tools:context=".MainActivity2">
+    tools:context=".Calender_Main">
 
     <LinearLayout
         android:id="@+id/comp1"

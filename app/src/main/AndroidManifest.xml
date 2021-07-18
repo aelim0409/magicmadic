@@ -17,8 +17,8 @@
         <activity android:name=".SymptomInfo" />
         <activity android:name=".MucusInfo" />
         <activity android:name=".sleep_mod_reminder" />
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Calender_Main" />
+        <activity android:name=".MedicMagic">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,7 +40,7 @@
         <activity android:name=".pills_mod_reminder" />
         <activity android:name=".water_mod_reminder" />
         <activity android:name=".exercise_mode_reminder" />
-        <activity android:name=".MainActivity3" />
+        <activity android:name=".Reminder_Main" />
         <activity android:name=".graph" />
         <activity android:name=".AlarmActivity_pills"/>
         <activity android:name=".AlarmAcitivity_hospital"/>
