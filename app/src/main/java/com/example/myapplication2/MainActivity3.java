@@ -165,9 +165,6 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //isChecked=checked[1];
 
-
-
-
                 if(isChecked) {
                     booleans[1] = "true";
                 }
@@ -181,9 +178,6 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // isChecked=checked[2];
-
-
-
 
                 if(isChecked){
 
@@ -228,8 +222,6 @@ public class MainActivity3 extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //System.out.print(isChecked);
                 //isChecked=checked[5];
-
-
 
                 if(isChecked){
 
