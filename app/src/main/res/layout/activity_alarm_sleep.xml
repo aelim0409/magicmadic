@@ -8,13 +8,10 @@
         android:id="@+id/alarm_sleep_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="160dp"
-        android:layout_marginRight="160dp"
         android:layout_marginBottom="79dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@color/Pink1"
         android:text="알람 종료" />
 
     <TextView

@@ -45,7 +45,6 @@ public class AlarmReciver_pills extends BroadcastReceiver {
             context.startService(in);
         }
     }
-
 }
 
 
