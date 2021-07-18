@@ -23,7 +23,7 @@
         app:has_activate_state="true"
         app:initial_state="disabled"
         app:inner_text="생리 예정일이 다가옵니다."
-        app:inner_text_background="@drawable/shape_round_pink"
+        app:inner_text_background="@color/Pink2"
         app:inner_text_color="@color/black"
         app:inner_text_bottom_padding="18dp"
         app:inner_text_size="16sp"
